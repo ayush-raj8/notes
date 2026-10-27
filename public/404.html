@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Notes</title>
+    <script>
+      // GitHub Pages has no client-router fallback. Keep the requested URL, then
+      // return to the site root so the app can restore it.
+      sessionStorage.setItem("notes:redirect", location.href);
+      location.replace("/notes/");
+    </script>
+  </head>
+  <body></body>
+</html>

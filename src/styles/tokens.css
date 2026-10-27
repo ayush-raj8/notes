@@ -1,0 +1,35 @@
+:root {
+  color-scheme: light;
+  --bg: #f3efe6;
+  --surface: #fffcf7;
+  --ink: #1c1915;
+  --muted: #5f584e;
+  --line: #e3dacb;
+  --accent: #1d4f45;
+  --accent-ink: #f7fbf9;
+  --caution: #8a3d12;
+  --caution-bg: #f8efe6;
+  --focus: #1d4f45;
+  --serif: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+  --sans: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --measure: 68ch;
+  --header: 4.25rem;
+  --space: 1.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #141311;
+    --surface: #1e1c19;
+    --ink: #f3efe6;
+    --muted: #c3b9aa;
+    --line: #3a342c;
+    --accent: #8fcec0;
+    --accent-ink: #10211d;
+    --caution: #f0b089;
+    --caution-bg: #2a211b;
+    --focus: #8fcec0;
+  }
+}
