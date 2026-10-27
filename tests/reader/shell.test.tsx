@@ -24,14 +24,20 @@ describe("application shell", () => {
     expect(screen.getByRole("heading", { name: "Notes" })).toBeInTheDocument();
     await user.click(screen.getByRole("link", { name: "Computer Networks" }));
     expect(screen.getByRole("heading", { name: "Computer Networks" })).toBeInTheDocument();
-    expect(screen.getByText(/0 of 67 lessons written/)).toBeInTheDocument();
-    await user.click(screen.getByRole("link", { name: "1. Networking Foundations" }));
-    expect(screen.getByRole("heading", { name: "Networking Foundations" })).toBeInTheDocument();
+    expect(screen.getByText(/34 of 67 lessons written/)).toBeInTheDocument();
     await user.click(
-      within(screen.getByRole("main")).getByRole("link", { name: "Why networks are layered" }),
+      screen.getByRole("link", { name: "8. HTTP and Application-Layer Networking" }),
+    );
+    expect(
+      screen.getByRole("heading", { name: "HTTP and Application-Layer Networking" }),
+    ).toBeInTheDocument();
+    await user.click(
+      within(screen.getByRole("main")).getByRole("link", {
+        name: "The HTTP request and response",
+      }),
     );
     expect(screen.getByText("This lesson is not written yet.")).toBeInTheDocument();
-    expect(screen.getByText("OSI model and TCP/IP model.")).toBeInTheDocument();
+    expect(screen.getByText("HTTP request-response model.")).toBeInTheDocument();
   });
 
   it("shows not-found and a pending why answer", async () => {

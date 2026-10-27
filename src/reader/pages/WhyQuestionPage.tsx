@@ -1,15 +1,19 @@
 import { Link, useParams } from "react-router-dom";
 import { findLessonById, findWhyBySlug, lessonPath } from "@/content/subjects/cn/load";
+import { useProgress } from "@/app/progress/ProgressContext";
+import { ConfidenceButtons } from "../ConfidenceButtons";
 import { usePageTitle } from "../usePageTitle";
 import { NotFoundPage } from "./NotFoundPage";
 
 export function WhyQuestionPage() {
   const { questionSlug = "" } = useParams();
   const question = findWhyBySlug(questionSlug);
+  const { state, markWhy } = useProgress();
   usePageTitle(question ? `Question ${question.number}` : "Not found");
   if (!question) return <NotFoundPage />;
 
   const lesson = findLessonById(question.primaryLessonId);
+  const answered = question.status === "answered";
 
   return (
     <article className="lesson-column">
@@ -18,8 +22,15 @@ export function WhyQuestionPage() {
         {question.set === "added" ? <span>Added beyond the core 50</span> : null}
       </p>
       <h1>{question.prompt}</h1>
-      {question.status === "answered" ? (
-        <p>{question.conciseAnswer}</p>
+      {answered ? (
+        <>
+          <p>{question.conciseAnswer}</p>
+          <ConfidenceButtons
+            legend="Mark this answer for review"
+            value={state.why[question.id]?.confidence}
+            onChange={(confidence) => markWhy(question.id, confidence)}
+          />
+        </>
       ) : (
         <div className="empty">
           <strong>Answer not written yet.</strong>

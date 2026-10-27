@@ -54,7 +54,7 @@ export function markLessonOpened(
 ): ProgressState {
   if (lesson.status === "planned") return state;
   const current = state.lessons[lesson.id];
-  if (current?.status === "complete") return state;
+  if (current?.status === "complete" || current?.status === "in_progress") return state;
   return {
     ...state,
     lessons: {
