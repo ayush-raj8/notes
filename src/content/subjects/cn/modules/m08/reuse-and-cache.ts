@@ -91,15 +91,15 @@ export const body = {
       id: "catalog-cache",
       title: "A product list behind a CDN, over ten minutes",
       setup:
-        "`GET /products` on `api.example.com` returns JSON. The origin sends `Cache-Control: max-age=60, s-maxage=300`, `ETag: \"v17\"`, `Content-Encoding: gzip`, and `Vary: Accept-Encoding`. A browser talks to a CDN, a shared cache, which talks to the origin. Times are in seconds and the names are documentation values.",
+        '`GET /products` on `api.example.com` returns JSON. The origin sends `Cache-Control: max-age=60, s-maxage=300`, `ETag: "v17"`, `Content-Encoding: gzip`, and `Vary: Accept-Encoding`. A browser talks to a CDN, a shared cache, which talks to the origin. Times are in seconds and the names are documentation values.',
       walkthrough: [
         "t=0. The browser's cache and the CDN are empty. The CDN forwards the request with the browser's `Accept-Encoding: gzip, br`, stores the gzip response keyed by method, URI, and the Accept-Encoding value that Vary names, and returns it. The browser stores it too.",
         "t=30. The browser needs `/products` again. Its copy has age 30, below max-age 60, so it is fresh and the browser uses it without any request. No server sees this.",
-        "t=90. The browser's copy is stale (90 > 60). It sends `GET /products` with `If-None-Match: \"v17\"`. At the CDN the stored response has age 90, below s-maxage 300, so it is still fresh there. The CDN evaluates the If-None-Match against its stored ETag, which matches, and answers 304 itself. The browser updates its stored headers and reuses the body. The origin sees nothing.",
+        't=90. The browser\'s copy is stale (90 > 60). It sends `GET /products` with `If-None-Match: "v17"`. At the CDN the stored response has age 90, below s-maxage 300, so it is still fresh there. The CDN evaluates the If-None-Match against its stored ETag, which matches, and answers 304 itself. The browser updates its stored headers and reuses the body. The origin sees nothing.',
         "t=200. A client using `Accept-Encoding: identity` asks the CDN. Vary says the stored gzip response was selected by Accept-Encoding, and the values differ, so the CDN cannot use it. It forwards the request and stores a second, uncompressed response.",
         "t=320. Another browser's request reaches the CDN. The gzip copy has age 320 > 300, and s-maxage requires a shared cache to revalidate. The CDN sends `If-None-Match: \"v17\"` to the origin. The product list has not changed, so the origin answers 304 with fresh Cache-Control and ETag fields, and the CDN's copy is fresh again for another 300 seconds.",
         "t=400. An admin sends `PUT /products/42` through the same CDN and gets 200. A cache must invalidate the target URI of a successful unsafe request, but that target is `/products/42`, not `/products`. The CDN may invalidate other URIs, but is not required to, and the browsers' own caches never saw the PUT. Until their copies expire, clients can see the old list.",
-        "t=401. The origin now has `ETag: \"v18\"`. The next conditional request with `\"v17\"` that reaches it gets 200 with the new representation.",
+        't=401. The origin now has `ETag: "v18"`. The next conditional request with `"v17"` that reaches it gets 200 with the new representation.',
       ],
       result:
         "Freshness lets each cache decide alone, so most requests never reach the origin; validation makes the stale case cost a 304 instead of a body. The cost is staleness bounded by max-age and s-maxage, not by when the data changes. If clients must see a change at once, the response must not be reusable without validation (`no-cache`), or its URL must change when the content does.",
@@ -111,11 +111,11 @@ export const body = {
       steps: [
         {
           title: "The first response",
-          body: "`curl --compressed -D - https://www.rfc-editor.org/rfc/rfc9111.txt` returned `HTTP/2 200`, `cache-control: public, max-age=86400`, `content-encoding: gzip`, and `etag: \"f8907618635703edd228aee4aa834eee\"` (observed in October 2026).",
+          body: '`curl --compressed -D - https://www.rfc-editor.org/rfc/rfc9111.txt` returned `HTTP/2 200`, `cache-control: public, max-age=86400`, `content-encoding: gzip`, and `etag: "f8907618635703edd228aee4aa834eee"` (observed in October 2026).',
         },
         {
           title: "The same URL without compression",
-          body: "Without `--compressed`, the response carried `W/\"f8907618635703edd228aee4aa834eee\"`, the same tag marked weak. RFC 9110 explains why such a pairing must be weak: if a server uses one validator for the gzip and the uncompressed representation, that validator is not byte-exact for either, so it is weak.",
+          body: 'Without `--compressed`, the response carried `W/"f8907618635703edd228aee4aa834eee"`, the same tag marked weak. RFC 9110 explains why such a pairing must be weak: if a server uses one validator for the gzip and the uncompressed representation, that validator is not byte-exact for either, so it is weak.',
         },
         {
           title: "The conditional request",
@@ -394,7 +394,8 @@ export const body = {
       statement:
         "A cache validates a stored response by adding preconditions from its validators: it must send entity tags if the stored response had them, and should send Last-Modified in If-Modified-Since. A 304 lets it update and reuse the stored response; a full response replaces it; on a 5xx it may forward the error or act as if the server did not respond.",
       sourceId: "rfc9111",
-      locator: "Section 4.3.1, Sending a Validation Request; Section 4.3.3, Handling a Validation Response",
+      locator:
+        "Section 4.3.1, Sending a Validation Request; Section 4.3.3, Handling a Validation Response",
       verification: "checked",
       subtle: false,
       scope: "rfc",
@@ -434,7 +435,8 @@ export const body = {
       statement:
         "A cache that can satisfy a request by reusing a stored 200 response should evaluate the request's preconditions against that stored response's validators, with If-None-Match taking precedence over If-Modified-Since. When a 304 arrives, the cache must update the matching stored responses' header fields from it.",
       sourceId: "rfc9111",
-      locator: "Section 4.3.2, Handling a Received Validation Request; Section 4.3.4, Freshening Stored Responses upon Validation",
+      locator:
+        "Section 4.3.2, Handling a Received Validation Request; Section 4.3.4, Freshening Stored Responses upon Validation",
       verification: "checked",
       subtle: false,
       scope: "rfc",
@@ -479,7 +481,10 @@ export const body = {
       sourceId: "rfc9110",
       note: "Sections 8.4, 8.4.1, 8.8.1, 8.8.3, 9.2.2, 12.5.3, 12.5.5, 13.1.2, 13.1.3, 15.4.5, and 17.6.",
     },
-    { sourceId: "rfc9112", note: "Sections 9.3, 9.3.1, 9.4, and 9.5: persistence and idle closes." },
+    {
+      sourceId: "rfc9112",
+      note: "Sections 9.3, 9.3.1, 9.4, and 9.5: persistence and idle closes.",
+    },
     { sourceId: "rfc9113", note: "Section 9.1: one HTTP/2 connection per origin." },
     { sourceId: "rfc5681", note: "Section 4.1: slow start after an idle period." },
   ],

@@ -391,7 +391,8 @@ export const body = {
       statement:
         "gRPC calls are not assumed idempotent unless marked so; calls that cannot be proven to have started are not retried. REFUSED_STREAM maps to UNAVAILABLE and can be retried, possibly elsewhere. After GOAWAY, streams above the last accepted one are UNAVAILABLE and can be retried elsewhere.",
       sourceId: "grpc-protocol-http2",
-      locator: "Idempotency and Retries; Errors (RST_STREAM mapping); Connection Management, GOAWAY Frame",
+      locator:
+        "Idempotency and Retries; Errors (RST_STREAM mapping); Connection Management, GOAWAY Frame",
       verification: "checked",
       subtle: false,
       scope: "common-implementation",
@@ -422,7 +423,10 @@ export const body = {
       sourceId: "rfc9110",
       note: "Sections 3.7, 7.6, 7.6.1, 7.6.3, 7.8, 9.3.6, 15.6.3, and 15.6.5: intermediaries and forwarding.",
     },
-    { sourceId: "rfc9112", note: "Sections 6.1 and 11.2: framing conflicts and request smuggling." },
+    {
+      sourceId: "rfc9112",
+      note: "Sections 6.1 and 11.2: framing conflicts and request smuggling.",
+    },
     { sourceId: "rfc9113", note: "Sections 6.4, 8.7, 9.1, and 9.1.1: streams, retries, PING." },
     {
       sourceId: "rfc6455",
@@ -430,6 +434,9 @@ export const body = {
     },
     { sourceId: "rfc8441", note: "Sections 1 and 4: WebSockets over HTTP/2." },
     { sourceId: "grpc-protocol-http2", note: "gRPC's wire mapping onto HTTP/2, master branch." },
-    { sourceId: "grpc-load-balancing", note: "Per-call load balancing and policies, master branch." },
+    {
+      sourceId: "grpc-load-balancing",
+      note: "Per-call load balancing and policies, master branch.",
+    },
   ],
 } satisfies LessonBody;

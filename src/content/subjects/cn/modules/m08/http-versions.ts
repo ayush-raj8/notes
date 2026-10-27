@@ -126,7 +126,7 @@ export const body = {
       walkthrough: [
         "curl reported `negotiated=2` for both. `curl -v` showed why: `ALPN: curl offers h2,http/1.1` and `ALPN: server accepted h2`, inside the TLS handshake. No HTTP Upgrade exchange happened. HTTP/2 over TLS must be negotiated this way.",
         "Cloudflare's reply began `HTTP/2 103` and then `HTTP/2 200`. The 103 is an interim 1xx response on the same stream, before the final one. An HTTP/2 client has to accept several HEADERS frames on one stream for exactly this reason.",
-        "Both responses carried `alt-svc: h3=\":443\"`, with `ma=86400` and `ma=2592000` seconds. This is how an origin advertises that an equivalent HTTP/3 endpoint exists, here on UDP port 443 of the same host. An `http://` URI cannot go straight to HTTP/3, because that scheme names a TCP port.",
+        'Both responses carried `alt-svc: h3=":443"`, with `ma=86400` and `ma=2592000` seconds. This is how an origin advertises that an equivalent HTTP/3 endpoint exists, here on UDP port 443 of the same host. An `http://` URI cannot go straight to HTTP/3, because that scheme names a TCP port.',
         "A client that supports HTTP/3 may now open a QUIC connection to that host on UDP 443, offering `h3` in ALPN, and use it for later requests. Until the QUIC connection succeeds, it keeps using the HTTP/2 connection it already has.",
         "If UDP to port 443 is blocked by a corporate firewall, the QUIC handshake never completes. RFC 9114 says clients should then use a TCP-based version. A well-behaved client does not fail the request; it stays on HTTP/2.",
         "On the server, the handlers saw the same request either way. What changes is visible only to the transport: one TCP connection with HPACK and stream IDs 1, 3, 5, or one QUIC connection with stream IDs 0, 4, 8 and QPACK.",
@@ -213,7 +213,7 @@ export const body = {
           prompt:
             "Users on a corporate network report that a site works but never uses HTTP/3, while at home it does. Nothing is broken. What is the most likely explanation, and how did the client learn about HTTP/3 in the first place?",
           answer:
-            "The site advertised HTTP/3 with an `Alt-Svc: h3=\":443\"` header (or an ALTSVC frame) on an HTTP/1.1 or HTTP/2 response. The client then tried a QUIC connection on UDP 443. On the corporate network a firewall most likely blocks or drops UDP to port 443, so the QUIC handshake fails, and RFC 9114 says the client should fall back to TCP-based HTTP. At home UDP passes. Requests succeed either way because the semantics are identical.",
+            'The site advertised HTTP/3 with an `Alt-Svc: h3=":443"` header (or an ALTSVC frame) on an HTTP/1.1 or HTTP/2 response. The client then tried a QUIC connection on UDP 443. On the corporate network a firewall most likely blocks or drops UDP to port 443, so the QUIC handshake fails, and RFC 9114 says the client should fall back to TCP-based HTTP. At home UDP passes. Requests succeed either way because the semantics are identical.',
         },
       ],
     },
@@ -244,7 +244,8 @@ export const body = {
       statement:
         "HTTP/2 over TLS uses ALPN with the identifier h2. Cleartext HTTP/2 can be started with prior knowledge by sending the connection preface; HTTP/2 over TLS must use ALPN.",
       sourceId: "rfc9113",
-      locator: "Section 3.2, Starting HTTP/2 for https URIs; Section 3.3, Starting HTTP/2 with Prior Knowledge",
+      locator:
+        "Section 3.2, Starting HTTP/2 for https URIs; Section 3.3, Starting HTTP/2 with Prior Knowledge",
       verification: "checked",
       subtle: true,
       scope: "rfc",
@@ -422,7 +423,7 @@ export const body = {
     {
       id: "h3-discovery",
       statement:
-        "Unless another mechanism selects HTTP/3, the ALPN token h3 is used. If UDP is blocked and QUIC fails, clients should use TCP-based HTTP. An origin can advertise HTTP/3 with Alt-Svc, for example `h3=\":50781\"`. HTTP/3 cannot be used directly for http URIs.",
+        'Unless another mechanism selects HTTP/3, the ALPN token h3 is used. If UDP is blocked and QUIC fails, clients should use TCP-based HTTP. An origin can advertise HTTP/3 with Alt-Svc, for example `h3=":50781"`. HTTP/3 cannot be used directly for http URIs.',
       sourceId: "rfc9114",
       locator: "Section 3.1, Discovering an HTTP/3 Endpoint; Sections 3.1.1 and 3.1.2",
       verification: "checked",

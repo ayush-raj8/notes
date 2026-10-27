@@ -67,7 +67,9 @@ describe("application shell", () => {
     expect(await screen.findByRole("alert")).toHaveTextContent(/not a progress export/i);
 
     await user.upload(input, new File([exported], "progress.json", { type: "application/json" }));
-    expect(screen.getByText(/Replace the progress stored in this browser/)).toBeInTheDocument();
+    expect(
+      await screen.findByText(/Replace the progress stored in this browser/),
+    ).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Replace progress" }));
     expect(
       screen.getByRole("link", { name: /Why does TCP use a three-way handshake/ }),

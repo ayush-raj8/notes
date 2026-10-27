@@ -4,8 +4,6 @@
  * Write the answer here and embed the question in its primary lesson.
  */
 export const whyAnswers: Record<string, string> = {
-  "why.01":
-    "TCP moves an ordered stream of bytes between two programs and nothing more. It does not say where one request ends, what the client wants, which site on a shared address it means, whether the server succeeded, or whether the request may be sent again. HTTP answers those questions once, for everyone: a message format with explicit framing, a method and target, header fields such as Host, Content-Type, and Cache-Control, and a status code. Because every client, server, cache, proxy, and load balancer reads the same format, software written by different people can act on traffic it has never seen: retry an idempotent request, reuse a fresh response, or route by host and path. Each application could invent its own protocol on TCP, but then nothing between the two ends could understand it.",
   "why.02":
     "IP moves a datagram from one host to another, best effort: it can be lost, duplicated, reordered, or damaged, and IP adds no sequencing, retransmission, or flow control. It also names only the host, not the program on it. UDP adds ports and a checksum so the kernel can hand each datagram to the right socket. TCP adds ports plus sequence numbers, acknowledgments, retransmission, and flow control to turn those datagrams into a reliable, ordered byte stream.",
   "why.03":

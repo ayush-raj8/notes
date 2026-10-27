@@ -412,8 +412,7 @@ export const body = {
     },
     {
       id: "no-content-responses",
-      statement:
-        "Responses to HEAD, and all 1xx, 204, and 304 responses, do not include content.",
+      statement: "Responses to HEAD, and all 1xx, 204, and 304 responses, do not include content.",
       sourceId: "rfc9110",
       locator: "Section 6.4.1, Content Semantics",
       verification: "checked",
