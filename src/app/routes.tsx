@@ -1,6 +1,9 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 import { AppShell } from "./shell/AppShell";
 import { CurriculumPage } from "@/reader/pages/CurriculumPage";
+import { DesignCodingIndexPage } from "@/reader/pages/dsa/DesignCodingIndexPage";
+import { DesignCodingQuestionPage } from "@/reader/pages/dsa/DesignCodingQuestionPage";
+import { DsaHomePage } from "@/reader/pages/dsa/DsaHomePage";
 import { HomePage } from "@/reader/pages/HomePage";
 import { LessonPage } from "@/reader/pages/LessonPage";
 import { ModulePage } from "@/reader/pages/ModulePage";
@@ -23,6 +26,11 @@ export function AppRoutes() {
           <Route path="why" element={<WhyIndexPage />} />
           <Route path="why/:questionSlug" element={<WhyQuestionPage />} />
           <Route path="review" element={<ReviewPage />} />
+        </Route>
+        <Route path="dsa" element={<Outlet />}>
+          <Route index element={<DsaHomePage />} />
+          <Route path="pyq/design-coding" element={<DesignCodingIndexPage />} />
+          <Route path="pyq/design-coding/:questionSlug" element={<DesignCodingQuestionPage />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Route>
