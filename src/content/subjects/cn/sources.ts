@@ -121,11 +121,32 @@ const sourceRecords = [
     kind: "rfc",
   },
   {
+    id: "rfc2663",
+    title: "RFC 2663: IP Network Address Translator (NAT) Terminology and Considerations",
+    url: "https://www.rfc-editor.org/rfc/rfc2663",
+    kind: "rfc",
+    note: "Informational. NAT flavors, session start and end heuristics, limitations, and security considerations.",
+  },
+  {
+    id: "rfc2979",
+    title: "RFC 2979: Behavior of and Requirements for Internet Firewalls",
+    url: "https://www.rfc-editor.org/rfc/rfc2979",
+    kind: "rfc",
+    note: "Informational. States that firewall functions are disjoint from NAT, and the transparency rule.",
+  },
+  {
     id: "rfc2992",
     title: "RFC 2992: Analysis of an Equal-Cost Multi-Path Algorithm",
     url: "https://www.rfc-editor.org/rfc/rfc2992",
     kind: "rfc",
     note: "Informational. Describes hash-threshold ECMP; it does not mandate which header fields a router hashes.",
+  },
+  {
+    id: "rfc3022",
+    title: "RFC 3022: Traditional IP Network Address Translator (Traditional NAT)",
+    url: "https://www.rfc-editor.org/rfc/rfc3022",
+    kind: "rfc",
+    note: "Informational. Basic NAT and NAPT: bindings, header and checksum rewrites, ICMP error translation.",
   },
   {
     id: "rfc3550",
@@ -178,6 +199,13 @@ const sourceRecords = [
     kind: "rfc",
   },
   {
+    id: "rfc4787",
+    title: "RFC 4787: Network Address Translation (NAT) Behavioral Requirements for Unicast UDP",
+    url: "https://www.rfc-editor.org/rfc/rfc4787",
+    kind: "rfc",
+    note: "BCP 127. Mapping and filtering behaviors, UDP mapping timers, hairpinning.",
+  },
+  {
     id: "rfc4861",
     title: "RFC 4861: Neighbor Discovery for IP version 6 (IPv6)",
     url: "https://www.rfc-editor.org/rfc/rfc4861",
@@ -188,6 +216,13 @@ const sourceRecords = [
     title: "RFC 4862: IPv6 Stateless Address Autoconfiguration",
     url: "https://www.rfc-editor.org/rfc/rfc4862",
     kind: "rfc",
+  },
+  {
+    id: "rfc4864",
+    title: "RFC 4864: Local Network Protection for IPv6",
+    url: "https://www.rfc-editor.org/rfc/rfc4864",
+    kind: "rfc",
+    note: "Informational. Separates the perceived security benefits of NAT from stateful filtering.",
   },
   {
     id: "rfc5227",
@@ -201,6 +236,13 @@ const sourceRecords = [
     url: "https://www.rfc-editor.org/rfc/rfc5321",
     kind: "rfc",
     note: "Cited for Section 5.1: how a mail sender uses MX records, and the implicit MX rule.",
+  },
+  {
+    id: "rfc5382",
+    title: "RFC 5382: NAT Behavioral Requirements for TCP",
+    url: "https://www.rfc-editor.org/rfc/rfc5382",
+    kind: "rfc",
+    note: "BCP 142. TCP mapping, unsolicited inbound SYN handling, and idle timeouts.",
   },
   {
     id: "rfc5461",
@@ -264,6 +306,21 @@ const sourceRecords = [
     title: "RFC 6811: BGP Prefix Origin Validation",
     url: "https://www.rfc-editor.org/rfc/rfc6811",
     kind: "rfc",
+  },
+  {
+    id: "rfc6092",
+    title:
+      "RFC 6092: Recommended Simple Security Capabilities in Customer Premises Equipment (CPE) for Providing Residential IPv6 Internet Service",
+    url: "https://www.rfc-editor.org/rfc/rfc6092",
+    kind: "rfc",
+    note: "Informational. Stateless and stateful filter recommendations for IPv6 home gateways, with no NAT.",
+  },
+  {
+    id: "rfc6888",
+    title: "RFC 6888: Common Requirements for Carrier-Grade NATs (CGNs)",
+    url: "https://www.rfc-editor.org/rfc/rfc6888",
+    kind: "rfc",
+    note: "BCP 127. Per-subscriber port limits, port reuse, and logging.",
   },
   {
     id: "rfc6890",
@@ -335,6 +392,19 @@ const sourceRecords = [
     id: "rfc8441",
     title: "RFC 8441: Bootstrapping WebSockets with HTTP/2",
     url: "https://www.rfc-editor.org/rfc/rfc8441",
+    kind: "rfc",
+  },
+  {
+    id: "rfc5280",
+    title: "RFC 5280: Internet X.509 Public Key Infrastructure Certificate and CRL Profile",
+    url: "https://www.rfc-editor.org/rfc/rfc5280",
+    kind: "rfc",
+  },
+  {
+    id: "rfc6125",
+    title:
+      "RFC 6125: Representation and Verification of Domain-Based Application Service Identity within Internet Public Key Infrastructure Using X.509 (PKIX) Certificates in the Context of Transport Layer Security (TLS)",
+    url: "https://www.rfc-editor.org/rfc/rfc6125",
     kind: "rfc",
   },
   {
@@ -655,6 +725,34 @@ const sourceRecords = [
     kind: "man-page",
   },
   {
+    id: "man-iptables",
+    title: "iptables(8) — Linux manual page",
+    url: "https://man7.org/linux/man-pages/man8/iptables.8.html",
+    kind: "man-page",
+    note: "Tables and built-in chains: filter, nat, mangle, raw.",
+  },
+  {
+    id: "man-iptables-extensions",
+    title: "iptables-extensions(8) — Linux manual page",
+    url: "https://man7.org/linux/man-pages/man8/iptables-extensions.8.html",
+    kind: "man-page",
+    note: "The conntrack match and the SNAT, DNAT, MASQUERADE, and REJECT targets.",
+  },
+  {
+    id: "kernel-nf-conntrack-sysctl",
+    title: "Linux kernel documentation: Netfilter Conntrack Sysfs variables",
+    url: "https://docs.kernel.org/networking/nf_conntrack-sysctl.html",
+    kind: "man-page",
+    note: "nf_conntrack_max, buckets, count, and per-protocol timeouts. Defaults can change between kernel versions.",
+  },
+  {
+    id: "conntrack-tools-manual",
+    title: "conntrack-tools user manual (netfilter.org)",
+    url: "https://conntrack-tools.netfilter.org/manual.html",
+    kind: "vendor",
+    note: "Maintainer manual for the conntrack command: list, delete, and watch flow entries.",
+  },
+  {
     id: "bind-dig",
     title: "BIND 9 manual pages: dig",
     url: "https://bind9.readthedocs.io/en/latest/manpages.html#dig-dns-lookup-utility",
@@ -709,6 +807,20 @@ const sourceRecords = [
     url: "https://github.com/grpc/grpc/blob/master/doc/load-balancing.md",
     kind: "vendor",
     note: "Maintainer description of client-side load-balancing policies, on the master branch.",
+  },
+  {
+    id: "haproxy-config-2-8",
+    title: "HAProxy 2.8 Configuration Manual",
+    url: "https://docs.haproxy.org/2.8/configuration.html",
+    kind: "vendor",
+    note: "mode tcp/http, balance algorithms, cookie persistence, health-check parameters. Version 2.8 only.",
+  },
+  {
+    id: "nginx-upstream",
+    title: "nginx documentation: Module ngx_http_upstream_module",
+    url: "https://nginx.org/en/docs/http/ngx_http_upstream_module.html",
+    kind: "vendor",
+    note: "Upstream groups, balancing methods, and passive failure accounting (max_fails, fail_timeout). Some directives are commercial-only.",
   },
   {
     id: "book-kurose",

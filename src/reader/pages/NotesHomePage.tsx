@@ -9,8 +9,8 @@ export function NotesHomePage() {
     <article className="page-intro">
       <h1>Notes</h1>
       <p className="lede">
-        Courses kept as separate subjects. Computer Networks and DSA live side by side without mixing
-        material.
+        Courses kept as separate subjects. Computer Networks and DSA live side by side without
+        mixing material.
       </p>
       <h2>Subjects</h2>
       <ol className="module-index">

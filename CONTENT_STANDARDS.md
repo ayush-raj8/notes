@@ -16,7 +16,7 @@ Use this order when it fits the topic:
 
 The required principle section has seven fields: problem, why it matters, the idea, how it works, why it works, limits, and connections. A `complete` lesson has exactly one of these, plus at least two checks whose model answers can be revealed.
 
-Keep the core short enough to read in a few minutes. Put header diagrams, rare cases, and implementation notes in expandable sections. Do not delete a caveat to keep the page short.
+Keep the core short enough to read in a few minutes. Prefer notes style from Module 8 onward: short sentences, bullet-like lists inside principle fields and step bodies, and comparison tables over long paragraphs. Put header diagrams, rare cases, and implementation notes in expandable sections. Do not delete a caveat to keep the page short.
 
 ## Accuracy
 

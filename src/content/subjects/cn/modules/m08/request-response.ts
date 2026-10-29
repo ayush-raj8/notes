@@ -4,10 +4,10 @@ export const body = {
   id: "m08.request-response",
   status: "complete",
   objectives: [
-    "Say what HTTP adds to a reliable byte stream: message framing, a method and target, header fields, and a status.",
-    "Classify methods as safe or idempotent, and say what each property lets a client, cache, or proxy do on its own.",
-    "Read a status code by its class, and tell a client error from a server error and from an error written by a gateway.",
-    "Explain how cookies let a stateless protocol carry sessions, and what Secure and HttpOnly do and do not protect.",
+    "Say what HTTP adds to a byte stream: framing, method, target, fields, and status.",
+    "Classify methods as safe or idempotent, and say what each lets a client, cache, or proxy do.",
+    "Read a status code by class, and tell a client error from a server or gateway error.",
+    "Explain how cookies carry sessions over a stateless protocol, and what Secure and HttpOnly protect.",
   ],
   prerequisites: ["m07.transport-and-failures"],
   sections: [
@@ -15,47 +15,47 @@ export const body = {
       type: "principle",
       id: "principle",
       problem:
-        "After DNS gives a client an address and TCP connects to it, the two programs share a reliable, ordered stream of bytes and nothing else. The stream does not say where one request ends and the next begins, what the client is asking for, which of the many sites on that address it means, whether the server did it, or whether it is safe to ask again. Every application could invent its own answers, but then no browser, library, cache, proxy, or load balancer written by someone else could understand its traffic.",
+        "• After DNS and TCP, the two programs share only a reliable, ordered byte stream.\n• The stream does not say where a request ends, what is asked, or which site on the address is meant.\n• It does not say whether the server did it, or whether asking again is safe.\n• A private protocol per application would be opaque to every library, cache, and proxy.",
       whyItMatters:
-        "Every REST API, browser, CDN, API gateway, and gRPC service speaks HTTP, and the shared meaning is what the software in between acts on. Retry libraries retry because a method is idempotent, caches reuse because a method is safe and a response says it is fresh, and a 502, 503, or 504 tells you which hop failed before you read a single log line.",
-      idea: "Agree on one self-describing message format. A request carries a method, a target, header fields, and optional content. A response carries a status code, header fields, and optional content. Each message can be understood on its own, without knowing what came before it on the connection, so any server or intermediary can handle any request.",
+        "• Browsers, REST APIs, CDNs, gateways, and gRPC all act on HTTP's shared meaning.\n• Retry libraries retry idempotent methods. Caches reuse safe, fresh responses.\n• A 502, 503, or 504 names the failing hop before you open a log.",
+      idea: "• One self-describing message format for everyone.\n• Request: method, target, header fields, optional content.\n• Response: status code, header fields, optional content.\n• Each message is understood on its own, without the connection's history.",
       howItWorks:
-        "The client opens or reuses a connection and sends control data (the method, the target, and the protocol version), then header fields, including Host for the site it wants, then any content. The framing says exactly where the message ends: a Content-Length or chunked coding in HTTP/1.1, frames in HTTP/2 and HTTP/3. The server answers with zero or more interim 1xx responses and exactly one final response, whose three-digit status code starts with its class: 2xx success, 3xx redirection, 4xx client error, 5xx server error. Methods carry promises: GET, HEAD, OPTIONS, and TRACE are safe, meaning read-only as far as the client asked, and those plus PUT and DELETE are idempotent, meaning that repeating them has the same intended effect as sending them once. State that must last across requests travels in the messages themselves, as a cookie the server set or a credential in the Authorization header.",
+        "• Request: control data (method, target, version), then fields such as Host, then content.\n• Framing marks the end: Content-Length or chunked in HTTP/1.1, frames in HTTP/2 and HTTP/3.\n• Response: zero or more interim 1xx, then exactly one final status (2xx, 3xx, 4xx, 5xx).\n• Safe methods: GET, HEAD, OPTIONS, TRACE. Idempotent: those plus PUT and DELETE.\n• State across requests travels in each message: a Cookie or an Authorization field.",
       whyItWorks:
-        "Because the meaning is in the message and not in the connection, a load balancer can send consecutive requests to different servers, a proxy can reuse its connections for many clients, and a cache can answer a request it saw an hour ago. Because every service uses the same methods and status classes, generic software can make correct decisions about traffic it has never seen: whether to retry, whether to cache, whether the client or the server was at fault. Explicit framing is what lets many requests share one connection and lets the receiver tell a complete response from one cut off by a failure.",
+        "• Meaning is in the message, not the connection. Balancers, proxies, and caches can split, share, and replay requests.\n• Shared methods and status classes let generic code decide: retry, cache, or blame which side.\n• Explicit framing lets messages share a connection and exposes a truncated response.",
       limits:
-        "The method semantics are promises the server is supposed to keep, and HTTP cannot enforce them. A GET that deletes data will be triggered by crawlers and prefetchers. Idempotent means the same intended effect, not the same response. A POST that timed out cannot be retried safely unless the application can detect a duplicate. A 2xx says the request was accepted as far as the server reports, and a 202 says only that processing has not finished. A 5xx may have been written by a proxy, not by your service. And because the protocol is stateless, sessions live in cookies and tokens that must themselves be protected.",
+        "• Method semantics are promises. HTTP cannot stop a GET that deletes.\n• Idempotent means same intended effect, not same response.\n• A timed-out POST is not safe to retry without a duplicate check.\n• 2xx is what the server reports. 202 means not finished. A 5xx may come from a proxy.\n• Stateless means sessions live in cookies or tokens, which need their own protection.",
       connections:
-        "Module 5 showed that a TCP acknowledgment does not mean the request was processed (why.09), that TCP cannot make retries safe (why.10), and that a connection can succeed while the request fails (why.20). This lesson supplies the application-level answers: status codes and method semantics. Module 7 resolved the name; the Host field is how the server learns which name was meant. The next lesson covers how HTTP/1.1, HTTP/2, and HTTP/3 put these messages on the wire. Module 9 adds TLS, and Module 11 returns to timeouts and retries.",
+        "• Module 5: an ACK is not processing (why.09), TCP cannot make retries safe (why.10), connect can succeed while the request fails (why.20). HTTP status and methods are the answer.\n• Module 7 resolved the name. Host tells the server which name.\n• Next lesson: how HTTP/1.1, HTTP/2, and HTTP/3 carry these messages. Module 9: TLS. Module 11: retries.",
     },
     {
       type: "steps",
       id: "one-exchange",
-      title: "One request and one response, read from `curl -v`",
+      title: "One exchange, read from `curl -v`",
       steps: [
         {
-          title: "The request's control data and Host",
-          body: "`curl -v --http1.1 https://www.wikipedia.org/` sent `GET / HTTP/1.1` and `Host: www.wikipedia.org` (observed in October 2026). The first line is the method, the target as a path, and the version. Host carries the authority from the URI, so one IP address can serve many sites. An HTTP/1.1 server must answer 400 to a request with no Host or with two of them.",
+          title: "Request line and Host",
+          body: "`curl -v --http1.1 https://www.wikipedia.org/` sent `GET / HTTP/1.1` and `Host: www.wikipedia.org` (observed October 2026). Method, target, version. Host lets one IP serve many sites. No Host, or two, gets 400.",
         },
         {
-          title: "Header fields, then an empty line",
-          body: "Each field is a name, a colon, and a value on its own line. An empty line ends the header section. A GET usually has no content, and a request with neither Content-Length nor Transfer-Encoding has a body of length zero, so the server knows the request is complete at the empty line.",
+          title: "Fields, then an empty line",
+          body: "One `name: value` per line. An empty line ends the header section. A request with neither Content-Length nor Transfer-Encoding has no body, so the GET is complete there.",
         },
         {
-          title: "The status line",
-          body: "The server replied `HTTP/1.1 200 OK`. The client acts on the number. The reason phrase after it is only a recommendation and may be replaced or left out.",
+          title: "Status line",
+          body: "`HTTP/1.1 200 OK`. Clients act on the number. The reason phrase is optional text.",
         },
         {
-          title: "Response fields describe and frame the content",
-          body: "`content-type: text/html` says what the content is, and `content-length: 122421` says exactly how many bytes follow the empty line. Without a length or chunked coding, a response can only end when the server closes the connection, and a client then cannot tell a complete response from one cut short by a failure.",
+          title: "Content framing",
+          body: "`content-type: text/html` and `content-length: 122421`. The length says where the body ends. Without it (or chunked), only a close ends the response, and truncation is undetectable.",
         },
         {
-          title: "Fields that set up later requests",
-          body: "The same response carried `set-cookie: WMF-Last-Access=...;Path=/;HttpOnly;secure;Expires=...`. The browser stores that cookie and sends it back as `Cookie:` on later requests to the same site, which is how a server recognizes a returning client without relying on the connection.",
+          title: "State for later requests",
+          body: "`set-cookie: WMF-Last-Access=...;Path=/;HttpOnly;secure;Expires=...`. The browser returns it as `Cookie:` on later requests, so the server recognises the client without the connection.",
         },
         {
-          title: "The same exchange over HTTP/2",
-          body: "Without `--http1.1`, curl and the server agreed on HTTP/2 during TLS, and the response began `HTTP/2 200` with lowercase field names. The method, target, and status now travel as pseudo-header fields such as `:method`, `:path`, `:authority`, and `:status`, but the meaning of every field is unchanged. That is the point of separating HTTP's semantics from each version's wire format.",
+          title: "Same exchange over HTTP/2",
+          body: "Without `--http1.1`, the reply starts `HTTP/2 200`. Control data moves into pseudo-header fields (`:method`, `:path`, `:authority`, `:status`). The meaning is unchanged.",
         },
       ],
     },
@@ -64,34 +64,29 @@ export const body = {
       id: "methods",
       title: "Methods and what they promise",
       caption:
-        "Safe and idempotent are properties of what the client requested, not of everything the server does. Logging a GET is still safe. PATCH is defined outside RFC 9110 and is not covered here.",
-      columns: ["Safe", "Idempotent", "Used for", "Consequence"],
+        "Safe and idempotent describe what the client asked for. Logging a GET is still safe. PATCH is defined outside RFC 9110 and is not covered.",
+      columns: ["Safe", "Idempotent", "Means", "Consequence"],
       rows: [
         {
           label: "GET",
           cells: [
             "Yes",
             "Yes",
-            "Retrieve a representation of the target.",
-            "Caches may store and reuse the response. Crawlers and prefetchers may send it without asking anyone.",
+            "Retrieve the target.",
+            "Cacheable. Crawlers and prefetchers send it freely.",
           ],
         },
         {
           label: "HEAD",
-          cells: [
-            "Yes",
-            "Yes",
-            "Like GET, but the response has no content.",
-            "Checks headers such as size or ETag without transferring the body.",
-          ],
+          cells: ["Yes", "Yes", "GET without content.", "Check size or ETag without the body."],
         },
         {
           label: "POST",
           cells: [
             "No",
             "No",
-            "Have the target process the enclosed data by its own rules: submit a form, create an order.",
-            "Clients should not retry it automatically. A cache must forward it to the origin.",
+            "Target processes the data by its own rules.",
+            "No automatic retry. Caches forward it.",
           ],
         },
         {
@@ -99,8 +94,8 @@ export const body = {
           cells: [
             "No",
             "Yes",
-            "Create or replace the target's state with the enclosed representation.",
-            "Safe to repeat after a lost response: the second PUT leaves the same state.",
+            "Create or replace the target's state.",
+            "Safe to repeat after a lost response.",
           ],
         },
         {
@@ -108,8 +103,8 @@ export const body = {
           cells: [
             "No",
             "Yes",
-            "Remove the association between the target and its current functionality.",
-            "Repeating it has the same intended effect, though the second response may differ. Its responses are not cacheable.",
+            "Remove the target's association.",
+            "Repeat has same effect; response may differ. Not cacheable.",
           ],
         },
         {
@@ -117,8 +112,8 @@ export const body = {
           cells: [
             "Yes",
             "Yes",
-            "Ask what communication options the target supports, without implying a resource action.",
-            "`OPTIONS *` asks about the server as a whole and is useful only as a capability check.",
+            "Ask what the target supports.",
+            "`OPTIONS *` asks about the whole server.",
           ],
         },
       ],
@@ -126,47 +121,47 @@ export const body = {
     {
       type: "comparison",
       id: "status-classes",
-      title: "Status classes, and who usually sent them",
-      columns: ["Means", "Common examples", "What a client does"],
+      title: "Status classes",
+      columns: ["Means", "Examples", "Client action"],
       rows: [
         {
           label: "1xx",
           cells: [
-            "Interim: received, keep going. Never the final answer.",
+            "Interim. Never final.",
             "100 Continue, 101 Switching Protocols",
-            "Waits for the final response on the same request.",
+            "Keep waiting.",
           ],
         },
         {
           label: "2xx",
           cells: [
-            "The request was received, understood, and accepted.",
-            "200 OK, 201 Created with a Location, 202 Accepted, 204 No Content",
-            "Treats it as success, but reads 202 as 'not finished yet'.",
+            "Received, understood, accepted.",
+            "200, 201 + Location, 202, 204",
+            "Success. 202 = not done yet.",
           ],
         },
         {
           label: "3xx",
           cells: [
-            "More action is needed to complete the request.",
-            "301 and 308 moved, 303 See Other, 304 Not Modified",
-            "Follows the Location, or reuses its cached copy for 304.",
+            "More action needed.",
+            "301, 308, 303, 304 Not Modified",
+            "Follow Location, or use cache on 304.",
           ],
         },
         {
           label: "4xx",
           cells: [
-            "The request has a problem or cannot be fulfilled.",
-            "400 Bad Request, 401 needs credentials, 403 refused, 404 Not Found",
-            "Does not retry unchanged. Fixes the request or the credentials.",
+            "Request is wrong or refused.",
+            "400, 401, 403, 404",
+            "Fix the request. Do not retry unchanged.",
           ],
         },
         {
           label: "5xx",
           cells: [
-            "The server failed to fulfil an apparently valid request.",
-            "500 from the application. 502, 503, and 504 often from a gateway or proxy.",
-            "May retry later, but only if the method or the application makes that safe.",
+            "Server failed a valid request.",
+            "500 from app. 502, 503, 504 often from a gateway.",
+            "Maybe retry later, only if safe.",
           ],
         },
       ],
@@ -174,19 +169,19 @@ export const body = {
     {
       type: "example",
       id: "post-times-out",
-      title: "An order request that times out behind a load balancer",
+      title: "An order POST that times out behind a load balancer",
       setup:
-        "A mobile app sends `POST /orders` with a JSON body to `api.example.com`. A load balancer terminates the client's connection and forwards the request to one of several application servers. The app waits up to 10 seconds. Names are documentation values; the timings are illustrative.",
+        "App sends `POST /orders` (JSON) to `api.example.com`. A load balancer forwards it to one of several backends. App timeout 10 s. Names and timings are illustrative.",
       walkthrough: [
-        "The request is framed by `Content-Length: 182`. The load balancer reads all 182 bytes, picks a backend, and forwards the request over its own connection to that server.",
-        "The backend inserts the order into the database, then stalls on a slow payment call. The load balancer gives up waiting for the backend and answers the app with 504 Gateway Timeout: it was acting as a gateway and did not receive a timely response from the server it needed.",
-        "The app sees a 5xx and is tempted to retry. But POST is not idempotent, and a 504 says nothing about whether the backend acted. Here it did, so a blind retry would create a second order. RFC 9110 says a client should not automatically retry a non-idempotent request unless it can know the request is idempotent or detect that the original was never applied.",
-        "The app avoids the duplicate by design. Each order request carries a client-generated identifier, for example in an application-defined header or in the body, and the server stores it with the order. A retry with the same identifier returns the existing order instead of creating another. Alternatively, the app can ask `GET /orders?client_ref=...` before retrying.",
-        "Compare the other gateway codes. If the backend had answered with a malformed response, the load balancer would send 502 Bad Gateway. If no backend could take the request because of overload or maintenance, a server could send 503 Service Unavailable, perhaps with Retry-After. In all three cases the TCP connection between the app and the load balancer worked perfectly, which is why.20 from Module 5.",
-        "Had the app sent `PUT /orders/7f3a` with the full order instead, a retry after the timeout would have been safe at the HTTP level: a second PUT of the same representation leaves the same state.",
+        "`Content-Length: 182` frames the body. The balancer reads 182 bytes and forwards on its own backend connection.",
+        "Backend inserts the order, then stalls on payment. Balancer gives up and answers 504 Gateway Timeout.",
+        "504 says nothing about whether the backend acted. Here it did. POST is not idempotent, so a blind retry creates a second order.",
+        "Fix: a client-generated order id stored with the order. A retry with the same id returns the existing order. Or query `GET /orders?client_ref=...` first.",
+        "Other gateway codes: 502 if the backend reply was invalid; 503 if no backend could take it (maybe with Retry-After). The app's TCP connection was fine every time (why.20).",
+        "`PUT /orders/7f3a` with the full order would have been safe to retry at the HTTP level.",
       ],
       result:
-        "The status code says which hop answered and roughly what went wrong, and the method says whether a retry is safe. Neither says whether a non-idempotent request was carried out after the client stopped waiting. Making POST retries safe takes an application-level identifier or a way to check the outcome.",
+        "Status says which hop answered. Method says whether retry is safe. Neither says whether a POST ran after the client stopped waiting. That needs an application-level id or an outcome check.",
     },
     {
       type: "why",
@@ -208,7 +203,7 @@ export const body = {
       id: "who-sent-the-5xx",
       tone: "caution",
       title: "A 5xx may not come from your code",
-      body: "502 Bad Gateway and 504 Gateway Timeout are defined for a server acting as a gateway or proxy. When an API behind a load balancer or reverse proxy returns them, the first suspect is the hop between that proxy and the backend: a crashed or restarting process, a closed connection, or a timeout shorter than the backend's work. The backend's own logs may show nothing, or may show the request completing after the proxy gave up. The intermediaries lesson follows a request through such a chain.",
+      body: "502 and 504 are defined for a server acting as a gateway or proxy. First suspect: the proxy-to-backend hop. Look for a crashed or restarting backend, a closed connection, or a proxy timeout shorter than the work. Backend logs may show nothing, or show the request finishing after the proxy gave up.",
       scope: "rfc",
     },
     {
@@ -216,25 +211,25 @@ export const body = {
       id: "cookies-and-sessions",
       title: "Cookies and sessions",
       paragraphs: [
-        "HTTP is stateless: each request can be understood on its own, and RFC 9110 says a server must not assume two requests on the same connection come from the same user agent unless the connection is secured and specific to that agent. Anything a server needs to remember about a client across requests has to be sent again with each request.",
-        "Cookies are one way to do that. The server sends `Set-Cookie: name=value` with attributes in any response, including 4xx and 5xx responses. The browser stores it and returns matching cookies in a single `Cookie:` header on later requests within the cookie's scope. Path and Domain set which URLs receive it, and Expires or Max-Age sets how long it lasts. To delete a cookie, the server sets it again with an expiry in the past, using the same Path and Domain.",
-        "Servers commonly put only a random session identifier in the cookie and keep the session data on the server, keyed by it. An attacker who steals the cookie can still use the session, but cannot read sensitive data from it or splice parts of two sessions together. Servers should also avoid session fixation, where an attacker gets a victim to use an identifier the attacker already knows; issuing a new identifier at login prevents it.",
-        "Secure means the browser sends the cookie only over a secure channel, typically HTTPS. It protects the cookie's confidentiality, not its integrity: an active attacker on an insecure connection can still overwrite it. HttpOnly keeps the cookie out of non-HTTP APIs such as scripts in the page, which limits theft through script injection. The SameSite attribute, which limits sending cookies on cross-site requests, comes from a later revision of the cookie specification that is not cited here.",
-        "APIs used by programs rather than browsers usually carry a token in the Authorization header instead. That has a caching consequence: a shared cache must not reuse a response to a request with Authorization for another request, unless the response explicitly allows it with public, s-maxage, or must-revalidate.",
-        "Set-Cookie is the one common field that may appear on several lines and cannot be combined into one comma-separated line, because commas appear inside cookie dates. Code that merges duplicate headers needs to treat it specially.",
+        "Stateless: each request stands alone. A server must not assume two requests on one connection share a user agent, unless the connection is secured and specific to it.",
+        "`Set-Cookie: name=value` may appear on any response, including 4xx and 5xx. The browser returns matching cookies in one `Cookie:` field. Path and Domain set scope. Expires or Max-Age sets lifetime. Delete by re-setting with a past expiry and the same Path and Domain.",
+        "Usual design: the cookie holds only a random session id; data stays on the server. Issue a new id at login to prevent session fixation.",
+        "Secure: sent only over a secure channel. Protects confidentiality, not integrity; an active attacker can still overwrite it over plain HTTP. HttpOnly: hidden from page scripts. SameSite is from a later cookie spec, not cited here.",
+        "APIs usually send a token in Authorization instead. A shared cache must not reuse such a response for others unless it says public, s-maxage, or must-revalidate.",
+        "Set-Cookie may repeat and must not be merged into one comma-separated line, because cookie dates contain commas.",
       ],
     },
     {
       type: "expandable",
       id: "edge-cases",
-      title: "Edge cases and details",
+      title: "Edge cases",
       paragraphs: [
-        "Unknown status codes are not errors in the client. A client must understand the class of every status code and treat an unrecognized one as the x00 of its class, so an unknown 471 is handled like 400. A value outside 100 to 599 should be treated as a 5xx.",
-        "Responses to HEAD, and 1xx, 204, and 304 responses, never have content, whatever their headers say. A client therefore has to remember which request a response answers in order to parse it.",
-        "A server must not act on a request until it has the whole header section, because a later field could be a precondition, a credential, or a misleading duplicate.",
-        "When a client knows a large upload might be rejected, it can send `Expect: 100-continue` and wait for a 100 Continue before sending the content. The 100 is an interim response; the final status comes later on the same request.",
-        "401 means the request lacked valid credentials and comes with a WWW-Authenticate challenge. 403 means the server understood the request and refuses it, and a client should not repeat it with the same credentials. A server that does not want to reveal that a resource exists may answer 404 instead of 403.",
-        "POST responses are cacheable only in narrow cases, and a cached POST response can only answer a later GET or HEAD. A cache never answers a POST from storage.",
+        "Unknown code: treat as the x00 of its class (471 acts like 400). Outside 100–599: treat as 5xx.",
+        "HEAD responses and 1xx, 204, 304 never have content. The client must remember which request a response answers.",
+        "A server must not act before it has the whole header section. A later field may be a precondition or credential.",
+        "`Expect: 100-continue`: the client waits for 100 before sending a large body. The final status comes later.",
+        "401: no valid credentials, with a WWW-Authenticate challenge. 403: understood and refused; do not repeat with the same credentials. A server may send 404 to hide that the resource exists.",
+        "A cache never answers a POST from storage. A cached POST response can only serve a later GET or HEAD.",
       ],
     },
     {
@@ -244,37 +239,36 @@ export const body = {
         {
           id: "retry-which",
           prompt:
-            "A client's connection breaks after it sent the request and before any response arrived. For each of GET, PUT, DELETE, and POST, may an HTTP library retry automatically on a new connection?",
+            "The connection breaks after the request is sent, before any response. May a library auto-retry GET, PUT, DELETE, and POST?",
           answer:
-            "GET, PUT, and DELETE are idempotent, so repeating them has the same intended effect even if the first one was applied, and a library may retry them. POST is not idempotent, so the library should not retry it automatically unless the application has told it the request is safe to repeat or has a way to detect that the original was never applied, such as a request identifier the server checks. A proxy must never retry a non-idempotent request on its own.",
+            "GET, PUT, and DELETE: yes, they are idempotent. POST: no, unless the app marks it safe or the server can detect a duplicate. A proxy must never auto-retry a non-idempotent request.",
         },
         {
           id: "get-delete",
           prompt:
-            "An admin page deletes a record with a link to `GET /records/42?action=delete`. Records start disappearing even though nobody clicked. What is happening, and what is the fix?",
+            "An admin page deletes via a link to `GET /records/42?action=delete`. Records vanish with no clicks. Why, and what is the fix?",
           answer:
-            "GET is defined as safe, so crawlers, link checkers, and browser prefetching may request any GET URL without user intent, and they are. The resource broke the method's promise. RFC 9110 puts the responsibility on the resource owner: an unsafe action must be disabled when reached through a safe method. Use POST or DELETE for the action, behind authentication.",
+            "GET is safe by definition, so crawlers and prefetchers follow it. RFC 9110 makes the resource owner disable unsafe actions reached by safe methods. Use POST or DELETE behind authentication.",
         },
         {
           id: "virtual-hosting",
           prompt:
-            "`shop.example.com` and `blog.example.com` resolve to the same IP address and port. How does the server know which site a request is for, and what happens to an HTTP/1.1 request that omits that information?",
+            "`shop.example.com` and `blog.example.com` share one IP and port. How does the server pick the site? What if an HTTP/1.1 request omits it?",
           answer:
-            "The client sends the authority from the URI in the Host header field in HTTP/1.1, or in the `:authority` pseudo-header in HTTP/2 and HTTP/3, and the server picks the site from it. With HTTPS, the TLS layer also carries the name, which Module 9 covers. An HTTP/1.1 server must answer 400 Bad Request to a request with no Host field or with more than one.",
+            "From Host in HTTP/1.1, or `:authority` in HTTP/2 and HTTP/3. A missing or duplicate Host in HTTP/1.1 must get 400.",
         },
         {
           id: "which-hop",
           prompt:
-            "Users of an API behind a reverse proxy see three errors on different days: 502, 503, and 504. What does each suggest about where to look first?",
+            "An API behind a reverse proxy returns 502, 503, and 504 on different days. Where do you look first for each?",
           answer:
-            "502 means the proxy got an invalid response from the backend, for example a connection closed mid-response or a malformed reply, so look at backend crashes, restarts, and protocol mismatches. 504 means the proxy did not get a timely response, so compare the proxy's timeout with how long the backend takes, and check whether the backend finished the work after the proxy gave up. 503 means the server is temporarily unable to handle requests, from overload or maintenance; check capacity, backend health, and whether a Retry-After was sent. In every case the client's own connection to the proxy succeeded.",
+            "502: the backend sent an invalid or cut-off reply; check crashes and restarts. 504: the backend was too slow; compare the proxy timeout with backend latency. 503: overload or maintenance; check capacity, health, and Retry-After.",
         },
         {
           id: "cookie-attrs",
-          prompt:
-            "A session cookie is set with `Secure; HttpOnly`. Which attacks do these attributes limit, and which do they not?",
+          prompt: "A session cookie has `Secure; HttpOnly`. What does that stop, and what not?",
           answer:
-            "Secure stops the browser from sending the cookie over plain HTTP, so a passive eavesdropper cannot read it from an unencrypted request. HttpOnly keeps page scripts from reading it, which limits theft through injected script. Neither stops a script from making requests that the browser sends with the cookie attached, and Secure does not stop an active attacker from overwriting the cookie over an insecure connection. The server still has to protect the session: random identifiers, a new identifier at login, and expiry.",
+            "Secure stops it leaking over plain HTTP. HttpOnly stops scripts reading it. Neither stops a script sending requests that carry the cookie, or an active attacker overwriting it.",
         },
       ],
     },
@@ -283,7 +277,7 @@ export const body = {
     {
       id: "http-over-connection-stateless",
       statement:
-        "HTTP is a client/server protocol over a reliable transport or session-layer connection. It is stateless: each request's semantics can be understood in isolation, and the relationship between connections and messages does not affect their interpretation. Many implementations depend on this to reuse proxied connections or dynamically load balance requests. A server must not assume two requests on the same connection are from the same user agent unless the connection is secured and specific to that agent.",
+        "HTTP is a client/server protocol over a reliable transport or session-layer connection. It is stateless: each request's semantics can be understood in isolation, and connections do not affect message interpretation. Implementations rely on this to reuse proxied connections and load balance requests. A server must not assume two requests on one connection are from the same user agent unless the connection is secured and specific to that agent.",
       sourceId: "rfc9110",
       locator: "Section 3.3, Connections, Clients, and Servers",
       verification: "checked",
@@ -293,9 +287,9 @@ export const body = {
     {
       id: "message-abstraction",
       statement:
-        "A message consists of control data, a headers table, potentially unbounded content, and a trailers table. Messages are self-descriptive: everything a recipient needs is in the message itself, though a client must retain knowledge of the request to interpret the response. Request control data is a method, target, and version; response control data is a status code, optional reason phrase, and version. In HTTP/2 and HTTP/3 control data is sent as pseudo-header fields.",
+        "Request control data is a method, target, and version; response control data is a status code, optional reason phrase, and version. HTTP/1.1 sends control data as the first line; HTTP/2 and HTTP/3 send it as pseudo-header fields.",
       sourceId: "rfc9110",
-      locator: "Section 6, Message Abstraction; Section 6.2, Control Data",
+      locator: "Section 6.2, Control Data",
       verification: "checked",
       subtle: false,
       scope: "rfc",
@@ -303,7 +297,7 @@ export const body = {
     {
       id: "framing-completeness",
       statement:
-        "Each HTTP version defines its own framing. Ending a response by closing the connection, allowed in HTTP/1.1 for compatibility, cannot distinguish an incomplete response if the connection closes early, so almost all modern implementations use explicit length-delimited framing.",
+        "Each HTTP version defines its own framing. Ending a response by closing the connection, allowed in HTTP/1.1 for compatibility, can fail to distinguish an incomplete response, so almost all modern implementations use explicit length-delimited framing.",
       sourceId: "rfc9110",
       locator: "Section 6.1, Framing and Completeness",
       verification: "checked",
@@ -313,7 +307,7 @@ export const body = {
     {
       id: "http11-message-and-host",
       statement:
-        "An HTTP/1.1 message is a start-line, header field lines, an empty line, and an optional body. A client must send Host in every HTTP/1.1 request, and a server must respond 400 to a request that lacks Host or has more than one Host line.",
+        "An HTTP/1.1 message is a start-line, field lines, an empty line, and an optional body. A client must send Host in every HTTP/1.1 request, and a server must respond 400 to a request that lacks Host or has more than one Host line.",
       sourceId: "rfc9112",
       locator: "Section 2.1, Message Format; Section 3.2, Request Target",
       verification: "checked",
@@ -323,7 +317,7 @@ export const body = {
     {
       id: "request-body-zero",
       statement:
-        "A request without Transfer-Encoding or Content-Length has a message body of length zero. A response without a declared length is delimited by the server closing the connection.",
+        "A request without Transfer-Encoding or Content-Length has a body of length zero. A response without a declared length ends when the server closes the connection.",
       sourceId: "rfc9112",
       locator: "Section 6.3, Message Body Length (items 7 and 8)",
       verification: "checked",
@@ -333,7 +327,7 @@ export const body = {
     {
       id: "host-authority",
       statement:
-        "The Host field provides the host and port from the target URI, letting a server distinguish resources for multiple host names. In HTTP/2 and HTTP/3 it may be supplanted by the :authority pseudo-header field. Host acts as an application-level routing mechanism.",
+        "Host carries the host and port from the target URI so one server can serve many host names. In HTTP/2 and HTTP/3 it may be supplanted by :authority. Host acts as an application-level routing mechanism.",
       sourceId: "rfc9110",
       locator: "Section 7.2, Host and :authority",
       verification: "checked",
@@ -343,7 +337,7 @@ export const body = {
     {
       id: "safe-methods",
       statement:
-        "Safe methods are essentially read-only: the client does not request or expect a state change. GET, HEAD, OPTIONS, and TRACE are safe. The distinction lets crawlers and prefetching work without causing harm. A resource owner must disable an unsafe action reachable through a safe method.",
+        "GET, HEAD, OPTIONS, and TRACE are safe. The distinction lets crawlers and prefetching work without harm. A resource owner must disable an unsafe action reachable through a safe method.",
       sourceId: "rfc9110",
       locator: "Section 9.2.1, Safe Methods",
       verification: "checked",
@@ -353,7 +347,7 @@ export const body = {
     {
       id: "idempotent-methods",
       statement:
-        "A method is idempotent if multiple identical requests have the same intended effect as one. PUT, DELETE, and the safe methods are idempotent. Idempotent requests can be repeated automatically after a communication failure before the response is read. A client should not automatically retry a non-idempotent request unless it knows the request is idempotent or can detect that the original was never applied. A proxy must not automatically retry non-idempotent requests.",
+        "PUT, DELETE, and safe methods are idempotent: repeats have the same intended effect, though responses may differ. They can be retried automatically after a communication failure. A client should not auto-retry a non-idempotent request unless it knows the request is idempotent or can detect the original was never applied. A proxy must not auto-retry non-idempotent requests.",
       sourceId: "rfc9110",
       locator: "Section 9.2.2, Idempotent Methods",
       verification: "checked",
@@ -363,7 +357,7 @@ export const body = {
     {
       id: "post-and-put",
       statement:
-        "POST asks the target to process the enclosed representation by its own semantics; a cached POST response can satisfy a later GET or HEAD but never a POST. PUT asks that the target's state be created or replaced with the enclosed representation, answered with 201 if created and 200 or 204 if replaced. DELETE asks the origin to remove the association between the target and its current functionality; its responses are not cacheable. OPTIONS asks about communication options without implying a resource action, and `OPTIONS *` applies to the server in general.",
+        "POST asks the target to process the enclosed representation by its own semantics. PUT creates or replaces the target's state. DELETE removes the target's association with its current functionality, and its responses are not cacheable. OPTIONS asks about communication options; `OPTIONS *` applies to the server.",
       sourceId: "rfc9110",
       locator: "Sections 9.3.3 POST, 9.3.4 PUT, 9.3.5 DELETE, and 9.3.7 OPTIONS",
       verification: "checked",
@@ -373,7 +367,7 @@ export const body = {
     {
       id: "status-classes",
       statement:
-        "Status codes run from 100 to 599 and the first digit is the class: informational, successful, redirection, client error, server error. A client must understand the class and treat an unrecognized code as the x00 of that class; an invalid code should be treated as 5xx. A request has zero or more interim 1xx responses followed by exactly one final response. Reason phrases are only recommendations.",
+        "Valid status codes are 100 to 599, and the first digit is the class. A client must understand the class and treat an unknown code as the x00 of that class; an invalid code should be treated as 5xx. A request has zero or more interim 1xx responses and exactly one final response. Reason phrases are only recommendations.",
       sourceId: "rfc9110",
       locator: "Section 15, Status Codes; Section 15.1, Overview of Status Codes",
       verification: "checked",
@@ -383,7 +377,7 @@ export const body = {
     {
       id: "accepted-not-done",
       statement:
-        "202 Accepted means the request was accepted for processing but processing has not completed, and HTTP has no facility for re-sending a status code from an asynchronous operation.",
+        "202 Accepted means accepted for processing, not completed. HTTP has no way to re-send a status code from an asynchronous operation.",
       sourceId: "rfc9110",
       locator: "Section 15.3.3, 202 Accepted",
       verification: "checked",
@@ -393,7 +387,7 @@ export const body = {
     {
       id: "auth-status-codes",
       statement:
-        "401 means the request lacks valid credentials and must carry a WWW-Authenticate challenge. 403 means the server understood and refuses; the client should not repeat the request with the same credentials, and a server may answer 404 to hide a forbidden resource.",
+        "401 means the request lacks valid credentials and carries a WWW-Authenticate challenge. 403 means understood and refused; the client should not repeat it with the same credentials, and a server may answer 404 to hide a forbidden resource.",
       sourceId: "rfc9110",
       locator: "Sections 15.5.2, 15.5.4, and 15.5.5",
       verification: "checked",
@@ -403,7 +397,7 @@ export const body = {
     {
       id: "gateway-status-codes",
       statement:
-        "502 means a server acting as a gateway or proxy received an invalid response from an inbound server. 503 means the server is temporarily unable to handle the request because of overload or maintenance, and may carry Retry-After. 504 means a gateway or proxy did not receive a timely response from an upstream server.",
+        "502: a gateway or proxy got an invalid response from an inbound server. 503: temporarily unable to handle the request because of overload or maintenance, optionally with Retry-After. 504: a gateway or proxy did not get a timely response from upstream.",
       sourceId: "rfc9110",
       locator: "Sections 15.6.3, 15.6.4, and 15.6.5",
       verification: "checked",
@@ -412,7 +406,7 @@ export const body = {
     },
     {
       id: "no-content-responses",
-      statement: "Responses to HEAD, and all 1xx, 204, and 304 responses, do not include content.",
+      statement: "Responses to HEAD, and all 1xx, 204, and 304 responses, have no content.",
       sourceId: "rfc9110",
       locator: "Section 6.4.1, Content Semantics",
       verification: "checked",
@@ -422,7 +416,7 @@ export const body = {
     {
       id: "field-order-set-cookie",
       statement:
-        "Set-Cookie often appears on multiple field lines and cannot be combined into one value, so recipients handle it as a special case. A server must not apply a request until it has received the entire request header section.",
+        "Set-Cookie often appears on several field lines and cannot be combined into one value. A server must not apply a request until it has the entire request header section.",
       sourceId: "rfc9110",
       locator: "Section 5.3, Field Order",
       verification: "checked",
@@ -432,7 +426,7 @@ export const body = {
     {
       id: "cookie-mechanism",
       statement:
-        "A server stores state with Set-Cookie in any response, and the user agent returns it in the Cookie header on later requests. User agents must process Set-Cookie in responses other than 1xx, including 4xx and 5xx. Path and Domain control scope, Expires controls lifetime, and a cookie is removed by setting it with a past expiry and the same Path and Domain.",
+        "A server stores state with Set-Cookie, and the user agent returns it in Cookie. User agents must process Set-Cookie in all non-1xx responses, including 4xx and 5xx. Path and Domain set scope, Expires sets lifetime, and a past expiry with the same Path and Domain removes the cookie.",
       sourceId: "rfc6265",
       locator: "Section 3, Overview; Section 3.1, Examples",
       verification: "checked",
@@ -442,7 +436,7 @@ export const body = {
     {
       id: "cookie-secure-httponly",
       statement:
-        "Secure limits a cookie to secure channels and protects only its confidentiality; an active network attacker can overwrite Secure cookies from an insecure channel. HttpOnly omits the cookie from non-HTTP APIs such as script access.",
+        "Secure limits a cookie to secure channels and protects only its confidentiality; an active attacker can overwrite Secure cookies from an insecure channel. HttpOnly omits the cookie from non-HTTP APIs such as script access.",
       sourceId: "rfc6265",
       locator: "Section 4.1.2.5, The Secure Attribute; Section 4.1.2.6, The HttpOnly Attribute",
       verification: "checked",
@@ -452,7 +446,7 @@ export const body = {
     {
       id: "session-identifiers",
       statement:
-        "Servers commonly store a nonce, a session identifier, in a cookie and look up session state by it, which limits the damage if the cookie leaks. Servers should take care to avoid session fixation.",
+        "Servers commonly store a nonce (session identifier) in a cookie and look up state by it. Servers should avoid session fixation.",
       sourceId: "rfc6265",
       locator: "Section 8.4, Session Identifiers",
       verification: "checked",
@@ -462,7 +456,7 @@ export const body = {
     {
       id: "shared-cache-authorization",
       statement:
-        "A shared cache must not use a cached response to a request with Authorization to satisfy another request unless the response carries must-revalidate, public, or s-maxage.",
+        "A shared cache must not reuse a response to a request with Authorization for another request unless the response carries must-revalidate, public, or s-maxage.",
       sourceId: "rfc9111",
       locator: "Section 3.5, Storing Responses to Authenticated Requests",
       verification: "checked",
@@ -473,9 +467,9 @@ export const body = {
   references: [
     {
       sourceId: "rfc9110",
-      note: "Sections 3.3, 5.3, 6, 6.1, 6.2, 6.4.1, 7.2, 9.2.1, 9.2.2, 9.3.3–9.3.5, 9.3.7, 15, 15.2.1, 15.3.3, 15.5.2–15.5.5, and 15.6.3–15.6.5: semantics, methods, and status codes.",
+      note: "Sections 3.3, 5.3, 6.1, 6.2, 6.4.1, 7.2, 9.2.1, 9.2.2, 9.3.3–9.3.5, 9.3.7, 15, 15.1, 15.3.3, 15.5.2–15.5.5, and 15.6.3–15.6.5.",
     },
-    { sourceId: "rfc9112", note: "Sections 2.1, 3.2, and 6.3: HTTP/1.1 message format and Host." },
+    { sourceId: "rfc9112", note: "Sections 2.1, 3.2, and 6.3: message format, Host, body length." },
     { sourceId: "rfc9111", note: "Section 3.5: caching and Authorization." },
     { sourceId: "rfc6265", note: "Sections 3, 4.1.2.5, 4.1.2.6, and 8.4: cookies and sessions." },
   ],

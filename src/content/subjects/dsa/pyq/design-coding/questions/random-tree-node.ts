@@ -24,7 +24,8 @@ export const randomTreeNode: DesignCodingQuestion = {
   ],
   coreApproach:
     "Maintain an array (or list) of all nodes for uniform getRandomNode; maintain a dynamic leaf set/list updated on insert when a parent stops being a leaf.",
-  summaryComplexity: "add O(1) amortized · getRandomNode/Leaf O(1) with arrays + careful leaf removal",
+  summaryComplexity:
+    "add O(1) amortized · getRandomNode/Leaf O(1) with arrays + careful leaf removal",
   originalPrompt:
     "Design a tree-like structure supporting retrieval of a random node and random leaf (exact method names not published in the L4 writeup). A separate L3 writeup describes addNode(parent, val), getRandomNode(), and getRandomLeafNode() in O(1).",
   originalRequirements: [

@@ -1,5 +1,24 @@
 # Progress
 
+## Style from Module 8 onward
+
+Lessons use notes style: short bullets in principle fields, tables and steps over essays. Why answers stay to a few short sentences.
+
+## Module 8 — HTTP
+
+All four lessons `complete` and registered (notes style). Why: 01, 23, 24, 27, 28, 29, 30, 54.
+
+## Module 9 — TLS
+
+All four lessons `complete`: `m09.why-tls`, `m09.certificates`, `m09.handshake`, `m09.limits`. Why: 19, 25, 26, 31. Sources added: RFC 5280, RFC 6125. Count 42 of 67.
+
+## Module 10 — NAT, Firewalls and Load Balancing
+
+All four lessons `complete` (notes style): `m10.nat`, `m10.firewalls`, `m10.load-balancing`, `m10.connectivity-failures`. Prerequisites chain from `m09.limits`. No `viz` (`nat-table` is unimplemented). `m10.connectivity-failures` has an optional investigation section and an SNAT port-exhaustion worked example. Why: 37, 38 (in `m10.nat`), 53 (in `m10.load-balancing`); why.45 and why.55 are linked by text only. Count 46 of 67. The unwritten example in the shell and e2e tests is now `m11.metrics`; the pending-why example is why.41.
+
+- Sources added after opening them (all HTTP 200): RFC 2663, 2979, 3022, 4787, 4864, 5382, 6092, 6888, iptables(8), iptables-extensions(8), the kernel nf_conntrack sysctl page, the conntrack-tools manual, the HAProxy 2.8 configuration manual, and nginx's upstream module. RFC 9110 Sections 3.7, 15.6.3, and 15.6.5 were reopened.
+- Open research: some prose is not a claim and has no checked source. That covers cloud security groups being stateful and subnet ACLs stateless; X-Forwarded-For; which errno a client gets for each REJECT type; whether Linux conntrack reuses a TIME_WAIT tuple for a new SYN (the 537 connections/s ceiling assumes it does not and is labelled a teaching simplification); the kernel's "table full" log text; HAProxy `slowstart` and `fastinter` semantics beyond the parameter names; and Linux IPVS. nft(8), conntrack(8), and ipvsadm(8) are not on man7.org and are not cited.
+
 ## Subject layout
 
 Computer Networks is a subject under Notes, not the site root. Its files are in `src/content/subjects/cn`. Routes start at `/cn`. The site root lists subjects. GitHub Pages publishes `main` to `https://ayush-raj8.github.io/notes/`.
@@ -102,8 +121,8 @@ All five lessons are written and `complete`: `m07.hierarchy`, `m07.resolution`, 
 ## Not done
 
 - Only `tcp-timeline` is implemented. The other approved visuals, including `two-windows` and `dns-lookup`, are unimplemented.
-- Why-answers for every question outside Modules 1–7 are empty.
-- Modules 8–13 are still planned.
+- Why-answers for questions owned by Modules 11–13 are empty.
+- Modules 11–13 are still planned.
 
 ## Correction from the approved plan
 
@@ -162,4 +181,4 @@ All five lessons are written and `complete`: `m07.hierarchy`, `m07.resolution`, 
 
 ## Next task
 
-Module 8: HTTP and Application-Layer Networking, starting with `m08.request-response`.
+Module 11: Performance and Reliability, starting with `m11.metrics`.

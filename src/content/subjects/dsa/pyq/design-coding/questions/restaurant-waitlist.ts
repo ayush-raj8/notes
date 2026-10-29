@@ -131,7 +131,8 @@ if __name__ == "__main__":
     {
       operation: "find_group (per-size deques + timestamps)",
       time: "O(S) or O(log S) with a tree on sizes",
-      notes: "S = max party size or distinct sizes; say this if interviewer asks for faster seating.",
+      notes:
+        "S = max party size or distinct sizes; say this if interviewer asks for faster seating.",
     },
   ],
   dryRun: {
@@ -154,7 +155,8 @@ if __name__ == "__main__":
     {
       text: "Optimize find_group below O(n).",
       kind: "practice",
-      guidance: "Per-size FIFO queues plus a structure to pick the minimum arrival among sizes ≤ table.",
+      guidance:
+        "Per-size FIFO queues plus a structure to pick the minimum arrival among sizes ≤ table.",
     },
   ],
   checklist: [

@@ -27,9 +27,7 @@ export const grepContext: DesignCodingQuestion = {
     "Include a configurable number of surrounding context lines (grep --context).",
     "Discuss memory usage and underlying file reading (per interviewer follow-through in the report).",
   ],
-  reportedFollowUps: [
-    "Memory usage and how the file is read / how grep works in practice.",
-  ],
+  reportedFollowUps: ["Memory usage and how the file is read / how grep works in practice."],
   practiceVariations: [
     "Separate -B and -A counts.",
     "Print '--' between non-overlapping groups.",
@@ -44,8 +42,7 @@ export const grepContext: DesignCodingQuestion = {
   approach: {
     whyStructure:
       "Context windows on a line array are a sweep: track the next line to emit so overlaps do not duplicate. Streaming needs a buffer of the last k lines because past context is no longer on disk once you advance.",
-    invariant:
-      "Every emitted line appears once, in file order. Every match's window is covered.",
+    invariant: "Every emitted line appears once, in file order. Every match's window is covered.",
     operations:
       "Pass 1 or single pass: for each match at i, emit from max(next_emit, i-k) through i+k. Streaming: keep deque of last k lines; on match flush needed previous lines; remember pending after-context count.",
     whyNotSimpler:

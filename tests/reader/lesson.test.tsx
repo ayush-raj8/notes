@@ -197,4 +197,60 @@ describe("lesson renderer", () => {
     expect(screen.getByRole("heading", { name: "Investigation" })).toBeInTheDocument();
     expect(screen.getByText("dig +cd api.example.com")).toBeInTheDocument();
   });
+
+  it("embeds the Module 8 why answers and keeps notes-style bullets", () => {
+    renderAt("/cn/learn/http/request-response");
+    expect(
+      screen.getByRole("heading", { name: "The HTTP request and response" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "1. If TCP already exists, why do we need HTTP?" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/TCP delivers an ordered byte stream/)).toBeInTheDocument();
+    expect(screen.getByText(/• One self-describing message format/)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Mark lesson finished" })).toBeInTheDocument();
+    cleanup();
+    renderAt("/cn/learn/http/http-versions");
+    expect(
+      screen.getByRole("link", {
+        name: "28. Why can HTTP/2 still experience head-of-line blocking?",
+      }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Six requests to one server, three ways")).toBeInTheDocument();
+    cleanup();
+    renderAt("/cn/learn/http/reuse-and-caching");
+    expect(screen.getByText(/A new connection costs a TCP handshake/)).toBeInTheDocument();
+    cleanup();
+    renderAt("/cn/learn/http/intermediaries");
+    expect(
+      screen.getByRole("link", {
+        name: "54. Why does gRPC use HTTP/2 (or HTTP/3) rather than a raw TCP byte stream?",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("A gRPC service that stays unbalanced after scaling out"),
+    ).toBeInTheDocument();
+  });
+
+  it("embeds the Module 10 why answers, examples, and edge investigation", () => {
+    renderAt("/cn/learn/nat/nat");
+    expect(
+      screen.getByRole("link", {
+        name: "37. Why does NAT exist, and what problems does it introduce?",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "38. Why isn't NAT itself a security mechanism?" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/NAT rewrites addresses; it does not decide/)).toBeInTheDocument();
+    expect(screen.getByText("One HTTPS connection through a home NAT")).toBeInTheDocument();
+    cleanup();
+    renderAt("/cn/learn/nat/load-balancing");
+    expect(screen.getByText(/A health check is one cheap probe/)).toBeInTheDocument();
+    expect(screen.getByText("How long a dead backend keeps getting traffic")).toBeInTheDocument();
+    cleanup();
+    renderAt("/cn/learn/nat/connectivity-failures");
+    expect(screen.getByRole("heading", { name: "Investigation" })).toBeInTheDocument();
+    expect(screen.getByText("conntrack -L -d 198.51.100.10")).toBeInTheDocument();
+  });
 });

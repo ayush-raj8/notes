@@ -24,8 +24,7 @@ export const secureLinkedList: DesignCodingQuestion = {
   ],
   coreApproach:
     "Singly linked list where each node's hash depends on its data and the next node's hash. Insert requires rehashing the prefix (or all prior nodes) after structural change; validate recomputes every hash forward from the tail.",
-  summaryComplexity:
-    "insert O(n) time · validate O(n) time · O(1) extra space beyond the list",
+  summaryComplexity: "insert O(n) time · validate O(n) time · O(1) extra space beyond the list",
   originalPrompt:
     "Implement a secured singly linked list. Each node stores data (string), next, and an integer hashValue. A given hash(String) function is available and must not be modified. Hashes form a forward-dependent chain so tampering without updating hashes is detectable.",
   originalRequirements: [
@@ -201,14 +200,16 @@ if __name__ == "__main__":
     },
   ],
   dryRun: {
-    setup: "Build list from ['a','b'] then insert 'x' at position 1. Assume hash(s) is an opaque function.",
+    setup:
+      "Build list from ['a','b'] then insert 'x' at position 1. Assume hash(s) is an opaque function.",
     steps: [
       "After ['a','b']: b.hash = hash('b'); a.hash = hash('a' + str(b.hash)).",
       "Insert 'x' between a and b: a → x → b.",
       "Rehash: b.hash = hash('b'); x.hash = hash('x' + str(b.hash)); a.hash = hash('a' + str(x.hash)).",
       "If a hacker splices a node without rehashing, a.hash still reflects the old next hash → is_chain_valid is false.",
     ],
-    result: "Valid lists always satisfy the reported forward hash rule; silent splices fail validation.",
+    result:
+      "Valid lists always satisfy the reported forward hash rule; silent splices fail validation.",
   },
   edgeCases: [
     "Empty list / insert at 0 creating a new head.",
@@ -221,12 +222,14 @@ if __name__ == "__main__":
     {
       text: "Detect insert-without-rehash tampering.",
       kind: "reported",
-      guidance: "is_chain_valid comparing stored vs expected hashes is enough; no separate detection API was required in the report.",
+      guidance:
+        "is_chain_valid comparing stored vs expected hashes is enough; no separate detection API was required in the report.",
     },
     {
       text: "Implement with iterative O(1) extra space rehash.",
       kind: "practice",
-      guidance: "Collect nodes in an array or reverse links temporarily, hash from the tail, restore order.",
+      guidance:
+        "Collect nodes in an array or reverse links temporarily, hash from the tail, restore order.",
     },
   ],
   checklist: [

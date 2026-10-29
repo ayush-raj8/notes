@@ -5,11 +5,12 @@ test("home opens a module and an unwritten lesson", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Notes" })).toBeVisible();
   await page.getByRole("link", { name: "Computer Networks" }).click();
   await expect(page.getByRole("heading", { name: "Computer Networks" })).toBeVisible();
-  await page.getByRole("link", { name: "8. HTTP and Application-Layer Networking" }).click();
-  await expect(
-    page.getByRole("heading", { name: "HTTP and Application-Layer Networking" }),
-  ).toBeVisible();
-  await page.getByRole("main").getByRole("link", { name: "The HTTP request and response" }).click();
+  await page.getByRole("link", { name: "11. Performance and Reliability" }).click();
+  await expect(page.getByRole("heading", { name: "Performance and Reliability" })).toBeVisible();
+  await page
+    .getByRole("main")
+    .getByRole("link", { name: "Latency, bandwidth, and jitter" })
+    .click();
   await expect(page.getByText("This lesson is not written yet.")).toBeVisible();
   const overflows = await page.evaluate(
     () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,

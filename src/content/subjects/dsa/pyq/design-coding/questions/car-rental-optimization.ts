@@ -40,14 +40,11 @@ export const carRentalOptimization: DesignCodingQuestion = {
   approach: {
     whyStructure:
       "Interval reuse is classic greedy + min-heap of end times. Sorting by start lets you always consider the earliest free resource.",
-    invariant:
-      "Heap contains busy cars ordered by return time. Assigned count never exceeds need.",
-    operations:
-      "Sort by pickup; while heap top return ≤ pickup, reuse that carId; else new car.",
+    invariant: "Heap contains busy cars ordered by return time. Assigned count never exceeds need.",
+    operations: "Sort by pickup; while heap top return ≤ pickup, reuse that carId; else new car.",
     whyNotSimpler:
       "Assigning a fresh car each time wastes fleet size. Checking all cars linearly is O(n²).",
-    tradeoffs:
-      "Greedy earliest-available is optimal for minimizing machines for intervals.",
+    tradeoffs: "Greedy earliest-available is optimal for minimizing machines for intervals.",
   },
   algorithm: [
     "Sort requests by pickup.",
@@ -101,15 +98,10 @@ if __name__ == "__main__":
     assert by[1] == by[3] and by[1] != by[2]
     print("ok")
 `,
-  complexity: [
-    { operation: "assign_cars", time: "O(n log n)", space: "O(n)" },
-  ],
+  complexity: [{ operation: "assign_cars", time: "O(n log n)", space: "O(n)" }],
   dryRun: {
     setup: "Requests (0,5), (2,7), (5,9) with N=3.",
-    steps: [
-      "Car0 → first; car1 → second.",
-      "Third pickup 5 ≥ car0 return 5 → reuse car0.",
-    ],
+    steps: ["Car0 → first; car1 → second.", "Third pickup 5 ≥ car0 return 5 → reuse car0."],
     result: "Two cars used; assignments match the HI example idea.",
   },
   edgeCases: [

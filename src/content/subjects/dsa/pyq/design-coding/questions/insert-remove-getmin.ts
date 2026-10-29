@@ -163,10 +163,7 @@ if __name__ == "__main__":
   ],
   dryRun: {
     setup: "insert 3,1,2; remove 1; getMin.",
-    steps: [
-      "freq {3:1,1:1,2:1}; min=1.",
-      "remove 1; min becomes 2.",
-    ],
+    steps: ["freq {3:1,1:1,2:1}; min=1.", "remove 1; min becomes 2."],
     result: "getMin → 2.",
   },
   edgeCases: [

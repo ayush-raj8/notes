@@ -41,8 +41,7 @@ export const mostRecentlySearched: DesignCodingQuestion = {
   approach: {
     whyStructure:
       "Recency needs O(1) move-to-front and O(1) eviction of the opposite end. A doubly linked list plus hash map (classic LRU) does that. An ordered dict is the same idea with library help.",
-    invariant:
-      "List order is strictly recency. Map maps key → node. Length ≤ capacity.",
+    invariant: "List order is strictly recency. Map maps key → node. Length ≤ capacity.",
     operations:
       "search(key): if present, unlink node and attach at MRU; else create, attach, and if len > cap unlink LRU. top(): walk from MRU to LRU.",
     whyNotSimpler:

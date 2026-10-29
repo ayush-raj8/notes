@@ -6,11 +6,7 @@ export const sourceClassificationSchema = z.enum([
   "related-practice",
 ]);
 
-export const verificationStatusSchema = z.enum([
-  "verified",
-  "partially-verified",
-  "unverified",
-]);
+export const verificationStatusSchema = z.enum(["verified", "partially-verified", "unverified"]);
 
 export const reportedLevelSchema = z.enum(["L3", "L4", "L5", "unspecified"]);
 

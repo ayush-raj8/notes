@@ -24,8 +24,13 @@ export const relatedPracticeQuestions: DesignCodingQuestion[] = [
     leetcodeUrl: "https://leetcode.com/problems/lru-cache/",
     coreApproach: "Hash map + doubly linked list; get/put move to MRU; evict LRU at capacity.",
     summaryComplexity: "get/put O(1)",
-    originalPrompt: "Design a data structure that follows the constraints of a Least Recently Used (LRU) cache.",
-    originalRequirements: ["get(key)", "put(key, value)", "Evict least recently used when over capacity."],
+    originalPrompt:
+      "Design a data structure that follows the constraints of a Least Recently Used (LRU) cache.",
+    originalRequirements: [
+      "get(key)",
+      "put(key, value)",
+      "Evict least recently used when over capacity.",
+    ],
     clarifyingQuestions: ["Capacity 0?", "Update on put of existing key?"],
     approach: {
       whyStructure: "Same spine as most-recently-searched.",
@@ -60,7 +65,11 @@ export const relatedPracticeQuestions: DesignCodingQuestion[] = [
 `,
     complexity: [
       { operation: "get/put with DLL", time: "O(1)", space: "O(capacity)" },
-      { operation: "list demo above", time: "O(capacity)", notes: "Replace with DLL in interview." },
+      {
+        operation: "list demo above",
+        time: "O(capacity)",
+        notes: "Replace with DLL in interview.",
+      },
     ],
     dryRun: {
       setup: "cap 2; put 1; put 2; get 1; put 3.",
@@ -475,7 +484,8 @@ class NestedIterator:
     originalRequirements: ["serialize", "deserialize round trip"],
     clarifyingQuestions: ["Format constraints?"],
     approach: {
-      whyStructure: "Null markers recover shape. Graphs need ids instead — see reported graph question.",
+      whyStructure:
+        "Null markers recover shape. Graphs need ids instead — see reported graph question.",
       invariant: "Preorder stream uniquely determines tree with nulls.",
       operations: "Recurse encode/decode.",
       whyNotSimpler: "Inorder alone is ambiguous.",

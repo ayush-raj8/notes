@@ -24,20 +24,18 @@ describe("application shell", () => {
     expect(screen.getByRole("heading", { name: "Notes" })).toBeInTheDocument();
     await user.click(screen.getByRole("link", { name: "Computer Networks" }));
     expect(screen.getByRole("heading", { name: "Computer Networks" })).toBeInTheDocument();
-    expect(screen.getByText(/34 of 67 lessons written/)).toBeInTheDocument();
-    await user.click(
-      screen.getByRole("link", { name: "8. HTTP and Application-Layer Networking" }),
-    );
+    expect(screen.getByText(/46 of 67 lessons written/)).toBeInTheDocument();
+    await user.click(screen.getByRole("link", { name: "11. Performance and Reliability" }));
     expect(
-      screen.getByRole("heading", { name: "HTTP and Application-Layer Networking" }),
+      screen.getByRole("heading", { name: "Performance and Reliability" }),
     ).toBeInTheDocument();
     await user.click(
       within(screen.getByRole("main")).getByRole("link", {
-        name: "The HTTP request and response",
+        name: "Latency, bandwidth, and jitter",
       }),
     );
     expect(screen.getByText("This lesson is not written yet.")).toBeInTheDocument();
-    expect(screen.getByText("HTTP request-response model.")).toBeInTheDocument();
+    expect(screen.getByText("Latency, bandwidth, throughput, and jitter.")).toBeInTheDocument();
   });
 
   it("shows not-found and a pending why answer", async () => {
@@ -46,9 +44,7 @@ describe("application shell", () => {
     expect(screen.getByRole("heading", { name: "Page not found" })).toBeInTheDocument();
     cleanup();
     renderAt("/cn/why");
-    await user.click(
-      screen.getByRole("link", { name: /If TCP already exists, why do we need HTTP/ }),
-    );
+    await user.click(screen.getByRole("link", { name: /Why can a low-bandwidth-delay product/ }));
     expect(screen.getByText("Answer not written yet.")).toBeInTheDocument();
   });
 

@@ -172,7 +172,8 @@ if __name__ == "__main__":
       "foo@3 rejected (3-1 < 10).",
       "foo@11: cleanup may drop events ≤ 1; 11-1 >= 10 → accept.",
     ],
-    result: "Printed: foo, bar, foo at t=11. Map never retains forever-stale unique keys once cleanup runs.",
+    result:
+      "Printed: foo, bar, foo at t=11. Map never retains forever-stale unique keys once cleanup runs.",
   },
   edgeCases: [
     "First occurrence of a message.",
@@ -190,7 +191,8 @@ if __name__ == "__main__":
     {
       text: "Require silence in both previous and next 10 seconds.",
       kind: "reported",
-      guidance: "Needs lookahead; report example keeps Java@12 and Java@23 from Java@1,12,23 with Leetcode@6,15.",
+      guidance:
+        "Needs lookahead; report example keeps Java@12 and Java@23 from Java@1,12,23 with Leetcode@6,15.",
     },
   ],
   checklist: [

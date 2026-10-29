@@ -335,6 +335,7 @@ button.button.secondary {
 
 .principle-item dd {
   margin: 0;
+  white-space: pre-line;
 }
 
 .table-wrap {

@@ -4,10 +4,10 @@ export const body = {
   id: "m08.reuse-and-cache",
   status: "complete",
   objectives: [
-    "Explain what a pooled connection saves, and why a pooled connection can fail on first use after sitting idle.",
-    "Tell content coding from transfer coding, and say why compressed responses need Vary and change the ETag.",
-    "Decide whether a cache may reuse a response, from its Cache-Control, its age, and Vary.",
-    "Follow a conditional request from a stale cache entry to a 304, and say what no-cache, no-store, private, and s-maxage each change.",
+    "Say what a pooled connection saves, and why it can fail on first use after idling.",
+    "Tell content coding from transfer coding, and say why compression needs Vary and changes the ETag.",
+    "Decide whether a cache may reuse a response from Cache-Control, age, and Vary.",
+    "Follow a stale entry to a 304, and say what no-cache, no-store, private, and s-maxage change.",
   ],
   prerequisites: ["m08.http-versions"],
   sections: [
@@ -15,73 +15,61 @@ export const body = {
       type: "principle",
       id: "principle",
       problem:
-        "Most HTTP traffic repeats itself. A service calls the same backend thousands of times a second, a browser asks for the same stylesheet on every page, and many clients ask for the same product list. Doing the full work each time means a new connection with its handshakes and a cold congestion window, the full response bytes on the wire, and the origin regenerating an answer it gave a second ago.",
+        "• Most HTTP traffic repeats: same backend, same stylesheet, same product list.\n• Doing it all again costs a new connection, the full body, and the origin's work.",
       whyItMatters:
-        "Reuse is most of the difference between a fast service and a slow one, and most of what a CDN does. It is also a common source of production bugs: a request fails with a connection reset because the pool handed out a connection the server had closed, a user sees another user's page because a shared cache stored a private response, or a deploy is invisible for an hour because a response said `max-age=3600`.",
-      idea: "Reuse three things, each under rules that keep reuse correct. Reuse the connection, as long as each message's framing is intact and both sides still agree the connection is open. Reuse fewer bytes, by sending a compressed representation the client said it accepts. Reuse the whole response, as long as the origin said it stays fresh for that long, or the origin confirms with a cheap conditional request that the stored copy is still current.",
+        "• Reuse is most of the gap between a fast and a slow service, and most of what a CDN does.\n• Common bugs: resets from a stale pooled connection, one user's page cached for another, a deploy hidden by `max-age=3600`.",
+      idea: "• Reuse the connection, while framing is intact and both sides think it is open.\n• Reuse fewer bytes: send a compressed representation the client accepts.\n• Reuse the whole response while it is fresh, or after a cheap conditional check.",
       howItWorks:
-        "A client library keeps idle connections in a pool per origin and takes one for the next request instead of connecting. HTTP/1.1 needs one connection per in-flight request; HTTP/2 and HTTP/3 multiplex, so one connection per origin is normal. For bytes, the client sends `Accept-Encoding: gzip, br`, the server compresses the representation and labels it `Content-Encoding: gzip`, and adds `Vary: Accept-Encoding` so caches keep compressed and uncompressed copies apart. For responses, the origin sends `Cache-Control: max-age=N` (or `s-maxage` for shared caches) and a validator, an ETag or Last-Modified. A cache serves the stored response without contacting the origin while its age is below its freshness lifetime. After that it sends a conditional request with `If-None-Match` carrying the ETag; the origin answers 304 Not Modified with no content if nothing changed, or 200 with the new representation if it did.",
+        "• Pool: idle connections per origin, taken for the next request. HTTP/1.1 needs one per in-flight request; HTTP/2 and HTTP/3 need one per origin.\n• Compression: `Accept-Encoding: gzip, br` → `Content-Encoding: gzip` + `Vary: Accept-Encoding`.\n• Freshness: `Cache-Control: max-age=N` (or `s-maxage` for shared caches) plus a validator (ETag or Last-Modified).\n• Fresh: serve without asking. Stale: send `If-None-Match`. Origin answers 304 (no body) or 200 (new body).",
       whyItWorks:
-        "A pooled connection skips the TCP and TLS handshakes, and a connection that has been busy recently keeps the congestion window it has already grown, so the request does not start from slow start. Content codings are a property of the representation, not of the hop, so a cache can store the compressed bytes and serve them to any client that accepts that coding. Freshness lets the origin trade staleness for load explicitly, and validators make the stale case cheap: a 304 costs a round trip and a few header bytes instead of the whole body. Because only the origin sets these values, every cache along the path can make the same decision without coordinating.",
+        "• A reused connection skips TCP and TLS handshakes. If recently busy, it also keeps its grown congestion window.\n• Content coding belongs to the representation, so a cache can store and serve the compressed bytes.\n• Only the origin sets freshness and validators, so every cache decides alike without coordinating. A 304 costs a round trip, not a body.",
       limits:
-        "A pooled connection may be dead: the server, a NAT, or a load balancer can close an idle connection at any time, and the client often learns only when it writes. Retrying then is safe only for idempotent requests. A connection that sat idle longer than one retransmission timeout should restart from a small congestion window, so reuse after a long pause saves the handshakes but not slow start. Caching never pushes updates: a fresh response stays in use until it expires, unsafe requests invalidate only the caches they pass through, and there is no way to recall a copy from every browser. Compression of secrets alongside attacker-controlled text can leak them through response size. Caches are optional and differ; a response's directives are the only thing you control.",
+        "• A pooled connection may already be closed by the server, a NAT, or a balancer. Only idempotent requests are safe to retry.\n• Idle longer than one RTO: TCP should restart from a small window. Handshakes saved, slow start not.\n• Caches are never pushed updates. Unsafe requests invalidate only caches they pass.\n• Compressing secrets next to attacker text can leak them by size.\n• Caches are optional and vary. Response directives are all you control.",
       connections:
-        "DNS caching in Module 7 is the same trade, with TTL instead of max-age and no conditional request (why.22). The previous lesson explained why HTTP/2 wants one connection per origin. The intermediaries lesson covers the shared caches, CDNs, and reverse proxies that apply these rules. Module 11 returns to pools under partial failure, including timeouts and retry budgets.",
+        "• Module 7 DNS caching: same trade, TTL instead of max-age, no conditional request (why.22).\n• Previous lesson: why HTTP/2 wants one connection per origin.\n• Next: the proxies and CDNs that apply these rules. Module 11: pools under partial failure.",
     },
     {
       type: "comparison",
       id: "cache-directives",
       title: "Response directives that decide reuse",
       caption:
-        "A shared cache serves many users, such as a CDN or a reverse proxy. A private cache serves one user agent, such as a browser cache.",
-      columns: ["Who may store it", "When it may be reused without asking", "Typical use"],
+        "Shared cache: serves many users (CDN, reverse proxy). Private cache: one user agent (browser).",
+      columns: ["Who may store", "Reuse without asking", "Typical use"],
       rows: [
         {
           label: "max-age=N",
           cells: [
-            "Any cache, subject to the other rules.",
-            "Until the response's age exceeds N seconds.",
-            "Versioned static assets with a long N; API reads with a short N.",
+            "Any cache.",
+            "Until age > N.",
+            "Versioned assets (long N); API reads (short N).",
           ],
         },
         {
           label: "s-maxage=N",
           cells: [
-            "Shared caches use this instead of max-age.",
-            "Until age exceeds N, and then a shared cache must revalidate before reuse.",
-            "Let a CDN keep a response longer or shorter than browsers.",
+            "Shared caches use it over max-age.",
+            "Until age > N; then must revalidate.",
+            "CDN lifetime different from browsers.",
           ],
         },
         {
           label: "no-cache",
-          cells: [
-            "Any cache may store it.",
-            "Never. Every reuse must be validated with the origin first.",
-            "Content that must be current but is often unchanged, so 304s save bytes.",
-          ],
+          cells: ["Any cache.", "Never. Validate first.", "Must be current; 304s save bytes."],
         },
         {
           label: "no-store",
-          cells: [
-            "No cache may store the request or response.",
-            "Never.",
-            "Sensitive responses. Not a privacy guarantee against a non-compliant cache.",
-          ],
+          cells: ["None.", "Never.", "Sensitive data. Not a privacy guarantee against bad caches."],
         },
         {
           label: "private",
-          cells: [
-            "Only a private cache, such as the browser.",
-            "Per its freshness, in that private cache only.",
-            "Per-user pages and API responses.",
-          ],
+          cells: ["Private caches only.", "Per freshness, in that cache.", "Per-user pages."],
         },
         {
           label: "must-revalidate",
           cells: [
-            "Any cache, subject to the other rules.",
-            "While fresh. Once stale, never without validation, even if the origin is unreachable.",
-            "Where serving stale data could cause incorrect operation.",
+            "Any cache.",
+            "While fresh. Stale: never without validation, even when disconnected.",
+            "Where stale data breaks correctness.",
           ],
         },
       ],
@@ -91,18 +79,18 @@ export const body = {
       id: "catalog-cache",
       title: "A product list behind a CDN, over ten minutes",
       setup:
-        '`GET /products` on `api.example.com` returns JSON. The origin sends `Cache-Control: max-age=60, s-maxage=300`, `ETag: "v17"`, `Content-Encoding: gzip`, and `Vary: Accept-Encoding`. A browser talks to a CDN, a shared cache, which talks to the origin. Times are in seconds and the names are documentation values.',
+        '`GET /products` on `api.example.com`. Origin sends `Cache-Control: max-age=60, s-maxage=300`, `ETag: "v17"`, `Content-Encoding: gzip`, `Vary: Accept-Encoding`. Browser → CDN (shared) → origin. Times in seconds; names are documentation values.',
       walkthrough: [
-        "t=0. The browser's cache and the CDN are empty. The CDN forwards the request with the browser's `Accept-Encoding: gzip, br`, stores the gzip response keyed by method, URI, and the Accept-Encoding value that Vary names, and returns it. The browser stores it too.",
-        "t=30. The browser needs `/products` again. Its copy has age 30, below max-age 60, so it is fresh and the browser uses it without any request. No server sees this.",
-        't=90. The browser\'s copy is stale (90 > 60). It sends `GET /products` with `If-None-Match: "v17"`. At the CDN the stored response has age 90, below s-maxage 300, so it is still fresh there. The CDN evaluates the If-None-Match against its stored ETag, which matches, and answers 304 itself. The browser updates its stored headers and reuses the body. The origin sees nothing.',
-        "t=200. A client using `Accept-Encoding: identity` asks the CDN. Vary says the stored gzip response was selected by Accept-Encoding, and the values differ, so the CDN cannot use it. It forwards the request and stores a second, uncompressed response.",
-        "t=320. Another browser's request reaches the CDN. The gzip copy has age 320 > 300, and s-maxage requires a shared cache to revalidate. The CDN sends `If-None-Match: \"v17\"` to the origin. The product list has not changed, so the origin answers 304 with fresh Cache-Control and ETag fields, and the CDN's copy is fresh again for another 300 seconds.",
-        "t=400. An admin sends `PUT /products/42` through the same CDN and gets 200. A cache must invalidate the target URI of a successful unsafe request, but that target is `/products/42`, not `/products`. The CDN may invalidate other URIs, but is not required to, and the browsers' own caches never saw the PUT. Until their copies expire, clients can see the old list.",
-        't=401. The origin now has `ETag: "v18"`. The next conditional request with `"v17"` that reaches it gets 200 with the new representation.',
+        "t=0. Both caches empty. CDN forwards with `Accept-Encoding: gzip, br`, stores the gzip response keyed by URI + that Accept-Encoding, returns it. Browser stores it too.",
+        "t=30. Browser copy age 30 < 60: fresh. No request at all.",
+        't=90. Browser copy stale. Sends `If-None-Match: "v17"`. CDN copy age 90 < 300: fresh there. ETag matches, so the CDN answers 304 itself. Origin sees nothing.',
+        "t=200. A client sends `Accept-Encoding: identity`. Vary values differ, so the CDN forwards and stores a second, uncompressed copy.",
+        't=320. CDN gzip copy age 320 > 300. s-maxage forces revalidation: `If-None-Match: "v17"` to origin. Unchanged, so 304. Fresh for another 300 s.',
+        "t=400. Admin `PUT /products/42` through the CDN, 200. The CDN must invalidate `/products/42`, not `/products`. Browsers never saw the PUT. Clients may see the old list until expiry.",
+        't=401. Origin now has `ETag: "v18"`. The next `"v17"` check that reaches it gets 200 with the new body.',
       ],
       result:
-        "Freshness lets each cache decide alone, so most requests never reach the origin; validation makes the stale case cost a 304 instead of a body. The cost is staleness bounded by max-age and s-maxage, not by when the data changes. If clients must see a change at once, the response must not be reusable without validation (`no-cache`), or its URL must change when the content does.",
+        "Freshness lets each cache decide alone. Validation makes stale cost a 304. Staleness is bounded by max-age and s-maxage, not by when data changes. For instant visibility, use `no-cache` or change the URL.",
     },
     {
       type: "steps",
@@ -110,16 +98,16 @@ export const body = {
       title: "A conditional request, observed",
       steps: [
         {
-          title: "The first response",
-          body: '`curl --compressed -D - https://www.rfc-editor.org/rfc/rfc9111.txt` returned `HTTP/2 200`, `cache-control: public, max-age=86400`, `content-encoding: gzip`, and `etag: "f8907618635703edd228aee4aa834eee"` (observed in October 2026).',
+          title: "Compressed response",
+          body: '`curl --compressed -D - https://www.rfc-editor.org/rfc/rfc9111.txt` → `HTTP/2 200`, `cache-control: public, max-age=86400`, `content-encoding: gzip`, `etag: "f8907618635703edd228aee4aa834eee"` (observed October 2026).',
         },
         {
-          title: "The same URL without compression",
-          body: 'Without `--compressed`, the response carried `W/"f8907618635703edd228aee4aa834eee"`, the same tag marked weak. RFC 9110 explains why such a pairing must be weak: if a server uses one validator for the gzip and the uncompressed representation, that validator is not byte-exact for either, so it is weak.',
+          title: "Uncompressed response",
+          body: 'Without `--compressed`: `W/"f8907618635703edd228aee4aa834eee"`. Same tag, marked weak. RFC 9110: one validator for gzip and uncoded forms is weak by definition.',
         },
         {
-          title: "The conditional request",
-          body: "Sending that weak tag in `If-None-Match` returned `HTTP/2 304` with zero body bytes. If-None-Match uses the weak comparison, so a weak tag is enough to validate a cache entry, though not for operations such as a range request that need exact bytes.",
+          title: "Conditional request",
+          body: "That weak tag in `If-None-Match` → `HTTP/2 304`, zero body bytes. If-None-Match uses weak comparison, so weak tags validate caches.",
         },
       ],
     },
@@ -133,7 +121,7 @@ export const body = {
       id: "stale-pool",
       tone: "caution",
       title: "The idle-connection race",
-      body: "A pool keeps an idle connection for, say, 90 seconds, but the server closes idle connections after 60. At second 61 the client takes the connection from the pool and writes a request just as the server's close arrives, and the request fails with a reset or an empty response. RFC 9112 describes exactly this race. A GET can be retried on a new connection. A POST cannot be retried blindly, because the client cannot tell whether the server read it. Keep the client's idle timeout shorter than every server and proxy on the path, and let the library retry only idempotent requests.",
+      body: "Pool keeps idle connections 90 s; server closes them at 60 s. At 61 s the client writes into a connection the server is closing, and gets a reset or empty reply. RFC 9112 describes this race. Retry GET on a new connection. Do not blindly retry POST. Keep the client's idle timeout below every server and proxy on the path.",
       scope: "rfc",
     },
     {
@@ -141,11 +129,12 @@ export const body = {
       id: "compression",
       title: "Compression details",
       paragraphs: [
-        "Content-Encoding names codings applied to the representation, such as gzip, deflate, or compress, in the order they were applied. The representation is defined in its coded form, so its length, its ETag, and any digest describe the compressed bytes. Transfer-Encoding, in HTTP/1.1 only, is a property of one hop and is removed by the recipient; chunked is the common one.",
-        "A client lists what it accepts in Accept-Encoding, optionally with weights. `identity` means no coding. RFC 9110 says an origin should send Vary on a cacheable response it wants reused selectively, so a server that chooses a coding from Accept-Encoding sends `Vary: Accept-Encoding`; without it, a cache could give gzip bytes to a client that cannot decode them.",
-        "When a media type already includes compression, that encoding is not restated in Content-Encoding. Formats such as JPEG or video are already compressed, so applying gzip again costs CPU for little saving.",
-        "Compression can leak secrets. If a response contains both a secret, such as a CSRF token, and text the attacker controls, the compressed size shrinks when the attacker's guess matches part of the secret, even over TLS. RFC 9110 cites the BREACH attack and recommends disabling compression for sensitive data or keeping it apart from attacker-controlled data.",
-        "HTTP/2's HPACK and HTTP/3's QPACK compress header fields, not content. RFC 9110 names HPACK as an example of a scheme designed so that it is not considered exploitable in its limited use.",
+        "Content-Encoding: codings applied to the representation, in order (gzip, deflate, compress). Length, ETag, and digests describe the coded bytes.",
+        "Transfer-Encoding (HTTP/1.1 only): a property of one hop, removed by the recipient. Usually chunked.",
+        "Accept-Encoding lists acceptable codings, with optional weights. `identity` = no coding. A server that picks a coding by it should send `Vary: Accept-Encoding`, or a cache may hand gzip to a client that cannot decode it.",
+        "Already-compressed media (JPEG, video) gain little from gzip.",
+        "BREACH: when a secret and attacker text share a compression dictionary, the size shrinks on a correct guess, even over TLS. Disable compression for secrets or keep them apart.",
+        "HPACK and QPACK compress fields, not content. RFC 9110 cites HPACK as designed to resist this attack in its limited use.",
       ],
     },
     {
@@ -153,14 +142,13 @@ export const body = {
       id: "cache-edges",
       title: "Caching edge cases",
       paragraphs: [
-        "A cache may store a response only if it has some explicit permission or a heuristically cacheable status. Without max-age or Expires, a cache may guess a freshness lifetime, typically a fraction such as 10% of the time since Last-Modified. Send explicit directives if you care.",
-        "If both max-age and Expires are present, max-age wins; a shared cache uses s-maxage over both. When directives conflict, such as max-age and no-cache, the most restrictive should be honoured.",
-        "Caches collapse requests: on a miss, several identical requests can wait on one forward request. That protects the origin during a burst of misses.",
-        "A cache may serve a stale response only when it is disconnected from the origin or explicitly allowed to, and never when no-cache, must-revalidate, or s-maxage forbids it. With must-revalidate, a disconnected cache must return an error, usually 504.",
-        "If a cache gets a 5xx while revalidating, it may forward the error or act as if the origin did not answer, which can mean serving its stored response if staleness is allowed.",
-        "`Vary: *` means the response can never be reused without asking the origin. A response that varies on a field the cache does not see in the request, such as Cookie, can multiply stored copies.",
-        "The presence of an Age header means a cache answered, not the origin. Its absence does not prove the origin was contacted.",
-        "A shared cache must not reuse a response to a request with Authorization unless the response explicitly allows it with public, s-maxage, or must-revalidate.",
+        "Storage needs explicit permission or a heuristically cacheable status. With no max-age or Expires, caches may guess, typically 10% of the time since Last-Modified.",
+        "Lifetime order for a shared cache: s-maxage, then max-age, then Expires minus Date. Conflicting directives: honour the most restrictive.",
+        "Caches may collapse concurrent misses into one forward request.",
+        "Stale responses only when disconnected or explicitly allowed. Never when no-cache, must-revalidate, or s-maxage forbids. must-revalidate + disconnected = error, usually 504.",
+        "A 5xx during revalidation: forward it, or act as if the origin did not answer (possibly serving stale if allowed).",
+        "`Vary: *` never matches. Varying on Cookie can multiply stored copies.",
+        "An Age field means a cache answered. No Age does not prove the origin was contacted.",
       ],
     },
     {
@@ -170,30 +158,30 @@ export const body = {
         {
           id: "nocache-vs-nostore",
           prompt:
-            "A team sets `Cache-Control: no-cache` on account balances, believing it keeps them out of caches. Is that right? What would keep them out, and what would `private` do?",
+            "A team sets `no-cache` on account balances to keep them out of caches. Right? What does, and what would `private` do?",
           answer:
-            "No. no-cache allows any cache to store the response; it only forbids reusing it without a successful validation with the origin. To prevent storage, use no-store, which forbids caches from storing the request or response, while remembering it is not a privacy guarantee against a non-compliant cache. private forbids shared caches such as CDNs from storing it but allows the user's own browser cache to keep it. For a balance, `private, no-cache` (or no-store) is the usual choice.",
+            "No. no-cache allows storage but forces validation before reuse. no-store forbids storage. private keeps it out of shared caches but allows the browser cache.",
         },
         {
           id: "deploy-not-visible",
           prompt:
-            "After a deploy, users still get the old `app.js` for up to an hour. It was served with `Cache-Control: max-age=3600`. Why, and what change makes future deploys visible immediately without losing caching?",
+            "After a deploy users get the old `app.js` for up to an hour. It had `max-age=3600`. Why, and what fixes future deploys?",
           answer:
-            "A fresh response can be reused without contacting the origin until its age exceeds max-age, and nothing pushes an update to browsers or CDNs. Each copy stays in use for up to 3600 seconds after it was fetched. Changing the URL on each deploy, for example `app.3f9c.js` referenced from an HTML page served with `no-cache`, makes the new file a different cache entry, so the asset can keep a very long max-age while the page that names it is always revalidated.",
+            "Fresh copies are reused without asking, and nothing pushes updates. Version the URL (`app.3f9c.js`) and serve the HTML that names it with `no-cache`.",
         },
         {
           id: "gzip-vary",
           prompt:
-            "A server compresses responses when the client sends `Accept-Encoding: gzip` and omits Vary. An old client that cannot decode gzip starts getting garbage through the company proxy cache. Explain.",
+            "A server gzips when asked but omits Vary. An old client that cannot decode gzip gets garbage through a proxy cache. Why?",
           answer:
-            "The proxy stored the gzip response keyed only by method and URI, because Vary did not say that Accept-Encoding influenced the choice. It then served the stored gzip bytes to the old client, which sent no Accept-Encoding for gzip. With `Vary: Accept-Encoding`, the proxy may reuse a stored response only for requests whose Accept-Encoding matches, and must otherwise forward the request.",
+            "The proxy keyed the gzip response on method and URI only, then served it to the old client. `Vary: Accept-Encoding` makes it match Accept-Encoding before reuse.",
         },
         {
           id: "pool-reset",
           prompt:
-            "A service sees occasional `connection reset by peer` errors on the first request after a quiet minute, always to one backend behind a load balancer whose idle timeout is 60 seconds. The client's pool keeps idle connections for 120 seconds. What is happening, and what are the two fixes?",
+            "Occasional `connection reset by peer` on the first request after a quiet minute. Balancer idle timeout 60 s; client pool keeps 120 s. Cause and fixes?",
           answer:
-            "The load balancer closes connections idle for 60 seconds. The client's pool still holds them and hands one out; the request is written into a connection the other end has already closed, and the client gets a reset. Fix it by making the pool's idle timeout shorter than the shortest idle timeout on the path, or by validating or replacing idle connections before use. Separately, allow automatic retry on a new connection only for idempotent methods, because a POST that hit the reset may or may not have been read.",
+            "The balancer closed the idle connection; the pool handed it out anyway. Set the pool idle timeout below 60 s or validate idle connections. Auto-retry only idempotent requests.",
         },
       ],
     },
@@ -202,7 +190,7 @@ export const body = {
     {
       id: "persistent-default",
       statement:
-        "HTTP/1.1 defaults to persistent connections, and every message on one must have a self-defined length. A server must read the whole request body or close the connection, and a client must read the whole response body to reuse the connection.",
+        "HTTP/1.1 defaults to persistent connections, and every message on one must self-delimit. A server must read the whole request body or close; a client must read the whole response body to reuse the connection.",
       sourceId: "rfc9112",
       locator: "Section 9.3, Persistence",
       verification: "checked",
@@ -210,19 +198,9 @@ export const body = {
       scope: "rfc",
     },
     {
-      id: "connections-limit",
-      statement:
-        "Clients ought to limit simultaneous connections to a server; each consumes server resources and many connections can cause congestion.",
-      sourceId: "rfc9112",
-      locator: "Section 9.4, Concurrency",
-      verification: "checked",
-      subtle: true,
-      scope: "rfc",
-    },
-    {
       id: "idle-close-race",
       statement:
-        "Servers usually time out inactive connections. Any side may close the connection at any time, so a client can start a request just as the server closes the idle connection. Implementations should monitor open connections for a received close signal. Retry conditions are those of RFC 9110 Section 9.2.2.",
+        "Servers usually time out inactive connections. Any side may close at any time, so a client can start a request as the server closes the idle connection. Implementations should monitor for a received close. Retry conditions are those of RFC 9110 Section 9.2.2.",
       sourceId: "rfc9112",
       locator: "Section 9.3.1, Retrying Requests; Section 9.5, Failures and Timeouts",
       verification: "checked",
@@ -232,7 +210,7 @@ export const body = {
     {
       id: "retry-idempotent",
       statement:
-        "Idempotent requests can be repeated automatically after a communication failure before the response is read; a client should not automatically retry a non-idempotent request unless it knows it is idempotent or that the original was never applied.",
+        "Idempotent requests can be repeated automatically after a communication failure; a client should not auto-retry a non-idempotent request unless it knows it is idempotent or that the original was never applied.",
       sourceId: "rfc9110",
       locator: "Section 9.2.2, Idempotent Methods",
       verification: "checked",
@@ -242,7 +220,7 @@ export const body = {
     {
       id: "h2-single-connection",
       statement:
-        "Clients should not open more than one HTTP/2 connection to a given host and port pair, and HTTP/2 connections are expected to stay open until no further communication is needed.",
+        "Clients should not open more than one HTTP/2 connection per host and port pair; connections are expected to stay open until no further communication is needed.",
       sourceId: "rfc9113",
       locator: "Section 9.1, Connection Management",
       verification: "checked",
@@ -250,9 +228,19 @@ export const body = {
       scope: "rfc",
     },
     {
+      id: "idle-restart-window",
+      statement:
+        "A TCP should set cwnd to no more than the restart window, min(IW, cwnd), before transmitting if it has not sent data for longer than the RTO. Testing only the last receive time fails to deflate cwnd on persistent HTTP connections.",
+      sourceId: "rfc5681",
+      locator: "Section 4.1, Restarting Idle Connections",
+      verification: "checked",
+      subtle: true,
+      scope: "rfc",
+    },
+    {
       id: "content-encoding",
       statement:
-        "Content-Encoding lists the codings applied to the representation in order, primarily to compress it without losing its media type. Unlike Transfer-Encoding, the codings are a characteristic of the representation, and its metadata describes the coded form. Defined codings include compress, deflate, and gzip.",
+        "Content-Encoding lists codings applied to the representation in order, mainly to compress it without losing its media type. Unlike Transfer-Encoding, the codings belong to the representation, and its metadata describes the coded form. Defined codings include compress, deflate, and gzip.",
       sourceId: "rfc9110",
       locator: "Section 8.4, Content-Encoding; Section 8.4.1, Content Codings",
       verification: "checked",
@@ -262,7 +250,7 @@ export const body = {
     {
       id: "accept-encoding",
       statement:
-        "Accept-Encoding in a request lists the content codings acceptable in the response, with optional weights; identity means no encoding.",
+        "Accept-Encoding lists the content codings acceptable in the response, with optional weights; identity means no encoding.",
       sourceId: "rfc9110",
       locator: "Section 12.5.3, Accept-Encoding",
       verification: "checked",
@@ -272,7 +260,7 @@ export const body = {
     {
       id: "vary",
       statement:
-        "Vary lists the request fields, besides method and URI, that may have influenced selection of the response; `Vary: *` means a recipient cannot tell whether the response fits a later request without forwarding it. A cache must not use a stored response with Vary without revalidation unless the nominated request fields match.",
+        "Vary lists request fields, besides method and URI, that may have influenced the response; `Vary: *` means a later request cannot be matched without forwarding. An origin should send Vary on a cacheable response it wants selectively reused.",
       sourceId: "rfc9110",
       locator: "Section 12.5.5, Vary",
       verification: "checked",
@@ -282,7 +270,7 @@ export const body = {
     {
       id: "vary-cache-key",
       statement:
-        "A cache must not use a stored response with Vary without revalidation unless all nominated request fields match the original request; a field absent in one request matches only if absent in the other, and `Vary: *` always fails to match.",
+        "A cache must not reuse a stored response with Vary without revalidation unless all nominated request fields match; a field absent in one request matches only if absent in the other; `Vary: *` always fails.",
       sourceId: "rfc9111",
       locator: "Section 4.1, Calculating Cache Keys with the Vary Header Field",
       verification: "checked",
@@ -291,8 +279,7 @@ export const body = {
     },
     {
       id: "weak-validators",
-      statement:
-        "A strong validator changes whenever the representation data observable in a 200 response changes. A validator shared by a gzip-coded and an uncoded representation is weak. Weak validators are usable only when exact equality is not required, such as cache validation.",
+      statement: "A validator shared by a gzip-coded and an uncoded representation is weak.",
       sourceId: "rfc9110",
       locator: "Section 8.8.1, Weak versus Strong",
       verification: "checked",
@@ -302,7 +289,7 @@ export const body = {
     {
       id: "etag",
       statement:
-        "ETag carries an opaque entity tag, optionally marked weak with W/, for the selected representation. It can be more reliable than a modification date, whose one-second resolution may be insufficient.",
+        "ETag carries an opaque entity tag for the selected representation, optionally prefixed W/ for weak.",
       sourceId: "rfc9110",
       locator: "Section 8.8.3, ETag",
       verification: "checked",
@@ -312,7 +299,7 @@ export const body = {
     {
       id: "if-none-match",
       statement:
-        "If-None-Match uses the weak comparison. A client updating stored responses that have entity tags should send them in If-None-Match; if one matches, the origin must not perform the method and responds 304 for GET or HEAD, 412 otherwise. A recipient must ignore If-Modified-Since when If-None-Match is present.",
+        "If-None-Match uses weak comparison, since weak tags can validate caches. Clients updating stored responses with entity tags should send them in If-None-Match. A recipient must ignore If-Modified-Since when If-None-Match is present.",
       sourceId: "rfc9110",
       locator: "Section 13.1.2, If-None-Match; Section 13.1.3, If-Modified-Since",
       verification: "checked",
@@ -322,7 +309,7 @@ export const body = {
     {
       id: "not-modified",
       statement:
-        "304 means a conditional GET or HEAD would have produced 200 except that the condition was false, so the client should use its stored representation. It must include the ETag, Date, Vary, Cache-Control, and Expires fields a 200 would have had, and cannot contain content.",
+        "304 means a conditional GET or HEAD would have produced 200 but the condition was false, so the client uses its stored copy. It must carry the Content-Location, Date, ETag, Vary, Cache-Control, and Expires a 200 would have had.",
       sourceId: "rfc9110",
       locator: "Section 15.4.5, 304 Not Modified",
       verification: "checked",
@@ -332,7 +319,7 @@ export const body = {
     {
       id: "breach",
       statement:
-        "Dynamic compression can reveal confidential information through size differences when attacker-controlled content shares a dictionary with secrets, as in BREACH. The mitigation is to disable compression on sensitive data or separate it from attacker-controlled data.",
+        "Dynamic compression can reveal secrets through size when attacker-controlled content shares a dictionary with them, as in BREACH. Mitigate by disabling compression on sensitive data or separating it. HPACK is cited as designed to be not exploitable in its limited use.",
       sourceId: "rfc9110",
       locator: "Section 17.6, Attacks Using Shared-Dictionary Compression",
       verification: "checked",
@@ -342,7 +329,7 @@ export const body = {
     {
       id: "cache-overview",
       statement:
-        "Caching is optional, but reuse is the default when nothing prevents it; the rules focus on preventing inappropriate storage or reuse. The cache key is at least the method and target URI, extended by fields that Vary names.",
+        "Caching is optional, but reuse is the default when nothing prevents it. The cache key is at least method and target URI, extended by Vary.",
       sourceId: "rfc9111",
       locator: "Section 2, Overview of Cache Operation",
       verification: "checked",
@@ -352,7 +339,7 @@ export const body = {
     {
       id: "storing",
       statement:
-        "A cache must not store a response unless, among other conditions, no-store is absent, a shared cache sees no private directive and no Authorization without explicit permission, and the response has explicit freshness, a public or private directive, or a heuristically cacheable status.",
+        "A cache must not store a response if no-store is present, if it is shared and sees private or an Authorization request without explicit permission, or if the response lacks explicit freshness, public, private (for private caches), or a heuristically cacheable status.",
       sourceId: "rfc9111",
       locator: "Section 3, Storing Responses in Caches",
       verification: "checked",
@@ -362,7 +349,7 @@ export const body = {
     {
       id: "reuse-rules",
       statement:
-        "A cache must not reuse a stored response unless the URI and method match, Vary-nominated fields match, no-cache is absent or the response is validated, and the response is fresh, allowed stale, or validated. It must add an Age field when serving without validation, must forward unsafe requests to the origin, and may collapse concurrent requests on a miss.",
+        "A cache must not reuse a stored response unless URI, method, and Vary fields match, no-cache is absent or the response is validated, and the response is fresh, allowed stale, or validated. It must add Age when serving without validation, must write through unsafe requests, and may collapse requests on a miss.",
       sourceId: "rfc9111",
       locator: "Section 4, Constructing Responses from Caches",
       verification: "checked",
@@ -372,9 +359,9 @@ export const body = {
     {
       id: "freshness",
       statement:
-        "A response is fresh while its age is below its freshness lifetime. The lifetime comes from s-maxage for a shared cache, else max-age, else Expires minus Date, else a heuristic. With conflicting directives the most restrictive should be honoured. A heuristic may use a fraction of the time since Last-Modified, typically 10%.",
+        "Freshness lifetime comes from s-maxage (shared caches), else max-age, else Expires minus Date, else a heuristic. Conflicting directives: honour the most restrictive. A heuristic may use a fraction of the time since Last-Modified, typically 10%.",
       sourceId: "rfc9111",
-      locator: "Sections 4.2, 4.2.1, and 4.2.2",
+      locator: "Sections 4.2.1 and 4.2.2",
       verification: "checked",
       subtle: false,
       scope: "rfc",
@@ -382,7 +369,7 @@ export const body = {
     {
       id: "serving-stale",
       statement:
-        "A cache must not serve a stale response when no-cache, must-revalidate, s-maxage, or proxy-revalidate forbids it, and otherwise only when disconnected or explicitly permitted.",
+        "A cache must not serve stale when no-cache, must-revalidate, s-maxage, or proxy-revalidate forbids it, and otherwise only when disconnected or explicitly permitted.",
       sourceId: "rfc9111",
       locator: "Section 4.2.4, Serving Stale Responses",
       verification: "checked",
@@ -392,7 +379,7 @@ export const body = {
     {
       id: "validation",
       statement:
-        "A cache validates a stored response by adding preconditions from its validators: it must send entity tags if the stored response had them, and should send Last-Modified in If-Modified-Since. A 304 lets it update and reuse the stored response; a full response replaces it; on a 5xx it may forward the error or act as if the server did not respond.",
+        "A cache validates by adding preconditions from stored validators. A 304 lets it update and reuse the stored response; a full response replaces it; on a 5xx it may forward the error or act as if the server did not respond.",
       sourceId: "rfc9111",
       locator:
         "Section 4.3.1, Sending a Validation Request; Section 4.3.3, Handling a Validation Response",
@@ -401,9 +388,19 @@ export const body = {
       scope: "rfc",
     },
     {
+      id: "cache-answers-conditional",
+      statement:
+        "A cache that can satisfy a request with a stored 200 should evaluate the request's preconditions against that stored response's validators.",
+      sourceId: "rfc9111",
+      locator: "Section 4.3.2, Handling a Received Validation Request",
+      verification: "checked",
+      subtle: false,
+      scope: "rfc",
+    },
+    {
       id: "invalidation",
       statement:
-        "A cache must invalidate the target URI when it gets a 2xx or 3xx response to an unsafe request, and may invalidate the Location and Content-Location URIs. This only affects caches the request passes through.",
+        "A cache must invalidate the target URI on a 2xx or 3xx response to an unsafe request, and may invalidate Location and Content-Location URIs. This only affects caches the request passes through.",
       sourceId: "rfc9111",
       locator: "Section 4.4, Invalidating Stored Responses",
       verification: "checked",
@@ -413,7 +410,7 @@ export const body = {
     {
       id: "age-field",
       statement:
-        "Age is a cache's estimate of the seconds since the response was generated or validated at the origin. Its presence implies the origin did not generate or validate the response for this request; its absence does not imply the origin was contacted.",
+        "An Age field implies the origin did not generate or validate the response for this request; its absence does not imply the origin was contacted.",
       sourceId: "rfc9111",
       locator: "Section 5.1, Age",
       verification: "checked",
@@ -423,50 +420,9 @@ export const body = {
     {
       id: "directives",
       statement:
-        "max-age makes a response stale after N seconds. no-cache forbids reuse without successful validation. no-store forbids storing the request or response and is not a reliable privacy mechanism. private forbids shared caches from storing the response. must-revalidate forbids reusing a stale response without validation, even when disconnected, when the cache should return 504. s-maxage overrides max-age for shared caches and requires revalidation once stale.",
+        "max-age: stale after N seconds. must-revalidate: no stale reuse without validation, even disconnected (should return 504). no-cache: no reuse without successful validation. no-store: do not store request or response; not a reliable privacy mechanism. private: shared caches must not store. s-maxage: overrides max-age for shared caches and requires revalidation once stale.",
       sourceId: "rfc9111",
       locator: "Sections 5.2.2.1, 5.2.2.2, 5.2.2.4, 5.2.2.5, 5.2.2.7, and 5.2.2.10",
-      verification: "checked",
-      subtle: false,
-      scope: "rfc",
-    },
-    {
-      id: "cache-answers-conditional",
-      statement:
-        "A cache that can satisfy a request by reusing a stored 200 response should evaluate the request's preconditions against that stored response's validators, with If-None-Match taking precedence over If-Modified-Since. When a 304 arrives, the cache must update the matching stored responses' header fields from it.",
-      sourceId: "rfc9111",
-      locator:
-        "Section 4.3.2, Handling a Received Validation Request; Section 4.3.4, Freshening Stored Responses upon Validation",
-      verification: "checked",
-      subtle: false,
-      scope: "rfc",
-    },
-    {
-      id: "vary-should",
-      statement:
-        "An origin server should generate Vary on a cacheable response when it wants the response selectively reused, which is generally when the content was tailored to the selecting fields.",
-      sourceId: "rfc9110",
-      locator: "Section 12.5.5, Vary",
-      verification: "checked",
-      subtle: false,
-      scope: "rfc",
-    },
-    {
-      id: "idle-restart-window",
-      statement:
-        "A TCP should set cwnd to no more than the restart window, min(IW, cwnd), before transmitting if it has not sent data for longer than the retransmission timeout. Testing only the last receive time fails to deflate cwnd on persistent HTTP connections.",
-      sourceId: "rfc5681",
-      locator: "Section 4.1, Restarting Idle Connections",
-      verification: "checked",
-      subtle: true,
-      scope: "rfc",
-    },
-    {
-      id: "shared-cache-auth",
-      statement:
-        "A shared cache must not reuse a response to a request with Authorization for another request unless the response has must-revalidate, public, or s-maxage.",
-      sourceId: "rfc9111",
-      locator: "Section 3.5, Storing Responses to Authenticated Requests",
       verification: "checked",
       subtle: false,
       scope: "rfc",
@@ -475,16 +431,13 @@ export const body = {
   references: [
     {
       sourceId: "rfc9111",
-      note: "Sections 2, 3, 3.5, 4, 4.1, 4.2–4.2.2, 4.2.4, 4.3.1–4.3.4, 4.4, 5.1, and 5.2.2.1–5.2.2.10.",
+      note: "Sections 2, 3, 4, 4.1, 4.2.1, 4.2.2, 4.2.4, 4.3.1–4.3.3, 4.4, 5.1, and 5.2.2.1–5.2.2.10.",
     },
     {
       sourceId: "rfc9110",
       note: "Sections 8.4, 8.4.1, 8.8.1, 8.8.3, 9.2.2, 12.5.3, 12.5.5, 13.1.2, 13.1.3, 15.4.5, and 17.6.",
     },
-    {
-      sourceId: "rfc9112",
-      note: "Sections 9.3, 9.3.1, 9.4, and 9.5: persistence and idle closes.",
-    },
+    { sourceId: "rfc9112", note: "Sections 9.3, 9.3.1, and 9.5: persistence and idle closes." },
     { sourceId: "rfc9113", note: "Section 9.1: one HTTP/2 connection per origin." },
     { sourceId: "rfc5681", note: "Section 4.1: slow start after an idle period." },
   ],
