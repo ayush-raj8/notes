@@ -1,0 +1,5 @@
+Circle(big, r=11)
+Circle(base, r=1)
+false
+Rect(panel, 4x2)
+no prototype: hexagon

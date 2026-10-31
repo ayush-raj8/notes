@@ -1,0 +1,4 @@
+part-03-patterns/broken/AdapterFinalAdapteeBroken.java:10: error: cannot inherit from final FinalLegacy
+public final class AdapterFinalAdapteeBroken extends FinalLegacy implements Printer {
+                                                     ^
+1 error

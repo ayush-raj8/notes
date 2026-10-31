@@ -1,0 +1,5 @@
+typed: "Hello" cursor=5
+edited: ">> Hello World" cursor=3
+undo 1: "Hello" cursor=5
+undo 2: "" cursor=0
+more history? false

@@ -1,0 +1,6 @@
+part-03-patterns/broken/FacadeMissingMethodBroken.java:8: error: cannot find symbol
+    new HomeTheaterFacade().pauseMovie();
+                           ^
+  symbol:   method pauseMovie()
+  location: class HomeTheaterFacade
+1 error

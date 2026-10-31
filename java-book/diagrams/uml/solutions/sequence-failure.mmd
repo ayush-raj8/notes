@@ -1,0 +1,5 @@
+sequenceDiagram
+  Client->>OrderService: place(A1)
+  OrderService->>Inventory: reserve(A1)
+  OrderService->>Payment: charge(50)
+  OrderService->>Inventory: release(A1)

@@ -1,0 +1,6 @@
+50000
+7
+hold expired: H1
+booked:B9
+free
+35400

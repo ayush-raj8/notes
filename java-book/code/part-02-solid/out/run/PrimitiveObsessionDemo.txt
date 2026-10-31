@@ -1,0 +1,5 @@
+double 0.30000000000000004
+money  0.30
+domain not-an-email
+email  example.org
+rejected: not an email: not-an-email

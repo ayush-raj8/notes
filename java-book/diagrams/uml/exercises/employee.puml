@@ -1,0 +1,20 @@
+@startuml employee
+interface Payable {
+  +pay(): int
+}
+abstract class Employee {
+  -name: String
+  +name(): String
+  +{abstract} pay(): int
+}
+class Manager {
+  -bonus: int
+  +pay(): int
+}
+class Intern {
+  +pay(): int
+}
+Payable <|.. Employee
+Employee <|-- Manager
+Employee <|-- Intern
+@enduml

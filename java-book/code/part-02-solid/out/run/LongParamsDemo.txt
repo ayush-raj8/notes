@@ -1,0 +1,3 @@
+Asha <a@x.org> SINGLE x2 +breakfast
+Asha <SINGLE> a@x.org x2 +breakfast
+Asha <a@x.org> SINGLE x2 +breakfast

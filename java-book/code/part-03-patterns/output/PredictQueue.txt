@@ -1,0 +1,6 @@
+null
+null
+true true
+ab
+true
+NullPointerException

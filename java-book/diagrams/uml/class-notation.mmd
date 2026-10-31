@@ -1,0 +1,32 @@
+classDiagram
+  class Shape {
+    <<interface>>
+    +area() double
+  }
+  class Base {
+    <<abstract>>
+    -created: int$
+    -id: int
+    #label: String
+    ~tag: String
+    +area() double*
+    +id() int
+    +created() int$
+  }
+  class Circle {
+    -r: double
+    +area() double
+  }
+  class Repository~T~ {
+    <<interface>>
+    +save(T) void
+    +findFirst() Optional~T~
+  }
+  class MemoryRepository~T~ {
+    -items: List~T~
+    +save(T) void
+    +findFirst() Optional~T~
+  }
+  Shape <|.. Base
+  Base <|-- Circle
+  Repository <|.. MemoryRepository

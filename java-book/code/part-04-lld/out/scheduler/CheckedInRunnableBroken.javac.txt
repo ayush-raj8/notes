@@ -1,0 +1,4 @@
+broken/scheduler/CheckedInRunnableBroken.java:4: error: unreported exception Exception; must be caught or declared to be thrown
+      throw new Exception("disk full");
+      ^
+1 error

@@ -1,0 +1,7 @@
+Optional.empty
+Optional[1]
+false
+true
+true false
+-1 40
+false true 5

@@ -1,0 +1,5 @@
+ex1 prod true
+ex2 created=1
+ex3 same=true
+ex4 singleton
+ex5 12

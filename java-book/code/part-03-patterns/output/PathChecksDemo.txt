@@ -1,0 +1,4 @@
+a.txt -> ok
+big.txt -> larger than 100
+b.bin -> not .txt
+ghost.txt -> missing

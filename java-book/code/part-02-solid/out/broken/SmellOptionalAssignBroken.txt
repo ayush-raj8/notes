@@ -1,0 +1,4 @@
+part-02-solid/broken/SmellOptionalAssignBroken.java:8: error: incompatible types: Optional<String> cannot be converted to String
+    String email = NullReturnDemo.After.email("asha");
+                                             ^
+1 error

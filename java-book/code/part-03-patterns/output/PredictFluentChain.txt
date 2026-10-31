@@ -1,0 +1,3 @@
+true
+Pizza[size=M, cheese=true, pepperoni=true, olives=false]
+M

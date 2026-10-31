@@ -1,0 +1,13 @@
+part-03-patterns/broken/IteratorPrimitiveReturnBroken.java:3: error: IteratorPrimitiveReturnBroken is not abstract and does not override abstract method next() in Iterator
+public final class IteratorPrimitiveReturnBroken implements Iterator<Integer> {
+             ^
+part-03-patterns/broken/IteratorPrimitiveReturnBroken.java:10: error: next() in IteratorPrimitiveReturnBroken cannot implement next() in Iterator
+  public int next() {
+             ^
+  return type int is not compatible with Integer
+  where E is a type-variable:
+    E extends Object declared in interface Iterator
+part-03-patterns/broken/IteratorPrimitiveReturnBroken.java:9: error: method does not override or implement a method from a supertype
+  @Override
+  ^
+3 errors

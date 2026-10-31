@@ -1,0 +1,4 @@
+broken/ratelimit/RateLimitLossyBroken.java:6: error: incompatible types: possible lossy conversion from long to int
+    int now = clock.getAsLong();
+                             ^
+1 error

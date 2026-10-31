@@ -1,0 +1,7 @@
+ex1 winner X
+ex2 winner X
+ex3 16
+ex4 X=2 O=0 draws=1
+ex5 Position[row=2, col=1]
+ex5 not a number: a,b
+ex5 expected row,col but got: 7

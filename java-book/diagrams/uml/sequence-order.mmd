@@ -1,0 +1,14 @@
+sequenceDiagram
+  participant Client
+  participant OrderService
+  participant Inventory
+  participant Payment
+  participant Notifier
+  Client->>OrderService: place(A1)
+  OrderService->>Inventory: reserve(A1)
+  OrderService->>Payment: charge(50)
+  alt approved
+    OrderService->>Notifier: send(confirmed)
+  else declined
+    OrderService->>Inventory: release(A1)
+  end

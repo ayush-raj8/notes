@@ -1,0 +1,4 @@
+part-03-patterns/broken/FlyPrivateCtorBroken.java:6: error: TreeFactory() has private access in TreeFactory
+    TreeFactory f = new TreeFactory();
+                    ^
+1 error

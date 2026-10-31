@@ -1,0 +1,4 @@
+broken/notification/GenericInvarianceBroken.java:8: error: incompatible types: ArrayList<EmailSender> cannot be converted to List<NotificationSender>
+    List<NotificationSender> senders = new ArrayList<EmailSender>();
+                                       ^
+1 error

@@ -1,0 +1,4 @@
+part-03-patterns/broken/ChainAbstractNewBroken.java:7: error: Approver is abstract; cannot be instantiated
+    Approver a = new Approver();
+                 ^
+1 error

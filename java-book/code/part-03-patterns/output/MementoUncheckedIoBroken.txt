@@ -1,0 +1,7 @@
+part-03-patterns/broken/MementoUncheckedIoBroken.java:11: error: unreported exception IOException; must be caught or declared to be thrown
+    ObjectOutputStream out = new ObjectOutputStream(new ByteArrayOutputStream());
+                             ^
+part-03-patterns/broken/MementoUncheckedIoBroken.java:12: error: unreported exception IOException; must be caught or declared to be thrown
+    out.writeObject(new State());
+                   ^
+2 errors

@@ -1,0 +1,4 @@
+broken/elevator/ElevatorRecordMutateBroken.java:7: error: floor has private access in HallCall
+    call.floor = 4;
+        ^
+1 error

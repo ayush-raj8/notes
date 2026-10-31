@@ -1,0 +1,4 @@
+part-03-patterns/broken/BuilderFinalFieldBroken.java:12: error: cannot assign a value to final variable size
+    this.size = bigger;
+        ^
+1 error

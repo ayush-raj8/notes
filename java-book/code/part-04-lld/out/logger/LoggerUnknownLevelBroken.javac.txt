@@ -1,0 +1,6 @@
+broken/logger/LoggerUnknownLevelBroken.java:5: error: cannot find symbol
+    Level l = Level.TRACE;
+                   ^
+  symbol:   variable TRACE
+  location: class Level
+1 error

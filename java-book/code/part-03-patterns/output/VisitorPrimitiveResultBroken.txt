@@ -1,0 +1,13 @@
+part-03-patterns/broken/VisitorPrimitiveResultBroken.java:7: error: VisitorPrimitiveResultBroken is not abstract and does not override abstract method visitNum(Num) in ExprVisitor
+public final class VisitorPrimitiveResultBroken implements ExprVisitor<Integer> {
+             ^
+part-03-patterns/broken/VisitorPrimitiveResultBroken.java:9: error: visitNum(Num) in VisitorPrimitiveResultBroken cannot implement visitNum(Num) in ExprVisitor
+  public int visitNum(Num n) {
+             ^
+  return type int is not compatible with Integer
+  where R is a type-variable:
+    R extends Object declared in interface ExprVisitor
+part-03-patterns/broken/VisitorPrimitiveResultBroken.java:8: error: method does not override or implement a method from a supertype
+  @Override
+  ^
+3 errors

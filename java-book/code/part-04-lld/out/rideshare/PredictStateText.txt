@@ -1,0 +1,7 @@
+waiting for a driver
+driver d7 on the way
+riding with d7
+done, fare 450
+cancelled: no show
+true
+Cancelled[reason=x]

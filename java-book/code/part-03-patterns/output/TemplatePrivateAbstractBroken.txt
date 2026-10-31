@@ -1,0 +1,4 @@
+part-03-patterns/broken/TemplatePrivateAbstractBroken.java:6: error: illegal combination of modifiers: abstract and private
+  private abstract void row();
+                        ^
+1 error

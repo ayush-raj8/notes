@@ -1,0 +1,4 @@
+part-02-solid/broken/PrinDuplicateMethodBroken.java:9: error: method valid(String) is already defined in class PrinDuplicateMethodBroken
+  static boolean valid(String address) {
+                 ^
+1 error

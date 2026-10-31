@@ -1,0 +1,3 @@
+plain  total=1000
+fee    total=999
+capped: limit 500

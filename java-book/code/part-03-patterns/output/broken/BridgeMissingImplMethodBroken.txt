@@ -1,0 +1,4 @@
+part-03-patterns/broken/BridgeMissingImplMethodBroken.java:4: error: BridgeMissingImplMethodBroken is not abstract and does not override abstract method rect(int,int) in Renderer
+public final class BridgeMissingImplMethodBroken implements Renderer {
+             ^
+1 error

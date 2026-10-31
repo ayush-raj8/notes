@@ -1,0 +1,5 @@
+ex1 Ada (36) / Bob
+ex2 low > high
+ex3 Settings[host=a, port=80] Settings[host=a, port=8080]
+ex4 [x]
+ex5 Sales,north: 10,south: 7

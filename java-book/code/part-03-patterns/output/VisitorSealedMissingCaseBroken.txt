@@ -1,0 +1,4 @@
+part-03-patterns/broken/VisitorSealedMissingCaseBroken.java:11: error: the switch expression does not cover all possible input values
+    return switch (n) {
+           ^
+1 error

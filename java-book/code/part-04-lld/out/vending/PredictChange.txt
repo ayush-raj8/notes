@@ -1,0 +1,4 @@
+Optional[[DIME, DIME, DIME]]
+Optional.empty
+Optional[[QUARTER]]
+0 0

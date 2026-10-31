@@ -1,0 +1,4 @@
+part-02-solid/broken/SmellMovedMethodHiddenBroken.java:8: error: volumetricKg() is not public in Parcel; cannot be accessed from outside package
+    System.out.println(new Parcel(10, 10, 10, 500).volumetricKg());
+                                                  ^
+1 error

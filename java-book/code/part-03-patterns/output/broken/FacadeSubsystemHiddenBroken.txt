@@ -1,0 +1,10 @@
+part-03-patterns/broken/FacadeSubsystemHiddenBroken.java:3: error: Amplifier is not public in patterns.structural.facade.subsystem; cannot be accessed from outside package
+import patterns.structural.facade.subsystem.Amplifier;
+                                           ^
+part-03-patterns/broken/FacadeSubsystemHiddenBroken.java:8: error: Amplifier is not public in patterns.structural.facade.subsystem; cannot be accessed from outside package
+    Amplifier a = new Amplifier();
+    ^
+part-03-patterns/broken/FacadeSubsystemHiddenBroken.java:8: error: Amplifier is not public in patterns.structural.facade.subsystem; cannot be accessed from outside package
+    Amplifier a = new Amplifier();
+                      ^
+3 errors

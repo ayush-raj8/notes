@@ -1,0 +1,4 @@
+printed:a
+false
+UOE no scanner
+done

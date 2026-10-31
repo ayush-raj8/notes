@@ -1,0 +1,4 @@
+broken/atm/AtmUnreportedBroken.java:6: error: unreported exception InsufficientFundsException; must be caught or declared to be thrown
+    atm.withdraw(100);
+                ^
+1 error

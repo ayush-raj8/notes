@@ -1,0 +1,5 @@
+part-02-solid/broken/LspReturnTypeBroken.java:12: error: size() in Sub cannot override size() in Base
+    Object size() {
+           ^
+  return type Object is not compatible with Number
+1 error

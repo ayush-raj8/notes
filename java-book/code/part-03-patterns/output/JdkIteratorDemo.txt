@@ -1,0 +1,5 @@
+after Iterator.remove: [a, c, d]
+list.remove inside for-each: ConcurrentModificationException
+backwards: dc2c
+map: {x=1, z=3}
+scanner: one|two|three|

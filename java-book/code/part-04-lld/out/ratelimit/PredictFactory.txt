@@ -1,0 +1,5 @@
+0 TokenBucketLimiter
+1 FixedWindowLimiter
+2 SlidingWindowLogLimiter
+limit and window must be positive
+LimiterConfig[limit=5, windowMillis=60000]

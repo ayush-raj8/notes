@@ -1,0 +1,4 @@
+part-03-patterns/broken/PrototypeProtectedCloneBroken.java:7: error: clone() has protected access in Object
+    Object copy = o.clone();
+                   ^
+1 error

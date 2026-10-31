@@ -1,0 +1,4 @@
+part-03-patterns/broken/BridgeFinalRendererBroken.java:7: error: cannot assign a value to final variable renderer
+    s.renderer = new RasterRenderer();
+     ^
+1 error

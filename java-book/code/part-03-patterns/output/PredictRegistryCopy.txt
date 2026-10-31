@@ -1,0 +1,3 @@
+Circle(changed, r=6)
+Circle(base, r=5)
+true

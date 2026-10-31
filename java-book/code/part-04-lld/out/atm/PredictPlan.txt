@@ -1,0 +1,5 @@
+Optional[{N200=3}]
+Optional[{N500=1, N200=1}]
+Optional.empty
+Optional[{N500=1, N200=3}]
+1100

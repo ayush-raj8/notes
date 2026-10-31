@@ -1,0 +1,21 @@
+classDiagram
+  class Payable {
+    <<interface>>
+    +pay() int
+  }
+  class Employee {
+    <<abstract>>
+    -name: String
+    +name() String
+    +pay() int*
+  }
+  class Manager {
+    -bonus: int
+    +pay() int
+  }
+  class Intern {
+    +pay() int
+  }
+  Payable <|.. Employee
+  Employee <|-- Manager
+  Employee <|-- Intern

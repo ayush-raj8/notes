@@ -1,0 +1,6 @@
+ex1 Plan[channels=[EMAIL], stopOnFirstSuccess=false]
+ex2 2
+ex3 [name, code]
+ex4 SENT=1 FAILED=1 SKIPPED=0
+ex5 DeliveryResult[channel=PUSH, status=FAILED, attempts=2]
+ex5 DeliveryResult[channel=PUSH, status=SENT, attempts=3]

@@ -1,0 +1,2 @@
+test one: mails=1 rows=1
+test two: mails=2 rows=2

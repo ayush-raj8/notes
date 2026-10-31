@@ -1,0 +1,4 @@
+part-02-solid/broken/PrinWalletFieldBroken.java:9: error: balance has private access in Wallet
+    w.balance -= 150;
+     ^
+1 error

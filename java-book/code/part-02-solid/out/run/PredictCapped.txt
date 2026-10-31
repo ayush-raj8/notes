@@ -1,0 +1,3 @@
+5000
+3000
+CappedDiscount[percent=30, capCents=5000]

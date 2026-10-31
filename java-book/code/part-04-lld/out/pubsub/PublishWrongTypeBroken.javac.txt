@@ -1,0 +1,11 @@
+broken/pubsub/PublishWrongTypeBroken.java:8: error: method publish in class Broker cannot be applied to given types;
+    broker.publish(topic, 42);
+          ^
+  required: Topic<T>,T
+  found:    Topic<String>,int
+  reason: inference variable T has incompatible bounds
+    equality constraints: String
+    lower bounds: Integer
+  where T is a type-variable:
+    T extends Object declared in method <T>publish(Topic<T>,T)
+1 error

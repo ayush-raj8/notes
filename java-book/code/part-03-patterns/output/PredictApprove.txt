@@ -1,0 +1,4 @@
+Clerk approved 100
+Manager approved 101
+Director approved 10000
+nobody can approve 10001

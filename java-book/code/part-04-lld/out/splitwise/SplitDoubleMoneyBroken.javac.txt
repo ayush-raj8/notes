@@ -1,0 +1,4 @@
+broken/splitwise/SplitDoubleMoneyBroken.java:4: error: incompatible types: possible lossy conversion from double to long
+    long cents = price * 100;
+                       ^
+1 error

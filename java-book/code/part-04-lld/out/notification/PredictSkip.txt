@@ -1,0 +1,3 @@
+DeliveryResult[channel=PUSH, status=SENT, attempts=1]
+DeliveryResult[channel=SMS, status=SKIPPED, attempts=0]
+[PUSH tok subj]

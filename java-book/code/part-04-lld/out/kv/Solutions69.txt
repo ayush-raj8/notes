@@ -1,0 +1,6 @@
+ex1 3
+ex2 v1 v1 loads=1
+ex3 2 1
+ex4 42 Optional.empty
+ex5 true false a=70 b=30
+ex6 {hits=6, temp=14}

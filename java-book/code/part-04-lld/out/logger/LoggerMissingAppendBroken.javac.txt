@@ -1,0 +1,4 @@
+broken/logger/LoggerMissingAppendBroken.java:3: error: LoggerMissingAppendBroken is not abstract and does not override abstract method append(LogEvent) in Appender
+public class LoggerMissingAppendBroken implements Appender {
+       ^
+1 error

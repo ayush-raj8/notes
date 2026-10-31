@@ -1,0 +1,2 @@
+vector rect 1x2
+[vector rect 1x2] via VectorRenderer

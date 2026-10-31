@@ -1,0 +1,5 @@
+vector circle r=5
+pixels for circle r=5
+vector rect 2x3
+pixels for rect 2x3
+4 combinations from 2 shapes + 2 renderers

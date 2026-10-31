@@ -1,0 +1,4 @@
+part-03-patterns/broken/DecoratorAbstractNewBroken.java:6: error: CoffeeDecorator is abstract; cannot be instantiated
+    Coffee c = new CoffeeDecorator(new SimpleCoffee());
+               ^
+1 error

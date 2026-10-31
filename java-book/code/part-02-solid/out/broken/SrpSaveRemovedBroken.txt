@@ -1,0 +1,6 @@
+part-02-solid/broken/SrpSaveRemovedBroken.java:14: error: cannot find symbol
+    inv.save(db);
+       ^
+  symbol:   method save(Map<String,Long>)
+  location: variable inv of type Invoice
+1 error

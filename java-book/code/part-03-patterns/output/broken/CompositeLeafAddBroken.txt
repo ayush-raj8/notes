@@ -1,0 +1,6 @@
+part-03-patterns/broken/CompositeLeafAddBroken.java:7: error: cannot find symbol
+    n.add(new FileNode("b", 2));
+     ^
+  symbol:   method add(FileNode)
+  location: variable n of type FsNode
+1 error

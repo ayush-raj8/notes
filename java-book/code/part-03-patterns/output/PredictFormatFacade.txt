@@ -1,0 +1,3 @@
+00042|   ab|cd   |
+0.67 ff q false
+a-b-c

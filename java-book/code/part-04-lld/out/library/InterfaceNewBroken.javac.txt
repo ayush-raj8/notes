@@ -1,0 +1,4 @@
+broken/library/InterfaceNewBroken.java:5: error: FinePolicy is abstract; cannot be instantiated
+    FinePolicy p = new FinePolicy();
+                   ^
+1 error

@@ -1,0 +1,4 @@
+broken/rideshare/BlankFinalBroken.java:2: error: variable surgePercent not initialized in the default constructor
+  private final int surgePercent;
+                    ^
+1 error

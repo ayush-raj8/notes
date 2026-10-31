@@ -1,0 +1,5 @@
+part-03-patterns/broken/ObserverGenericMismatchBroken.java:17: error: incompatible types: Consumer<Integer> cannot be converted to Consumer<String>
+    names.attach(wantsInt);
+                 ^
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+1 error

@@ -1,0 +1,4 @@
+broken/food/FinalReassignBroken.java:6: error: cannot assign a value to final variable total
+    total = total + o.deliveryFeeCents();
+    ^
+1 error

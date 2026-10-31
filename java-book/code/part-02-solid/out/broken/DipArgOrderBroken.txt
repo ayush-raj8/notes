@@ -1,0 +1,5 @@
+part-02-solid/broken/DipArgOrderBroken.java:11: error: incompatible types: MemoryOrderStore cannot be converted to Mailer
+    OrderService svc = new OrderService(new MemoryOrderStore(), new LogMailer(), Clock.systemUTC());
+                                        ^
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+1 error

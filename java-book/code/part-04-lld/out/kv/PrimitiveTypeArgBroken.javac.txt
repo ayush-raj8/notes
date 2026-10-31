@@ -1,0 +1,6 @@
+broken/kv/PrimitiveTypeArgBroken.java:4: error: unexpected type
+  KvStore<String, int> counters;
+                  ^
+  required: reference
+  found:    int
+1 error

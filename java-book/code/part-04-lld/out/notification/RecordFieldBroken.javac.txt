@@ -1,0 +1,5 @@
+broken/notification/RecordFieldBroken.java:3: error: field declaration must be static
+    int retries;
+        ^
+  (consider replacing field with record component)
+1 error

@@ -1,0 +1,10 @@
+lights 10%
+projector on
+projector widescreen
+amp on
+amp volume=5
+playing Up
+[amp off, projector off, lights 100%]
+OK TRK-PEN
+FAILED: out of stock pen
+FAILED: limit exceeded: 20000 left=5

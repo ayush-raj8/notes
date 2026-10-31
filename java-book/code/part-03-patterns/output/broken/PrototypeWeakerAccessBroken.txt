@@ -1,0 +1,5 @@
+part-03-patterns/broken/PrototypeWeakerAccessBroken.java:6: error: clone() in PrototypeWeakerAccessBroken cannot override clone() in Object
+  Object clone() throws CloneNotSupportedException {
+         ^
+  attempting to assign weaker access privileges; was protected
+1 error

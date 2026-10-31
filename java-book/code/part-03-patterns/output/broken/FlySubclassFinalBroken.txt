@@ -1,0 +1,4 @@
+part-03-patterns/broken/FlySubclassFinalBroken.java:4: error: cannot inherit from final TreeType
+public final class FlySubclassFinalBroken extends TreeType {
+                                                  ^
+1 error

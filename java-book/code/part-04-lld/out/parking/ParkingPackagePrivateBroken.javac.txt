@@ -1,0 +1,4 @@
+broken/parking/ParkingPackagePrivateBroken.java:6: error: park(Vehicle) is not public in ParkingSpot; cannot be accessed from outside package
+    spot.park(new Vehicle("A", VehicleType.CAR));
+        ^
+1 error

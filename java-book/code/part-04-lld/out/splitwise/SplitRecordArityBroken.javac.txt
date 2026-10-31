@@ -1,0 +1,7 @@
+broken/splitwise/SplitRecordArityBroken.java:5: error: constructor EqualSplit in record EqualSplit cannot be applied to given types;
+    EqualSplit s = new EqualSplit("a", "b");
+                   ^
+  required: List<String>
+  found:    String,String
+  reason: actual and formal argument lists differ in length
+1 error

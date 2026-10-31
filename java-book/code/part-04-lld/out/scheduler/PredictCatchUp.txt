@@ -1,0 +1,2 @@
+rate  6 next=12
+delay 1 next=12

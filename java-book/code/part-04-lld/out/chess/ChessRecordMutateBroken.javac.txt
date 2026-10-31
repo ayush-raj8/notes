@@ -1,0 +1,7 @@
+broken/chess/ChessRecordMutateBroken.java:7: error: color has private access in King
+    k.color = Color.BLACK;
+     ^
+broken/chess/ChessRecordMutateBroken.java:11: error: file has private access in Square
+    s.file = 0;
+     ^
+2 errors

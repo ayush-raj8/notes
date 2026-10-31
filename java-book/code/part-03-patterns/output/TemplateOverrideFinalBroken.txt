@@ -1,0 +1,5 @@
+part-03-patterns/broken/TemplateOverrideFinalBroken.java:12: error: write() in TemplateOverrideFinalBroken cannot override write() in Report
+  public void write() {
+              ^
+  overridden method is final
+1 error

@@ -1,0 +1,3 @@
+inherited addCount=6 size=3
+HashSet   addCount=6 size=3
+composed  addCount=3 size=3

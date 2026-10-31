@@ -1,0 +1,6 @@
+broken/cache/CachePrimitiveTypeArgBroken.java:6: error: unexpected type
+    Cache<int, String> c = new LruCache<>(2);
+          ^
+  required: reference
+  found:    int
+1 error

@@ -1,0 +1,4 @@
+part-03-patterns/broken/MementoPrivateCtorBroken.java:17: error: Memento(String) has private access in Memento
+    Editor.Memento forged = new Editor.Memento("forged");
+                            ^
+1 error

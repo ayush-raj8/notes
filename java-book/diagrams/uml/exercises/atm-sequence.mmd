@@ -1,0 +1,7 @@
+sequenceDiagram
+  participant Atm
+  participant Bank
+  participant Dispenser
+  Atm->>Bank: verify(1234)
+  Atm->>Bank: withdraw(100)
+  Atm->>Dispenser: dispense(100)

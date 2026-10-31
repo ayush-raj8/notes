@@ -1,0 +1,5 @@
+part-02-solid/broken/OcpNotFunctionalBroken.java:12: error: incompatible types: LabelledDiscount is not a functional interface
+    LabelledDiscount d = cents -> cents / 2;
+                         ^
+    multiple non-overriding abstract methods found in interface LabelledDiscount
+1 error

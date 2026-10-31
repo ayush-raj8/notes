@@ -1,0 +1,4 @@
+broken/vending/VendingPackagePrivateBroken.java:8: error: deposit(Coin) is not public in VendingMachine; cannot be accessed from outside package
+    m.deposit(Coin.DIME);
+     ^
+1 error

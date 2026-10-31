@@ -1,0 +1,7 @@
+Rejected[reason=INSERT_COIN] IdleState
+HasMoneyState balance=100
+Dispensed[product=Product[code=B2, name=Chips, price=60], change=[QUARTER, DIME, NICKEL]]
+IdleState balance=0
+Rejected[reason=SOLD_OUT]
+cancel -> [DOLLAR]
+cancel -> [DIME] IdleState

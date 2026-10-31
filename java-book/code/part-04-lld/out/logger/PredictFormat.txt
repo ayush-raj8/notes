@@ -1,0 +1,3 @@
+42|WARN|db|slow
+[WARN] slow slow
+SLOW

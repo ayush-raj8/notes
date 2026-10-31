@@ -1,0 +1,4 @@
+part-03-patterns/broken/MediatorStaticContextBroken.java:5: error: non-static variable room cannot be referenced from a static context
+    return room;
+           ^
+1 error

@@ -1,0 +1,4 @@
+part-03-patterns/broken/FactoryInterfaceNewBroken.java:6: error: Notifier is abstract; cannot be instantiated
+    Notifier n = new Notifier();
+                 ^
+1 error

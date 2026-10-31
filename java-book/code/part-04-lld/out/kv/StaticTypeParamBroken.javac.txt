@@ -1,0 +1,4 @@
+broken/kv/StaticTypeParamBroken.java:3: error: non-static type variable K cannot be referenced from a static context
+    static K lastKey;
+           ^
+1 error

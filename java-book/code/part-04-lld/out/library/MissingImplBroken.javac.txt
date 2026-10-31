@@ -1,0 +1,4 @@
+broken/library/MissingImplBroken.java:3: error: MissingImplBroken is not abstract and does not override abstract method fineCents(long) in FinePolicy
+public class MissingImplBroken implements FinePolicy {}
+       ^
+1 error

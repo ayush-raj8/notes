@@ -1,0 +1,4 @@
+part-03-patterns/broken/IteratorRawTypeBroken.java:10: error: incompatible types: Object cannot be converted to String
+    String s = it.next();
+                      ^
+1 error

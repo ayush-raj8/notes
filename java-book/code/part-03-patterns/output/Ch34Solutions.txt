@@ -1,0 +1,5 @@
+ex1 coffee, milk, vanilla 280
+ex2 reads=2
+ex3 ABC
+ex4 adds=2 [a, b]
+ex5 300

@@ -1,0 +1,4 @@
+console: starting
+console: disk full
+file: disk full
+mail: disk full

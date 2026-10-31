@@ -1,0 +1,32 @@
+name: java-ci
+
+on:
+  push:
+    paths:
+      - "java-book/**"
+      - ".github/workflows/java-ci.yml"
+  pull_request:
+    paths:
+      - "java-book/**"
+      - ".github/workflows/java-ci.yml"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - name: Maven verify
+        working-directory: java-book/code
+        run: mvn -B -q verify
+      - name: Install mdBook
+        uses: peaceiris/actions-mdbook@v2
+        with:
+          mdbook-version: "0.4.43"
+      - name: mdBook build
+        working-directory: java-book
+        run: mdbook build

@@ -1,0 +1,2 @@
+SecurityException: role guest may not withdraw
+[withdraw]

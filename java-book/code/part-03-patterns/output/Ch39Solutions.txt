@@ -1,0 +1,5 @@
+ex1 Bullet[x=2, y=3, sprite=Sprite[name=round]] true 1
+ex2 true 1
+ex3 [icon=intrinsic (shared), lat=extrinsic (per marker), label=extrinsic (per marker), zoom=unknown]
+ex4 2000 without sharing, 1003 with sharing
+ex5 true false

@@ -1,0 +1,5 @@
+[a, bad, npe, c]
+[a, c]
+COMPLETED FAILED FAILED COMPLETED
+checked / NullPointerException
+0

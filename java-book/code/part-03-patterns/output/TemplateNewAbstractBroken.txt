@@ -1,0 +1,4 @@
+part-03-patterns/broken/TemplateNewAbstractBroken.java:11: error: Report is abstract; cannot be instantiated
+    Report r = new Report();
+               ^
+1 error

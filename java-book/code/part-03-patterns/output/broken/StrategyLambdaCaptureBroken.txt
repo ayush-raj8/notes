@@ -1,0 +1,4 @@
+part-03-patterns/broken/StrategyLambdaCaptureBroken.java:8: error: local variables referenced from a lambda expression must be final or effectively final
+    PriceStrategy s = base -> base + fee;
+                                     ^
+1 error

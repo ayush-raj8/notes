@@ -1,0 +1,5 @@
+ex1 [first] subs=0
+ex2 [s, 1]
+ex3 2
+ex4 3
+ex5 [PING]

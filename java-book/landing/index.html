@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes library</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f3efe6;
+        --ink: #1c1915;
+        --muted: #5f584e;
+        --line: #e3dacb;
+        --accent: #1d4f45;
+        --surface: #fffcf7;
+        --sans: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+        --serif: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #141311;
+          --ink: #f3efe6;
+          --muted: #c3b9aa;
+          --line: #3a342c;
+          --accent: #8fcec0;
+          --surface: #1e1c19;
+        }
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--sans);
+        line-height: 1.5;
+      }
+      main {
+        max-width: 40rem;
+        margin: 0 auto;
+        padding: 3rem 1.25rem;
+      }
+      h1 {
+        font-family: var(--serif);
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      p {
+        color: var(--muted);
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 2rem 0 0;
+        display: grid;
+        gap: 1rem;
+      }
+      a.card {
+        display: block;
+        padding: 1rem 1.15rem;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        color: inherit;
+        text-decoration: none;
+      }
+      a.card:hover {
+        border-color: var(--accent);
+      }
+      a.card strong {
+        color: var(--accent);
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Notes library</h1>
+      <p>Static study notes. Computer Networks stays at the site root; the Java book is separate HTML.</p>
+      <ul>
+        <li>
+          <a class="card" href="/notes/">
+            <strong>Computer Networks</strong><br />
+            Interactive notes (existing URL, unchanged).
+          </a>
+        </li>
+        <li>
+          <a class="card" href="/notes/java/">
+            <strong>Java OOP, SOLID, and LLD</strong><br />
+            mdBook with compiled companion sources. Pages serves HTML only.
+          </a>
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>

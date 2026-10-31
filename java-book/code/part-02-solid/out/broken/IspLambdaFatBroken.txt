@@ -1,0 +1,5 @@
+part-02-solid/broken/IspLambdaFatBroken.java:8: error: incompatible types: Machine is not a functional interface
+    Machine m = () -> "page";
+                ^
+    multiple non-overriding abstract methods found in interface Machine
+1 error

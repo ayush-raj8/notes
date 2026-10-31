@@ -1,0 +1,12 @@
+-- eager
+EagerSingleton created
+true
+-- synchronized
+true
+-- dcl
+true
+-- holder
+HolderSingleton created
+true
+-- enum
+true

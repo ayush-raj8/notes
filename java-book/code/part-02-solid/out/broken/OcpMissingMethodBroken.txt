@@ -1,0 +1,4 @@
+part-02-solid/broken/OcpMissingMethodBroken.java:6: error: OcpMissingMethodBroken is not abstract and does not override abstract method amount(long) in Discount
+public final class OcpMissingMethodBroken implements Discount {
+             ^
+1 error

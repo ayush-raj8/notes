@@ -1,0 +1,5 @@
+ex1 abfalse
+ex2 ran
+ex3 LEGACY[AB]
+ex4 2.0 6.56
+ex5 LEGACY[]

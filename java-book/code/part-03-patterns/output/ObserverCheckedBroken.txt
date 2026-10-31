@@ -1,0 +1,4 @@
+part-03-patterns/broken/ObserverCheckedBroken.java:11: error: unreported exception IOException; must be caught or declared to be thrown
+          throw new IOException("disk full");
+          ^
+1 error

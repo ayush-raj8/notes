@@ -1,0 +1,5 @@
+part-02-solid/broken/LspCheckedBroadenBroken.java:13: error: load() in SlowLoader cannot override load() in Loader
+    void load() throws Exception {}
+         ^
+  overridden method does not throw Exception
+1 error

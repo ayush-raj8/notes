@@ -1,0 +1,4 @@
+before csv=a,b,c
+before JSON -> UnsupportedOperationException: JSON not implemented yet
+before XML -> IllegalArgumentException: no plugin for XML
+after  csv=a,b,c

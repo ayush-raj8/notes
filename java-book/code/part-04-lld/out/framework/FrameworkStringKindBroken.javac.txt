@@ -1,0 +1,4 @@
+broken/framework/FrameworkStringKindBroken.java:5: error: incompatible types: String cannot be converted to Kind
+    Relation.Kind k = "COMPOSITION";
+                      ^
+1 error

@@ -1,0 +1,5 @@
+part-02-solid/broken/LspFinalWithdrawBroken.java:12: error: withdraw(long) in LspFinalWithdrawBroken cannot override withdraw(long) in AccountStep1
+  public void withdraw(long amount) {
+              ^
+  overridden method is final
+1 error

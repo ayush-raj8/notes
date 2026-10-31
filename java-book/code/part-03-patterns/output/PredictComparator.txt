@@ -1,0 +1,3 @@
+[a, b, bb, aa, ccc]
+[ccc, bb, aa, a, b]
+[b, a, bb, aa, ccc]

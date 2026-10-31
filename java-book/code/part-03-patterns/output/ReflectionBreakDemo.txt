@@ -1,0 +1,5 @@
+HolderSingleton created
+HolderSingleton created
+holder same=false
+guarded: already constructed
+enum: Cannot reflectively create enum objects

@@ -1,0 +1,4 @@
+part-03-patterns/broken/DecoratorPrivateWrappedBroken.java:11: error: wrapped has private access in CoffeeDecorator
+    return wrapped.cost() + 5;
+           ^
+1 error

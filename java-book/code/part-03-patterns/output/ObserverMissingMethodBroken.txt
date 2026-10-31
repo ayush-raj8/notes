@@ -1,0 +1,4 @@
+part-03-patterns/broken/ObserverMissingMethodBroken.java:5: error: ObserverMissingMethodBroken is not abstract and does not override abstract method onPrice(String,int) in PriceObserver
+public final class ObserverMissingMethodBroken implements PriceObserver {
+             ^
+1 error

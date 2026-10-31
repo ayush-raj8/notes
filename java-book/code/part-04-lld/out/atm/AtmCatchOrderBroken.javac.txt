@@ -1,0 +1,4 @@
+broken/atm/AtmCatchOrderBroken.java:10: error: exception InsufficientFundsException has already been caught
+    } catch (InsufficientFundsException e) {
+      ^
+1 error

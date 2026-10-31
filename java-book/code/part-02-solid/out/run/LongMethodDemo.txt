@@ -1,0 +1,6 @@
+Receipt for Asha
+subtotal 64.98
+discount 6.49
+shipping 4.99
+total 63.48
+same output: true

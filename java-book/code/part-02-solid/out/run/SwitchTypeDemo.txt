@@ -1,0 +1,4 @@
+before CARD   20
+before WALLET 0
+after  CARD   20
+after  WALLET 50

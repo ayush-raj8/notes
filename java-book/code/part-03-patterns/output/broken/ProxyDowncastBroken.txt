@@ -1,0 +1,4 @@
+part-03-patterns/broken/ProxyDowncastBroken.java:7: error: incompatible types: Image cannot be converted to RealImage
+    RealImage real = img;
+                     ^
+1 error

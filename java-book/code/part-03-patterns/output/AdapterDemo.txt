@@ -1,0 +1,4 @@
+LEGACY[invoice]
+LEGACY[invoice]
+LAMBDA[invoice]
+100.0

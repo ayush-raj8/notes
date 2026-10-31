@@ -1,0 +1,5 @@
+part-03-patterns/broken/TemplateHookCheckedBroken.java:11: error: header() in TemplateHookCheckedBroken cannot override header() in Report
+  protected void header() throws IOException {
+                 ^
+  overridden method does not throw IOException
+1 error

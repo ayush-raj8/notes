@@ -1,0 +1,10 @@
+cancel doomed: true again: false
+beat@2
+flaky ok@4
+urgent@5
+report@5
+beat@6
+beat@10
+flaky: COMPLETED after 3 runs
+doomed: CANCELLED runs=0
+pending: 1

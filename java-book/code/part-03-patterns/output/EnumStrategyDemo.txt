@@ -1,0 +1,6 @@
+ADD + 7
+MUL * 12
+MAX max 4
+25
+true
+false

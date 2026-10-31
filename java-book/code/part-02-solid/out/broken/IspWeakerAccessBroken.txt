@@ -1,0 +1,5 @@
+part-02-solid/broken/IspWeakerAccessBroken.java:8: error: print(String) in IspWeakerAccessBroken cannot implement print(String) in Printer
+  String print(String doc) {
+         ^
+  attempting to assign weaker access privileges; was public
+1 error

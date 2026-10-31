@@ -1,0 +1,7 @@
+ex1 runs=4 [ping@0, ping@3, ping@6, ping@9]
+ex3 [a, caught stop]
+ex4 once after 5s
+ex4 every 4s from +1s (rate)
+ex4 every 9s after each run (delay)
+ex6 [call 1, call 2, call 3]
+ex5 {SCHEDULED=1, RUNNING=0, COMPLETED=1, CANCELLED=1, FAILED=1}

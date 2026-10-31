@@ -1,0 +1,4 @@
+null
+NoSuchElementException
+NullPointerException
+0

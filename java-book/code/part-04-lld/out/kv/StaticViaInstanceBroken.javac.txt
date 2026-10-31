@@ -1,0 +1,5 @@
+broken/kv/StaticViaInstanceBroken.java:7: error: illegal static interface method call
+    System.out.println(store.keysWithPrefix(null, "a"));
+                                           ^
+  the receiver expression should be replaced with the type qualifier 'KvStore<String,Integer>'
+1 error

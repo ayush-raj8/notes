@@ -1,0 +1,6 @@
+double 2
+lit-left 2
+plus
+zero
+negative
+lit

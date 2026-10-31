@@ -1,0 +1,8 @@
+L cheese=true pepperoni=false olives=true
+Pizza[size=L, cheese=true, pepperoni=false, olives=true]
+SALES
+- north: 10
+- south: 7
+<h1>Sales</h1><p>north: 10</p><p>south: 7</p>
+size is required
+at most two toppings

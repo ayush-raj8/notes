@@ -1,0 +1,4 @@
+broken/tictactoe/SealedPermitsBroken.java:3: error: class is not allowed to extend sealed class: GameStatus (as it is not listed in its 'permits' clause)
+public final class SealedPermitsBroken implements GameStatus {}
+             ^
+1 error

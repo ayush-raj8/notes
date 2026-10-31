@@ -1,0 +1,4 @@
+part-03-patterns/broken/VisitorMissingVisitBroken.java:13: error: VisitorMissingVisitBroken is not abstract and does not override abstract method visitMul(Mul) in ExprVisitor
+public final class VisitorMissingVisitBroken implements ExprVisitor<Integer> {
+             ^
+1 error

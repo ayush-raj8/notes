@@ -1,0 +1,16 @@
+@startuml activity-checkout
+start
+:validate cart;
+if (cart empty?) then (yes)
+  :reject: empty cart;
+  stop
+else (no)
+  fork
+    :charge card;
+  fork again
+    :reserve stock;
+  end fork
+  :ship;
+  stop
+endif
+@enduml

@@ -1,0 +1,5 @@
+jump chain at 5
+two jumps start at 2
+jump out of range: Snake[from=9, to=1]
+ok
+size must be >= 2

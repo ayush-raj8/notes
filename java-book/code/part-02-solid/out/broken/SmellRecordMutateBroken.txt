@@ -1,0 +1,4 @@
+part-02-solid/broken/SmellRecordMutateBroken.java:9: error: cents has private access in Money
+    m.cents = -5;
+     ^
+1 error

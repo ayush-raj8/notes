@@ -1,0 +1,4 @@
+part-03-patterns/broken/ChainMissingLimitBroken.java:7: error: Clerk is not abstract and does not override abstract method limit() in Approver
+final class Clerk extends Approver {
+      ^
+1 error

@@ -1,0 +1,5 @@
+part-02-solid/broken/LspNarrowAccessBroken.java:11: error: withdraw(long) in HiddenAccount cannot override withdraw(long) in Account
+    void withdraw(long amount) {}
+         ^
+  attempting to assign weaker access privileges; was public
+1 error

@@ -1,0 +1,5 @@
+G1 penguins cannot fly
+G2 total=1000
+G3 p.equals(c)=true c.equals(p)=false
+G4 null
+G5 balance=105

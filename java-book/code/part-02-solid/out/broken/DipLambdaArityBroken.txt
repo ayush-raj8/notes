@@ -1,0 +1,4 @@
+part-02-solid/broken/DipLambdaArityBroken.java:8: error: incompatible types: incompatible parameter types in lambda expression
+    Mailer m = body -> System.out.println(body);
+               ^
+1 error

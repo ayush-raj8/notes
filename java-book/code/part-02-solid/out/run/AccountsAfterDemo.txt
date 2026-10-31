@@ -1,0 +1,5 @@
+step1: postcondition violated: expected 900 but was 899
+move 600: false
+move 100: true
+with fee: true
+total=1000

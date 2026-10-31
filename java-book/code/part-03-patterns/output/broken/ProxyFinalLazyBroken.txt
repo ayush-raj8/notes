@@ -1,0 +1,4 @@
+part-03-patterns/broken/ProxyFinalLazyBroken.java:10: error: cannot assign a value to final variable real
+      real = new RealImage("a");
+      ^
+1 error

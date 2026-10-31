@@ -1,0 +1,4 @@
+VIP discount=2000
+EMPLOYEE discount=5000
+PARTNER discount=5000
+unknown customer type: GUEST

@@ -1,0 +1,5 @@
+part-03-patterns/broken/BridgeWrongImplTypeBroken.java:6: error: incompatible types: Tv cannot be converted to Renderer
+    new CircleShape(new Tv(), 1);
+                    ^
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+1 error

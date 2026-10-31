@@ -1,0 +1,4 @@
+part-03-patterns/broken/StrategyMissingMethodBroken.java:4: error: StrategyMissingMethodBroken is not abstract and does not override abstract method price(long) in PriceStrategy
+public final class StrategyMissingMethodBroken implements PriceStrategy {}
+             ^
+1 error

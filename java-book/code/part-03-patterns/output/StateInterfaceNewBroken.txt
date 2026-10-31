@@ -1,0 +1,4 @@
+part-03-patterns/broken/StateInterfaceNewBroken.java:7: error: State is abstract; cannot be instantiated
+    State s = new State();
+              ^
+1 error

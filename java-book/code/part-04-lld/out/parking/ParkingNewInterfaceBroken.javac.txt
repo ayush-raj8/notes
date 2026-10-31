@@ -1,0 +1,4 @@
+broken/parking/ParkingNewInterfaceBroken.java:5: error: SpotAllocationStrategy is abstract; cannot be instantiated
+    SpotAllocationStrategy s = new SpotAllocationStrategy();
+                               ^
+1 error

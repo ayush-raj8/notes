@@ -1,0 +1,15 @@
+flowchart LR
+  Member([Member])
+  Librarian([Librarian])
+  subgraph Library
+    Borrow(Borrow book)
+    Check(Check availability)
+    Return(Return book)
+    Fine(Pay fine)
+    Add(Add book)
+  end
+  Member --> Borrow
+  Member --> Return
+  Librarian --> Add
+  Borrow -. include .-> Check
+  Fine -. extend .-> Return

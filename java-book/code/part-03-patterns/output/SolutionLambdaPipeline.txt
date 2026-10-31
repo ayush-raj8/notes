@@ -1,0 +1,6 @@
+start
+[trim me]
+stop
+start
+n=42
+stop

@@ -1,0 +1,5 @@
+part-03-patterns/broken/VisitorWrongAcceptBroken.java:15: error: incompatible types: Add cannot be converted to Num
+    return v.visitNum(this);
+                      ^
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+1 error

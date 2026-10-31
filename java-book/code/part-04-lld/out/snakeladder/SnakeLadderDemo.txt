@@ -1,0 +1,16 @@
+Asha rolls 3: 0 -> 11 (ladder 3->11)
+Ben rolls 2: 0 -> 2
+Asha rolls 6: 11 -> 17
+Asha rolls 4: 17 -> 21
+Ben rolls 5: 2 -> 7
+Asha rolls 1: 21 -> 9 (snake 22->9)
+Ben rolls 3: 7 -> 10
+Asha rolls 2: 9 -> 11
+Ben rolls 6: 10 -> 16
+Ben rolls 4: 16 -> 20
+Asha rolls 5: 11 -> 16
+Ben rolls 1: 20 -> 21
+Asha rolls 3: 16 -> 19
+Ben rolls 2: 21 -> 23
+Asha rolls 6: 19 -> 25 (win)
+Asha wins after 15 rolls

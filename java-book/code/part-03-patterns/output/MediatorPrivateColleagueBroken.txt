@@ -1,0 +1,4 @@
+part-03-patterns/broken/MediatorPrivateColleagueBroken.java:7: error: name has private access in User
+    return "user " + u.name;
+                      ^
+1 error

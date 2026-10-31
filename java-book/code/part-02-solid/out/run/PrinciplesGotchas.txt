@@ -1,0 +1,5 @@
+G1 true 100
+G2 ABCDF vs ABCDF
+G3 x1a
+G4 2 99 1
+G5 2 2 copy-is-read-only

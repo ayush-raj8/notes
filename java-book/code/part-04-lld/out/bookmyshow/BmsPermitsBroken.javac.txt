@@ -1,0 +1,4 @@
+broken/bookmyshow/BmsPermitsBroken.java:4: error: class is not allowed to extend sealed class: SeatStatus (as it is not listed in its 'permits' clause)
+  record Blocked(String reason) implements SeatStatus {}
+  ^
+1 error

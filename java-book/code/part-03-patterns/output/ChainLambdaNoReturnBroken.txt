@@ -1,0 +1,5 @@
+part-03-patterns/broken/ChainLambdaNoReturnBroken.java:8: error: incompatible types: bad return type in lambda expression
+        r -> {
+        ^
+    missing return value
+1 error

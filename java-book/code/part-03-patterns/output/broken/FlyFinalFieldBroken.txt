@@ -1,0 +1,4 @@
+part-03-patterns/broken/FlyFinalFieldBroken.java:7: error: cannot assign a value to final variable color
+    t.color = "red";
+     ^
+1 error

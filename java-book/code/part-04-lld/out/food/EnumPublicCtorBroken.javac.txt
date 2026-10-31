@@ -1,0 +1,4 @@
+broken/food/EnumPublicCtorBroken.java:8: error: modifier public not allowed here
+    public Spice(int level) {
+           ^
+1 error

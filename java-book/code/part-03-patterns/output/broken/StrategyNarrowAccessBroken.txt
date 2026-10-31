@@ -1,0 +1,5 @@
+part-03-patterns/broken/StrategyNarrowAccessBroken.java:5: error: price(long) in StrategyNarrowAccessBroken cannot implement price(long) in PriceStrategy
+  long price(long baseCents) {
+       ^
+  attempting to assign weaker access privileges; was public
+1 error

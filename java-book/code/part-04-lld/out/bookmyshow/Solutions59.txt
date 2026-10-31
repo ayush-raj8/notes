@@ -1,0 +1,6 @@
+ex1 {SILVER=4, GOLD=4}
+ex2 [B1, B2, B3]
+ex3 payment declined for ben: 60000
+ex3 refunds [20000]
+ex4 {asha=40000}
+ex5 0:Held 4:Held 5:Available

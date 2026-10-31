@@ -1,0 +1,6 @@
+part-02-solid/broken/DipLeakyAbstractionBroken.java:10: error: cannot find symbol
+    System.out.println(m.sent.size());
+                        ^
+  symbol:   variable sent
+  location: variable m of type Mailer
+1 error

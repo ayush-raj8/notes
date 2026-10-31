@@ -1,0 +1,4 @@
+150
+Dispensed[product=Product[code=A1, name=Cola, price=125], change=[QUARTER]]
+0
+Rejected[reason=INSERT_COIN]

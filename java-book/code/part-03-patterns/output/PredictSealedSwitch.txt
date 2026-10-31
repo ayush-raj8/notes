@@ -1,0 +1,5 @@
+bright
+dim2
+off
+true
+Off[]

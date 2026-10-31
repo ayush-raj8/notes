@@ -1,0 +1,4 @@
+part-03-patterns/broken/AbstractFactoryNewInterfaceBroken.java:6: error: UiFactory is abstract; cannot be instantiated
+    UiFactory f = new UiFactory();
+                  ^
+1 error

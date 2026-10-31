@@ -1,0 +1,4 @@
+part-03-patterns/broken/SingletonExtendBroken.java:8: error: PrivateCtorBase() has private access in PrivateCtorBase
+class PrivateCtorChild extends PrivateCtorBase {}
+^
+1 error

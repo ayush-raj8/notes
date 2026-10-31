@@ -1,0 +1,2 @@
+[C svc:hello]
+[R svc:hello]

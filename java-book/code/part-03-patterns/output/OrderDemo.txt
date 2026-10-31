@@ -1,0 +1,5 @@
+NEW
+PAID
+SHIPPED
+cannot cancel in SHIPPED
+SHIPPED

@@ -1,0 +1,7 @@
+r-1: driver d1 on the way
+r-2: driver d2 on the way
+r-3: waiting for a driver
+fare 201
+r-3: driver d1 on the way
+r-2: cancelled: rider changed mind
+pending 0

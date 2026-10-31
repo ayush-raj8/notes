@@ -1,0 +1,4 @@
+a1c
+2
+GET http://example.test/items text/plain
+fr_CA

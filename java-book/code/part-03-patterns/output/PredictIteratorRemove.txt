@@ -1,0 +1,5 @@
+remove before next: IllegalStateException
+remove twice: IllegalStateException
+false false
+next past end: NoSuchElementException
+[2, 3]

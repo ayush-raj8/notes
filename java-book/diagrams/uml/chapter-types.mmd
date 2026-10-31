@@ -1,0 +1,40 @@
+classDiagram
+  direction LR
+  class UmlDump {
+    +members(Class) List~String~
+    +classBlock(Class) String
+  }
+  class NotationDemo
+  class OrderService {
+    -inventory: Inventory
+    -payment: Payment
+    -notifier: Notifier
+    ~place(String, int) boolean
+  }
+  class Inventory
+  class Payment
+  class Notifier
+  class StateDemo {
+    ~next(State, Event) State$
+  }
+  class State {
+    <<enumeration>>
+    NEW
+    PAID
+    SHIPPED
+    DELIVERED
+    CANCELLED
+  }
+  class Event {
+    <<enumeration>>
+    PAY
+    SHIP
+    DELIVER
+    CANCEL
+  }
+  UmlDump ..> NotationDemo : reads by reflection
+  OrderService *-- Inventory
+  OrderService *-- Notifier
+  OrderService --> Payment
+  StateDemo ..> State
+  StateDemo ..> Event

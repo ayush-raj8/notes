@@ -1,0 +1,4 @@
+part-03-patterns/broken/BuilderPrivateCtorBroken.java:6: error: Pizza(Builder) has private access in Pizza
+    Pizza p = new Pizza(null);
+              ^
+1 error

@@ -1,0 +1,17 @@
+classDiagram
+  class Library {
+    -name: String
+    +addTitle(String) Book
+    +books() List~Book~
+  }
+  class Book {
+    -title: String
+    +title() String
+  }
+  class Member {
+    -name: String
+    +borrow(Book) void
+    +borrowed() List~Book~
+  }
+  Library "1" *-- "0..*" Book : owns
+  Member "0..*" --> "0..*" Book : borrowed

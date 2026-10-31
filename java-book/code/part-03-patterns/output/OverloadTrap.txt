@@ -1,0 +1,4 @@
+visit(Shape)
+visit(Circle)
+visit(Circle)
+visit(Square)

@@ -1,0 +1,7 @@
+log in  /home
+timing start
+log out 200 /home
+=> 200 /home
+log in  /admin
+log out 401
+=> 401

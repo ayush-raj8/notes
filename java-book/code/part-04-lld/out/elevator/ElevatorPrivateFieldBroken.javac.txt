@@ -1,0 +1,4 @@
+broken/elevator/ElevatorPrivateFieldBroken.java:6: error: floor has private access in Elevator
+    e.floor = 5;
+     ^
+1 error

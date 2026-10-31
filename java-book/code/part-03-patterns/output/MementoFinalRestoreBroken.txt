@@ -1,0 +1,4 @@
+part-03-patterns/broken/MementoFinalRestoreBroken.java:5: error: cannot assign a value to final variable text
+    this.text = saved;
+        ^
+1 error

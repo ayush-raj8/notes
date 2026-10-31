@@ -1,0 +1,4 @@
+ann->bob: hi
+ann->cy: hi
+bob->ann: ok
+ann inbox: [bob: ok]

@@ -1,0 +1,8 @@
+search -> [show-1, show-2]
+asha holds [A1, A2] total=60000
+ben -> seats not available: [A2]
+A3 after ben's failed try: Available[]
+asha booked B1 CONFIRMED
+ben -> hold expired: H3
+B1 after expiry: Available[]
+after cancel: Available[]

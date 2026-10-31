@@ -1,0 +1,6 @@
+broken/scheduler/DurationPlusBroken.java:7: error: bad operand types for binary operator '+'
+    Duration total = a + b;
+                       ^
+  first type:  Duration
+  second type: Duration
+1 error

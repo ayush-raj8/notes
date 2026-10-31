@@ -1,0 +1,4 @@
+part-02-solid/broken/PrinDemeterPrivateBroken.java:11: error: customer has private access in Order
+    System.out.println(o.customer.address().city());
+                        ^
+1 error

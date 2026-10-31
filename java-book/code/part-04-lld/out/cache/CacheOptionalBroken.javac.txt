@@ -1,0 +1,4 @@
+broken/cache/CacheOptionalBroken.java:8: error: incompatible types: Optional<Integer> cannot be converted to Integer
+    Integer v = c.get("a");
+                     ^
+1 error

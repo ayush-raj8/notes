@@ -1,0 +1,4 @@
+A rolls 3: 24 -> 24 (overshoot)
+B rolls 2: 0 -> 2
+A rolls 1: 24 -> 25 (win)
+A

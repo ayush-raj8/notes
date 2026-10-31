@@ -1,0 +1,4 @@
+WRONG_PIN
+WRONG_PIN
+CARD_BLOCKED IDLE
+card is blocked

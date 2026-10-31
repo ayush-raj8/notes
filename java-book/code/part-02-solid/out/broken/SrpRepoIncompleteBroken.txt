@@ -1,0 +1,4 @@
+part-02-solid/broken/SrpRepoIncompleteBroken.java:6: error: SrpRepoIncompleteBroken is not abstract and does not override abstract method find(String) in InvoiceRepository
+public final class SrpRepoIncompleteBroken implements InvoiceRepository {
+             ^
+1 error

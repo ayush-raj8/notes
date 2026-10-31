@@ -1,0 +1,4 @@
+a@b true false false
+a@b.org true true true
+@b.org false false false
+null false false false

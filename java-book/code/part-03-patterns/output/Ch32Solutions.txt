@@ -1,0 +1,5 @@
+ex1 [one] [one, two]
+ex2 Triangle(t, 3)
+ex3 [0, 0, 0] [5, 0, 0]
+ex4 a!
+ex5 base

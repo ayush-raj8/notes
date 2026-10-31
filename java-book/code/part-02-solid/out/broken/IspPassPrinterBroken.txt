@@ -1,0 +1,5 @@
+part-02-solid/broken/IspPassPrinterBroken.java:9: error: incompatible types: BasicPrinter cannot be converted to DocScanner
+    System.out.println(Office.archive(new BasicPrinter()));
+                                      ^
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+1 error

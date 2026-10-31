@@ -1,0 +1,5 @@
+part-02-solid/broken/IspDefaultConflictBroken.java:17: error: types Left and Right are incompatible;
+  static class Both implements Left, Right {}
+         ^
+  class Both inherits unrelated defaults for hi() from types Left and Right
+1 error

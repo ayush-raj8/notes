@@ -1,0 +1,4 @@
+part-03-patterns/broken/StrategyLambdaTwoArgsBroken.java:6: error: incompatible types: incompatible parameter types in lambda expression
+    PriceStrategy s = (base, extra) -> base + extra;
+                      ^
+1 error

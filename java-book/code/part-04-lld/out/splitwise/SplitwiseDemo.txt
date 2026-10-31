@@ -1,0 +1,7 @@
+B owes A 100
+C owes B 100
+D owes A 55, A owes D 0
+net {A=255, B=100, C=-200, D=-155}
+C pays A 200
+D pays B 100
+D pays A 55

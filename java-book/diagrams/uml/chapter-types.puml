@@ -1,0 +1,39 @@
+@startuml chapter-types
+left to right direction
+class UmlDump {
+  +{static} members(c: Class): List<String>
+  +{static} classBlock(c: Class): String
+}
+class NotationDemo
+class OrderService {
+  -inventory: Inventory
+  -payment: Payment
+  -notifier: Notifier
+  ~place(sku: String, amount: int): boolean
+}
+class Inventory
+class Payment
+class Notifier
+class StateDemo {
+  ~{static} next(s: State, e: Event): State
+}
+enum State {
+  NEW
+  PAID
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+enum Event {
+  PAY
+  SHIP
+  DELIVER
+  CANCEL
+}
+UmlDump ..> NotationDemo : reads by reflection
+OrderService *-- Inventory
+OrderService *-- Notifier
+OrderService --> Payment
+StateDemo ..> State
+StateDemo ..> Event
+@enduml

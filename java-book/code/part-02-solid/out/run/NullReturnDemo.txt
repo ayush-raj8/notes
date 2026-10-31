@@ -1,0 +1,5 @@
+asha@x.org
+before: NullPointerException
+asha@x.org
+no email
+null vs [] size 0

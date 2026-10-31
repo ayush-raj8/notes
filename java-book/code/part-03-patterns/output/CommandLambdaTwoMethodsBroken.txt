@@ -1,0 +1,5 @@
+part-03-patterns/broken/CommandLambdaTwoMethodsBroken.java:9: error: incompatible types: Command is not a functional interface
+    Command c = () -> System.out.println("run");
+                ^
+    multiple non-overriding abstract methods found in interface Command
+1 error

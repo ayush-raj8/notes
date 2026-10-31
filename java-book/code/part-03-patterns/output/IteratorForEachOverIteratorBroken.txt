@@ -1,0 +1,6 @@
+part-03-patterns/broken/IteratorForEachOverIteratorBroken.java:6: error: for-each not applicable to expression type
+    for (String s : list.iterator()) {
+                                 ^
+  required: array or java.lang.Iterable
+  found:    Iterator<String>
+1 error

@@ -1,0 +1,9 @@
+before code: 15
+[Courier, Customer, Parcel] [collects, stores]
+[]
+classDiagram
+  class Courier
+  class Compartment
+  class Parcel
+  Courier --> Parcel : stores
+  Compartment o-- Parcel : 0..1

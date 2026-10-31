@@ -1,0 +1,5 @@
+part-03-patterns/broken/FlyWrongValueBroken.java:10: error: incompatible types: int cannot be converted to TreeType
+    cache.put("oak", 5);
+                     ^
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+1 error

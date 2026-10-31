@@ -1,0 +1,4 @@
+part-02-solid/broken/SmellExtendRecordBroken.java:7: error: cannot inherit from final Money
+  static class FreeMoney extends Money {
+                                 ^
+1 error

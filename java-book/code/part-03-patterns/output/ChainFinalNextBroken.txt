@@ -1,0 +1,4 @@
+part-03-patterns/broken/ChainFinalNextBroken.java:9: error: cannot assign a value to final variable next
+    this.next = n;
+        ^
+1 error

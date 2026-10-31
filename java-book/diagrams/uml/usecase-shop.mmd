@@ -1,0 +1,13 @@
+flowchart LR
+  Customer([Customer])
+  Admin([Admin])
+  subgraph Shop
+    PlaceOrder(Place order)
+    Pay(Pay)
+    Coupon(Apply coupon)
+    AddProduct(Add product)
+  end
+  Customer --> PlaceOrder
+  Admin --> AddProduct
+  PlaceOrder -. include .-> Pay
+  Coupon -. extend .-> PlaceOrder

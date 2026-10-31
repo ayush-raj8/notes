@@ -1,0 +1,8 @@
+[DeliveryResult[channel=PUSH, status=SENT, attempts=2]]
+[DeliveryResult[channel=PUSH, status=SENT, attempts=1], DeliveryResult[channel=SMS, status=SENT, attempts=1], DeliveryResult[channel=EMAIL, status=SENT, attempts=1]]
+[DeliveryResult[channel=SMS, status=SKIPPED, attempts=0], DeliveryResult[channel=EMAIL, status=SENT, attempts=1]]
+PUSH tok-1 Code for Asha
+PUSH tok-1 Code for Asha
+SMS +100 Your code is 4821
+EMAIL a@x.test [Code for Asha] Your code is 4821
+EMAIL b@x.test [Code for Asha] Your code is 4821

@@ -1,0 +1,119 @@
+/* Match the CN notes palette (tokens from src/styles/tokens.css). */
+:root {
+  --bg: #f3efe6;
+  --surface: #fffcf7;
+  --ink: #1c1915;
+  --muted: #5f584e;
+  --line: #e3dacb;
+  --accent: #1d4f45;
+  --accent-ink: #f7fbf9;
+  --caution: #8a3d12;
+  --caution-bg: #f8efe6;
+  --serif: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+  --sans: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+html {
+  font-family: var(--sans);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.sidebar,
+.content {
+  font-family: var(--sans);
+}
+
+.content main {
+  max-width: 68ch;
+}
+
+h1,
+h2,
+h3,
+.content h1,
+.content h2,
+.content h3 {
+  font-family: var(--serif);
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+a,
+.sidebar a:hover,
+.content a {
+  color: var(--accent);
+}
+
+.sidebar {
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+}
+
+.menu-bar,
+.nav-chapters {
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+}
+
+code,
+pre,
+.hljs {
+  font-family: var(--mono);
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+blockquote.gotchas,
+.gotchas {
+  border-left: 3px solid var(--caution);
+  background: var(--caution-bg);
+  padding: 0.75rem 1rem;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  border: 1px solid var(--line);
+  padding: 0.4rem 0.65rem;
+}
+
+table th {
+  background: var(--surface);
+}
+
+.warning,
+.compiler-error {
+  border-left: 3px solid var(--caution);
+  background: var(--caution-bg);
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+}
+
+.compiler-error pre,
+.program-output pre {
+  margin: 0.5rem 0 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141311;
+    --surface: #1e1c19;
+    --ink: #f3efe6;
+    --muted: #c3b9aa;
+    --line: #3a342c;
+    --accent: #8fcec0;
+    --accent-ink: #10211d;
+    --caution: #f0b089;
+    --caution-bg: #2a211b;
+  }
+}

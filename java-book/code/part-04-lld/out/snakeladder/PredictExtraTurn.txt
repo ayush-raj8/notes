@@ -1,0 +1,5 @@
+A 6 extra=true next=A
+A 2 extra=false next=B
+B 3 extra=false next=A
+A 6 extra=true next=A
+B

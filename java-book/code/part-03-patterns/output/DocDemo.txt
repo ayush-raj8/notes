@@ -1,0 +1,5 @@
+live    [a, b, c]
+shallow [a, b, c]
+deep    [a, b]
+restored from deep    [a, b]
+restored from shallow [a, b, c]

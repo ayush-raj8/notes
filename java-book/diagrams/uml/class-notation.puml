@@ -1,0 +1,30 @@
+@startuml class-notation
+interface Shape {
+  +area(): double
+}
+abstract class Base {
+  -{static} created: int
+  -id: int
+  #label: String
+  ~tag: String
+  +{abstract} area(): double
+  +id(): int
+  +{static} created(): int
+}
+class Circle <<final>> {
+  -r: double
+  +area(): double
+}
+interface "Repository<T>" as Repository {
+  +save(item: T): void
+  +findFirst(): Optional<T>
+}
+class "MemoryRepository<T>" as MemoryRepository {
+  -items: List<T>
+  +save(item: T): void
+  +findFirst(): Optional<T>
+}
+Shape <|.. Base
+Base <|-- Circle
+Repository <|.. MemoryRepository
+@enduml

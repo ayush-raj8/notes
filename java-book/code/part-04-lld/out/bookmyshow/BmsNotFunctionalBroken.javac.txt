@@ -1,0 +1,5 @@
+broken/bookmyshow/BmsNotFunctionalBroken.java:9: error: incompatible types: Gateway is not a functional interface
+    return (user, paise) -> true;
+           ^
+    multiple non-overriding abstract methods found in interface Gateway
+1 error

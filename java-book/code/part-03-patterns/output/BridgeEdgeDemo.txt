@@ -1,0 +1,2 @@
+NPE: renderer
+call 1, call 2, call 3

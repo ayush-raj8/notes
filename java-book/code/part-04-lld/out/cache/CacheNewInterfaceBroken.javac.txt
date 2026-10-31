@@ -1,0 +1,4 @@
+broken/cache/CacheNewInterfaceBroken.java:5: error: Cache is abstract; cannot be instantiated
+    Cache<String, Integer> c = new Cache<>();
+                               ^
+1 error

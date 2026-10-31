@@ -1,0 +1,2 @@
+files [a.txt, sub/b.txt, sub/deep/d.txt]
+dirs=3 bytes=18

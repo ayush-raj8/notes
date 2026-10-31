@@ -1,0 +1,4 @@
+broken/notification/EnumSwitchBroken.java:5: error: the switch expression does not cover all possible input values
+    return switch (c) {
+           ^
+1 error

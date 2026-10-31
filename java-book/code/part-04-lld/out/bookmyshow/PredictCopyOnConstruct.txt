@@ -1,0 +1,5 @@
+1
+true
+Seat[id=A1, category=GOLD]
+immutable
+seat id required

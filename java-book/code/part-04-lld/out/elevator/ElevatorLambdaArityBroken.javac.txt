@@ -1,0 +1,4 @@
+broken/elevator/ElevatorLambdaArityBroken.java:5: error: incompatible types: incompatible parameter types in lambda expression
+    DispatchStrategy s = list -> list.get(0);
+                         ^
+1 error

@@ -1,0 +1,4 @@
+part-03-patterns/broken/AbstractFactoryMissingMethodBroken.java:4: error: AbstractFactoryMissingMethodBroken is not abstract and does not override abstract method createField() in UiFactory
+public final class AbstractFactoryMissingMethodBroken implements UiFactory {
+             ^
+1 error

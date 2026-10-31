@@ -1,0 +1,4 @@
+part-03-patterns/broken/SingletonNewEnumBroken.java:6: error: enum classes may not be instantiated
+    EnumSingleton s = new EnumSingleton();
+                      ^
+1 error

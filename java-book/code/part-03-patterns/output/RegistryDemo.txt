@@ -1,0 +1,3 @@
+EMAIL:a
+LOG:b
+unknown kind: fax

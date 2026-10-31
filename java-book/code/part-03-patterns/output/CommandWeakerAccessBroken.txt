@@ -1,0 +1,5 @@
+part-03-patterns/broken/CommandWeakerAccessBroken.java:6: error: execute() in CommandWeakerAccessBroken cannot implement execute() in Command
+  void execute() {
+       ^
+  attempting to assign weaker access privileges; was public
+1 error

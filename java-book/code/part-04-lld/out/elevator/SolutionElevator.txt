@@ -1,0 +1,4 @@
+least busy answers with E1
+[Served[elevatorId=0, floor=2], Served[elevatorId=0, floor=9]] in 9 ticks
+floor 42 outside 0..9
+4 ticks [Served[elevatorId=0, floor=1], Served[elevatorId=0, floor=4]]

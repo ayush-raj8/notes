@@ -1,0 +1,4 @@
+part-03-patterns/broken/TemplateMissingStepBroken.java:9: error: TemplateMissingStepBroken is not abstract and does not override abstract method row() in Report
+public final class TemplateMissingStepBroken extends Report {
+             ^
+1 error

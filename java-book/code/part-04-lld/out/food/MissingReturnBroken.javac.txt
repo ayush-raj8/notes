@@ -1,0 +1,4 @@
+broken/food/MissingReturnBroken.java:10: error: missing return statement
+  }
+  ^
+1 error

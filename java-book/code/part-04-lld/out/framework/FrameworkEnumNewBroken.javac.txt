@@ -1,0 +1,4 @@
+broken/framework/FrameworkEnumNewBroken.java:5: error: enum classes may not be instantiated
+    InterviewStep extra = new InterviewStep(3, "Bonus step");
+                          ^
+1 error

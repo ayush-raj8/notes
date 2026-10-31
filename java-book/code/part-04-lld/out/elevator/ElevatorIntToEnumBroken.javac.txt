@@ -1,0 +1,4 @@
+broken/elevator/ElevatorIntToEnumBroken.java:5: error: incompatible types: int cannot be converted to Direction
+    Direction d = 1;
+                  ^
+1 error

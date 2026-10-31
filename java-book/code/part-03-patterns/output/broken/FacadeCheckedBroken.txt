@@ -1,0 +1,4 @@
+part-03-patterns/broken/FacadeCheckedBroken.java:6: error: unreported exception PaymentDeclinedException; must be caught or declared to be thrown
+    new Payment().charge(500);
+                        ^
+1 error

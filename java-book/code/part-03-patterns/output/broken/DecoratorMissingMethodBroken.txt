@@ -1,0 +1,4 @@
+part-03-patterns/broken/DecoratorMissingMethodBroken.java:4: error: DecoratorMissingMethodBroken is not abstract and does not override abstract method description() in Coffee
+public final class DecoratorMissingMethodBroken implements Coffee {
+             ^
+1 error

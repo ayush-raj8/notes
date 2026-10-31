@@ -1,0 +1,5 @@
+broken/logger/LoggerTryResourceBroken.java:6: error: incompatible types: try-with-resources not applicable to variable type
+    try (ConsoleAppender c = new ConsoleAppender(System.out, new PatternFormatter("{msg}"))) {
+                         ^
+    (ConsoleAppender cannot be converted to AutoCloseable)
+1 error

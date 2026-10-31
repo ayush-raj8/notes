@@ -1,0 +1,3 @@
+[a, b] [a] [a]
+view.add: UnsupportedOperationException
+copy.add: UnsupportedOperationException

@@ -1,0 +1,4 @@
+cannot add a directory to itself
+2
+true
+FileNode[name=f, size=2]

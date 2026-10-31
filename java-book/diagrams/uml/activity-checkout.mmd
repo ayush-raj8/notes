@@ -1,0 +1,10 @@
+flowchart TD
+  start((start)) --> validate[validate cart]
+  validate --> empty{cart empty?}
+  empty -- yes --> reject[reject: empty cart] --> stopA(((end)))
+  empty -- no --> fork[/fork/]
+  fork --> charge[charge card]
+  fork --> reserve[reserve stock]
+  charge --> join[/join/]
+  reserve --> join
+  join --> ship[ship] --> stopB(((end)))

@@ -1,0 +1,4 @@
+broken/snakeladder/DominatedCaseBroken.java:8: error: this case label is dominated by a preceding case label
+      case Snake s -> "snake";
+           ^
+1 error

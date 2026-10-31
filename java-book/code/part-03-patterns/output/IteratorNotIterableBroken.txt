@@ -1,0 +1,6 @@
+part-03-patterns/broken/IteratorNotIterableBroken.java:8: error: for-each not applicable to expression type
+    for (String s : p) {
+                    ^
+  required: array or java.lang.Iterable
+  found:    Playlist
+1 error

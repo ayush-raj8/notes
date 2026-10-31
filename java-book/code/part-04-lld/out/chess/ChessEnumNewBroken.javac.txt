@@ -1,0 +1,4 @@
+broken/chess/ChessEnumNewBroken.java:5: error: enum classes may not be instantiated
+    return new Color();
+           ^
+1 error

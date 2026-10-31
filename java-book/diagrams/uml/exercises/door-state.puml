@@ -1,0 +1,7 @@
+@startuml door-state
+[*] --> CLOSED
+CLOSED --> OPEN : open
+OPEN --> CLOSED : close
+CLOSED --> LOCKED : lock
+LOCKED --> CLOSED : unlock
+@enduml

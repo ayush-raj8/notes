@@ -1,0 +1,2 @@
+before registration=true invite=false
+after  registration=false invite=false

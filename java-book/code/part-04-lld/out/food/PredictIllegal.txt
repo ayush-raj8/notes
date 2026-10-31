@@ -1,0 +1,4 @@
+illegal transition PLACED -> READY
+illegal transition PREPARING -> CANCELLED
+PREPARING
+[PLACED, ACCEPTED, PREPARING]

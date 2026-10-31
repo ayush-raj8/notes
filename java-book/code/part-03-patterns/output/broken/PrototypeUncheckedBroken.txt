@@ -1,0 +1,4 @@
+part-03-patterns/broken/PrototypeUncheckedBroken.java:7: error: unreported exception CloneNotSupportedException; must be caught or declared to be thrown
+    return (PrototypeUncheckedBroken) super.clone();
+                                                 ^
+1 error

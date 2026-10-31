@@ -1,0 +1,4 @@
+part-03-patterns/broken/BuilderForgotBuildBroken.java:6: error: incompatible types: Builder cannot be converted to Pizza
+    Pizza p = Pizza.builder("L").cheese();
+                                       ^
+1 error

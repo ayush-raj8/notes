@@ -1,0 +1,4 @@
+broken/ratelimit/RateLimitRecordFieldBroken.java:6: error: limit has private access in LimiterConfig
+    cfg.limit = 5;
+       ^
+1 error

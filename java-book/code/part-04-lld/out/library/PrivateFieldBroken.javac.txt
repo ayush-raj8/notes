@@ -1,0 +1,4 @@
+broken/library/PrivateFieldBroken.java:5: error: status has private access in BookCopy
+    return copy.status == lld.library.CopyStatus.ON_LOAN;
+               ^
+1 error

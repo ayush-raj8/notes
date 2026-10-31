@@ -1,0 +1,4 @@
+part-03-patterns/broken/CompositeSealedExtendBroken.java:5: error: class is not allowed to extend sealed class: Expr (as it is not listed in its 'permits' clause)
+  record Pow(Expr base, int exp) implements Expr {}
+  ^
+1 error

@@ -1,0 +1,10 @@
+broken/fs/FinalClassBroken.java:3: error: cannot inherit from final DirectoryNode
+public class FinalClassBroken extends DirectoryNode {
+                                      ^
+broken/fs/FinalClassBroken.java:3: error: constructor DirectoryNode in class DirectoryNode cannot be applied to given types;
+public class FinalClassBroken extends DirectoryNode {
+       ^
+  required: String
+  found:    no arguments
+  reason: actual and formal argument lists differ in length
+2 errors

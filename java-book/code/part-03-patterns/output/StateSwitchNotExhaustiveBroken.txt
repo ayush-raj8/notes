@@ -1,0 +1,4 @@
+part-03-patterns/broken/StateSwitchNotExhaustiveBroken.java:9: error: the switch expression does not cover all possible input values
+    return switch (l) {
+           ^
+1 error

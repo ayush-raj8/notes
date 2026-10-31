@@ -1,0 +1,17 @@
+@startuml usecase-library
+left to right direction
+actor Member
+actor Librarian
+rectangle Library {
+  usecase "Borrow book" as Borrow
+  usecase "Check availability" as Check
+  usecase "Return book" as Return
+  usecase "Pay fine" as Fine
+  usecase "Add book" as Add
+}
+Member --> Borrow
+Member --> Return
+Librarian --> Add
+Borrow ..> Check : <<include>>
+Fine ..> Return : <<extend>>
+@enduml

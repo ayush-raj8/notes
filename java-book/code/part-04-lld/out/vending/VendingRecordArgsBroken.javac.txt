@@ -1,0 +1,7 @@
+broken/vending/VendingRecordArgsBroken.java:5: error: constructor Product in record Product cannot be applied to given types;
+    Product p = new Product("A1", "Cola");
+                ^
+  required: String,String,int
+  found:    String,String
+  reason: actual and formal argument lists differ in length
+1 error

@@ -1,0 +1,4 @@
+broken/library/PackagePrivateCtorBroken.java:6: error: BookCopy(String,Book) is not public in BookCopy; cannot be accessed from outside package
+    BookCopy c = new BookCopy("B-1", new Book("1", "T", "A"));
+                 ^
+1 error

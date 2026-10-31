@@ -1,0 +1,9 @@
+allOf: 5
+false true
+TOKEN_BUCKET allowed 19 of 60
+FIXED_WINDOW allowed 15 of 60
+SLIDING_LOG allowed 15 of 60
+TOKEN_BUCKET in [900,1100): 3
+FIXED_WINDOW in [900,1100): 6
+SLIDING_LOG in [900,1100): 3
+steady: 24 of 40

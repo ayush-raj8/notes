@@ -1,0 +1,5 @@
+stored before print: -1
+printed: INV-1 total=120
+printed: INV-1 total=120
+stored after print:  11999
+outbox: [receipt INV-1 11999]

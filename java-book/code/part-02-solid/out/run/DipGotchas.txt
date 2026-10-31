@@ -1,0 +1,6 @@
+G1 param=LogMailer vs Mailer
+G2 5
+G3 ctor params=0
+G3 fails late: NullPointerException
+G4 LogMailer
+G5 30

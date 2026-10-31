@@ -1,0 +1,15 @@
+/home/asha
+/
+  home/
+    asha/
+      docs/
+        notes.txt (17)
+        todo.md (9)
+  tmp/
+    docs-backup/
+      notes.txt (17)
+[notes.txt, todo.md]
+26
+[/home/asha/docs/notes.txt, /tmp/docs-backup/notes.txt]
+NOT_EMPTY: /home (NOT_EMPTY)
+/

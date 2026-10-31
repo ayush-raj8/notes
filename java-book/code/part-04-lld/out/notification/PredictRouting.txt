@@ -1,0 +1,4 @@
+Plan[channels=[PUSH, SMS, EMAIL], stopOnFirstSuccess=false]
+Plan[channels=[EMAIL, SMS], stopOnFirstSuccess=true]
+Plan[channels=[], stopOnFirstSuccess=true]
+true

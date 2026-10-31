@@ -1,0 +1,4 @@
+part-03-patterns/broken/StateSealedPermitsBroken.java:8: error: class is not allowed to extend sealed class: Conn (as it is not listed in its 'permits' clause)
+  record Broken() implements Conn {}
+  ^
+1 error

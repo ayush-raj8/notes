@@ -1,0 +1,5 @@
+[1 DEBUG rendering, 2 WARN late payment, 3 ERROR charge failed]
+[WARN! LATE PAYMENT, ERROR! CHARGE FAILED]
+3
+work=0
+[ERROR, DEBUG]

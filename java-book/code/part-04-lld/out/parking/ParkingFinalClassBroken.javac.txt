@@ -1,0 +1,4 @@
+broken/parking/ParkingFinalClassBroken.java:3: error: cannot inherit from final ParkingLot
+public class ParkingFinalClassBroken extends ParkingLot {
+                                             ^
+1 error

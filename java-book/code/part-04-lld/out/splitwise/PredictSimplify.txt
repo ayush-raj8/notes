@@ -1,0 +1,3 @@
+Transfer[from=c, to=a, amount=30]
+Transfer[from=b, to=a, amount=20]
+balances must sum to zero, got 5

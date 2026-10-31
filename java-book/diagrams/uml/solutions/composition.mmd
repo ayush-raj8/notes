@@ -1,0 +1,12 @@
+classDiagram
+  class House {
+    -rooms: List~Room~
+    +close() void
+    ~roomNames() List~String~
+  }
+  class Room {
+    -name: String
+    ~close() void
+    ~name() String
+  }
+  House "1" *-- "1..*" Room

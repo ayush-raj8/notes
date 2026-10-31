@@ -1,0 +1,4 @@
+part-02-solid/broken/DipFinalFieldBroken.java:11: error: variable mailer might not have been initialized
+  }
+  ^
+1 error

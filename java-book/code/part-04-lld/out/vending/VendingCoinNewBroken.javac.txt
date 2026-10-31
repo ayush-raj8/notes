@@ -1,0 +1,4 @@
+broken/vending/VendingCoinNewBroken.java:5: error: enum classes may not be instantiated
+    Coin c = new Coin(50);
+             ^
+1 error

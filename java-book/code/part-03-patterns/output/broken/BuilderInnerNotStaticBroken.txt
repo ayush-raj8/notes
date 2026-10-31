@@ -1,0 +1,4 @@
+part-03-patterns/broken/BuilderInnerNotStaticBroken.java:14: error: an enclosing instance that contains Product.Builder is required
+    Product.Builder b = new Product.Builder();
+                        ^
+1 error

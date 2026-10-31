@@ -1,0 +1,5 @@
+IdleState
+HasMoneyState 5
+[NICKEL]
+IdleState 0
+[]

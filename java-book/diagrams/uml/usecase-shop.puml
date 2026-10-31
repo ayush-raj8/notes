@@ -1,0 +1,15 @@
+@startuml usecase-shop
+left to right direction
+actor Customer
+actor Admin
+rectangle Shop {
+  usecase "Place order" as PlaceOrder
+  usecase "Pay" as Pay
+  usecase "Apply coupon" as Coupon
+  usecase "Add product" as AddProduct
+}
+Customer --> PlaceOrder
+Admin --> AddProduct
+PlaceOrder ..> Pay : <<include>>
+Coupon ..> PlaceOrder : <<extend>>
+@enduml

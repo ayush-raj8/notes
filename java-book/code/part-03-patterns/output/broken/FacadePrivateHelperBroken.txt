@@ -1,0 +1,4 @@
+part-03-patterns/broken/FacadePrivateHelperBroken.java:9: error: tuneForMovie() has private access in HomeTheaterFacade
+    System.out.println(f.tuneForMovie());
+                        ^
+1 error

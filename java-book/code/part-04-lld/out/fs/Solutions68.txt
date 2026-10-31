@@ -1,0 +1,6 @@
+ex1 4 1
+ex2 /proj/src/util/Text.java /proj/src/util/Text.java
+ex3 file Main.java 13B | dir / 1 entries | dir src 2 entries
+ex4 0 1 4
+ex5 {Makefile=4, docs=4, src=27}
+ex6 {=1, .java=2, .md=1}

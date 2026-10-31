@@ -1,0 +1,6 @@
+archived:page-1
+printed:memo fax=true
+printed:page-1
+printed:memo
+archived:from-lambda
+BasicPrinter: Printer=true DocScanner=false FaxSender=false

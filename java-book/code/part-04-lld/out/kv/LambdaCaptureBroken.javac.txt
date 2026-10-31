@@ -1,0 +1,4 @@
+broken/kv/LambdaCaptureBroken.java:9: error: local variables referenced from a lambda expression must be final or effectively final
+      changed = true;
+      ^
+1 error

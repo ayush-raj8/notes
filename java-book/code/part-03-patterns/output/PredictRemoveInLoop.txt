@@ -1,0 +1,3 @@
+CME removing a -> [b, c]
+removed b -> [a, c]
+CME removing c -> [a, b]

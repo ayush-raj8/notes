@@ -1,0 +1,5 @@
+part-03-patterns/broken/TemplateHookWeakerBroken.java:9: error: header() in TemplateHookWeakerBroken cannot override header() in Report
+  void header() {}
+       ^
+  attempting to assign weaker access privileges; was protected
+1 error

@@ -1,0 +1,7 @@
+0 20
+B
+ticket T2
+FULL: no spot for CAR Z
+accepted=20 free=0
+20 40
+false

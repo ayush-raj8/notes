@@ -1,0 +1,3 @@
+leaves king in check: e2-d2
+R
+WHITE to move

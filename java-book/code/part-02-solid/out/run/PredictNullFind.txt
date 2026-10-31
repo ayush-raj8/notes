@@ -1,0 +1,6 @@
+Optional[x]
+Optional.empty
+false
+-1
+0
+No value present

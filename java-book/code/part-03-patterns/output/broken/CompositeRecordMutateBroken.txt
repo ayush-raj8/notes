@@ -1,0 +1,4 @@
+part-03-patterns/broken/CompositeRecordMutateBroken.java:7: error: size has private access in FileNode
+    f.size = 5;
+     ^
+1 error

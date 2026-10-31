@@ -1,0 +1,4 @@
+S cheese=false pepperoni=false olives=false
+S cheese=true pepperoni=false olives=false
+S cheese=false pepperoni=true olives=false
+S cheese=true pepperoni=false olives=true

@@ -1,0 +1,4 @@
+part-03-patterns/broken/SingletonStaticContextBroken.java:10: error: non-static variable instance cannot be referenced from a static context
+    return instance;
+           ^
+1 error

@@ -1,0 +1,5 @@
+Snake[from=14, to=4]
+false
+true
+false
+snake must go down: 3->5

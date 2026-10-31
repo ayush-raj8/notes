@@ -1,0 +1,5 @@
+[dst/, g, src/]
+[f, g]
+ALREADY_EXISTS: /dst/f
+INVALID_PATH: cannot move /src into itself
+/dst/g

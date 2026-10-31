@@ -1,0 +1,4 @@
+broken/fs/DominatedCaseBroken.java:8: error: this case label is dominated by a preceding case label
+      case FileNode f -> "file";
+           ^
+1 error

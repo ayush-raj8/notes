@@ -1,0 +1,4 @@
+broken/splitwise/SplitSealedBroken.java:4: error: class is not allowed to extend sealed class: Split (as it is not listed in its 'permits' clause)
+public class SplitSealedBroken implements Split {
+       ^
+1 error

@@ -1,0 +1,4 @@
+broken/bookmyshow/BmsRecordFieldBroken.java:5: error: totalPaise has private access in SeatHold
+    hold.totalPaise = 0;
+        ^
+1 error

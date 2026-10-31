@@ -1,0 +1,2 @@
+failed: smtp down
+stored=1

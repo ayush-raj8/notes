@@ -1,0 +1,4 @@
+after 2 writes: v2
+after undo: v1
+exists after 2nd undo: false
+after redo: v1

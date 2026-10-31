@@ -1,0 +1,8 @@
+root/ (45)
+  a.txt (10)
+  src/ (35)
+    Main.java (30)
+    Util.java (5)
+  empty/ (0)
+45
+(1 + 2) * 3 = 9

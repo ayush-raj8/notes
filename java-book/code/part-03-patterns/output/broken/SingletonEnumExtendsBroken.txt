@@ -1,0 +1,7 @@
+part-03-patterns/broken/SingletonEnumExtendsBroken.java:4: error: cannot inherit from final EnumSingleton
+public final class SingletonEnumExtendsBroken extends EnumSingleton {}
+                                                      ^
+part-03-patterns/broken/SingletonEnumExtendsBroken.java:4: error: enum classes are not extensible
+public final class SingletonEnumExtendsBroken extends EnumSingleton {}
+             ^
+2 errors

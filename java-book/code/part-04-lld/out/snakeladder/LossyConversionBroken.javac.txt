@@ -1,0 +1,4 @@
+broken/snakeladder/LossyConversionBroken.java:5: error: incompatible types: possible lossy conversion from long to int
+    int target = p.position() + roll;
+                              ^
+1 error

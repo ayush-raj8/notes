@@ -1,0 +1,4 @@
+broken/notification/UnreportedSendBroken.java:6: error: unreported exception SendException; must be caught or declared to be thrown
+    sender.send("a@x.test", new Message("s", "b"));
+               ^
+1 error

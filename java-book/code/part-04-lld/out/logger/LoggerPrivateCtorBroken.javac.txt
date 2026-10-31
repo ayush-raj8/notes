@@ -1,0 +1,4 @@
+broken/logger/LoggerPrivateCtorBroken.java:6: error: Logger(String,Logger,Level,LongSupplier) is not public in Logger; cannot be accessed from outside package
+    Logger l = new Logger("x", null, Level.INFO, () -> 0L);
+               ^
+1 error

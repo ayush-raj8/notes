@@ -1,0 +1,4 @@
+step1 stored=11999
+step2 stored=11999 mail=[receipt INV-1 11999]
+step3 stored=11999
+step4 INV-1 total=120 mail=[receipt INV-1 11999]

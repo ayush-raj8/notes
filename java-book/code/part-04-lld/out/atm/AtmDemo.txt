@@ -1,0 +1,8 @@
+WRONG_PIN then OK
+balance 5000
+notes {N500=2, N200=1, N100=1} balance 3700
+amount must be a positive multiple of 100
+cannot dispense 3500 with the notes in the machine; balance still 3700
+balance 300 < requested 500; cash unchanged true
+WRONG_PIN WRONG_PIN CARD_BLOCKED
+card is blocked, state IDLE

@@ -1,0 +1,4 @@
+part-02-solid/broken/SrpRecordFieldBroken.java:10: error: id has private access in Invoice
+    inv.id = "Y";
+       ^
+1 error

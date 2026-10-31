@@ -1,0 +1,4 @@
+before count=-3
+before after clear=0
+after rejected: n must be positive
+after count=5

@@ -1,0 +1,5 @@
+broken/pubsub/TryWithResourcesBroken.java:3: error: incompatible types: try-with-resources not applicable to variable type
+    try (Object handle = new Object()) {
+                ^
+    (Object cannot be converted to AutoCloseable)
+1 error

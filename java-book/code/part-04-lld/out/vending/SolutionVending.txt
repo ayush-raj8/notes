@@ -1,0 +1,5 @@
+dispensed B2 change [QUARTER, DIME, NICKEL]
+rejected NO_CHANGE
+[QUARTER]
+dispensed C3 change []
+30

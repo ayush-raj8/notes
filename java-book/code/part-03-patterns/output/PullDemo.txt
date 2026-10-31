@@ -1,0 +1,6 @@
+celsius=20
+fahrenheit=68
+changes=1
+celsius=100
+fahrenheit=212
+changes=2

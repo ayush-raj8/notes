@@ -1,0 +1,3 @@
+floor 10 outside 0..9
+a hall call needs UP or DOWN
+0

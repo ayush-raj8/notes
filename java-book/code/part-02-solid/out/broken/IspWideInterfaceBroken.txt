@@ -1,0 +1,4 @@
+part-02-solid/broken/IspWideInterfaceBroken.java:6: error: IspWideInterfaceBroken is not abstract and does not override abstract method fax(String) in Machine
+public final class IspWideInterfaceBroken implements Machine {
+             ^
+1 error

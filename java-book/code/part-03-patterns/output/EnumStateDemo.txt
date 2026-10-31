@@ -1,0 +1,6 @@
+RED 30s
+GREEN 25s
+YELLOW 5s
+RED 30s
+false
+true

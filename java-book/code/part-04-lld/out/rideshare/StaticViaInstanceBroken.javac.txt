@@ -1,0 +1,5 @@
+broken/rideshare/StaticViaInstanceBroken.java:6: error: illegal static interface method call
+    FareCalculator other = calc.standard();
+                                        ^
+  the receiver expression should be replaced with the type qualifier 'FareCalculator'
+1 error

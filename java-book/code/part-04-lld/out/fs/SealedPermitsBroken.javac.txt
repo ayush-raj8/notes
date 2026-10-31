@@ -1,0 +1,7 @@
+broken/fs/SealedPermitsBroken.java:3: error: class is not allowed to extend sealed class: Node (as it is not listed in its 'permits' clause)
+public final class SealedPermitsBroken extends Node {
+             ^
+broken/fs/SealedPermitsBroken.java:5: error: Node(String) is not public in Node; cannot be accessed from outside package
+    super("link");
+    ^
+2 errors

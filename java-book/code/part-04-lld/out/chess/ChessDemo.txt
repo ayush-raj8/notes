@@ -1,0 +1,5 @@
+WHITE to move
+BLACK to move
+knight targets from b1: [c3, a3]
+checkmate BLACK wins
+true

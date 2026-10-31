@@ -1,0 +1,4 @@
+broken/bookmyshow/BmsMoneyDoubleBroken.java:3: error: incompatible types: possible lossy conversion from double to long
+    long total = paise * 1.18;
+                       ^
+1 error

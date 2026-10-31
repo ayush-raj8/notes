@@ -1,0 +1,3 @@
+stored before print: 11999
+printed: INV-1 total=120
+stored after print:  12000

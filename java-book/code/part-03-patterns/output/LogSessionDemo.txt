@@ -1,0 +1,6 @@
+CLOSED
+write on CLOSED
+already OPEN
+OPEN
+CLOSED
+[one, two]

@@ -1,0 +1,4 @@
+broken/bookmyshow/BmsCheckedLambdaBroken.java:6: error: unreported exception InterruptedException; must be caught or declared to be thrown
+      Thread.sleep(100);
+                  ^
+1 error

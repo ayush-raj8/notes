@@ -1,0 +1,4 @@
+part-03-patterns/broken/MediatorFinalNotSetBroken.java:10: error: variable mediator might not have been initialized
+  }
+  ^
+1 error

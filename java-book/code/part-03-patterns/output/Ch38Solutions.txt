@@ -1,0 +1,5 @@
+ex1 sms:ALERT email:digest
+ex2 [INFO a] [INFO b]
+ex3 [[app] INFO up]
+ex4 EMAIL:HELLO
+ex5 12 without bridge, 7 with bridge

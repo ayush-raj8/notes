@@ -1,0 +1,30 @@
+total minutes: 45
+CLARIFY_REQUIREMENTS (5): Scoped requirement list with explicit out-of-scope items
+IDENTIFY_ENTITIES (5): Nouns turned into candidate classes
+DEFINE_RELATIONSHIPS (5): Associations, composition, inheritance with multiplicity
+DESIGN_APIS (8): Public method signatures for the main use cases
+APPLY_PATTERNS (7): Patterns chosen only where a requirement demands variation
+CODE_CORE (10): Compiling core flow plus one test
+EXTEND_AND_CONCURRENCY (5): Two extensions and the shared mutable state
+Candidates[classes=[Barista, Customer, Drink, Order], methods=[places, prepares]]
+# Cafe order
+scope:
+  [FUNCTIONAL] Customer places Order
+  [FUNCTIONAL] Barista prepares Drink
+  [NON_FUNCTIONAL] Orders from many tills at once
+  [OUT_OF_SCOPE] Payment gateway
+entities: [Barista, Customer, Drink, Order]
+api:
+  Order place(Customer c, List<Drink> drinks)
+  void prepare(Order o)
+patterns: [Strategy]
+problems: []
+classDiagram
+  class Drink
+  class Customer
+  class Order
+  class Barista
+  Customer --> Order : places
+  Order *-- Drink : 1..*
+  Barista ..> Drink : prepares
+[OrderBook.orders]

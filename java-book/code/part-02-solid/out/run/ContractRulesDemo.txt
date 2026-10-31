@@ -1,0 +1,5 @@
+covariant: Dog
+lenient: 0 42
+bag: [x, y]
+frozen bag: frozen
+List.of add: UnsupportedOperationException

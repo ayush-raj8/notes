@@ -1,0 +1,4 @@
+broken/scheduler/SealedScheduleBroken.java:3: error: class is not allowed to extend sealed class: Schedule (as it is not listed in its 'permits' clause)
+public record SealedScheduleBroken(String expression) implements Schedule {
+       ^
+1 error

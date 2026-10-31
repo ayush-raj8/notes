@@ -1,0 +1,3 @@
+careful   balance=100
+forgetful balance=-50
+tell      spent=false balance=100

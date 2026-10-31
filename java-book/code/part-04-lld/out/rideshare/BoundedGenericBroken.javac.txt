@@ -1,0 +1,11 @@
+broken/rideshare/BoundedGenericBroken.java:10: error: method best in class BoundedGenericBroken cannot be applied to given types;
+    return best(drivers);
+           ^
+  required: List<T>
+  found:    List<Driver>
+  reason: inference variable T has incompatible bounds
+    equality constraints: Driver
+    upper bounds: Comparable<T>
+  where T is a type-variable:
+    T extends Comparable<T> declared in method <T>best(List<T>)
+1 error

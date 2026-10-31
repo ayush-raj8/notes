@@ -1,0 +1,5 @@
+saved:    level=3 score=1200 items=[sword] token=tok-1
+mutated:  level=9 score=0 items=[sword, cursed ring] token=tok-1
+loaded:   level=3 score=1200 items=[sword] token=null
+same object? false
+file bytes > 0? true

@@ -1,0 +1,4 @@
+part-03-patterns/broken/BridgeAbstractNewBroken.java:6: error: Shape is abstract; cannot be instantiated
+    Shape s = new Shape(new VectorRenderer());
+              ^
+1 error

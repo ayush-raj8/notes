@@ -1,0 +1,4 @@
+part-03-patterns/broken/CommandAnonymousMissingBroken.java:10: error: <anonymous CommandAnonymousMissingBroken$1> is not abstract and does not override abstract method undo() in Command
+        new Command() {
+                      ^
+1 error

@@ -1,0 +1,6 @@
+part-03-patterns/broken/AbstractFactoryInterfaceTypeBroken.java:7: error: cannot find symbol
+    System.out.println(f.contrast());
+                        ^
+  symbol:   method contrast()
+  location: variable f of type UiFactory
+1 error

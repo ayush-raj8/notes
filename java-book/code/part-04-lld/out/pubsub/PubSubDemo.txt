@@ -1,0 +1,16 @@
+billing got o-1
+audit saw o-1
+delivered 2
+billing got vip-2
+vip desk got vip-2
+audit saw vip-2
+delivered 3
+failure on prices: bad price 99
+audit saw 99
+delivered 1
+billing got o-3
+audit saw o-3
+temp got o-3
+billing got o-4
+audit saw o-4
+delivered 2

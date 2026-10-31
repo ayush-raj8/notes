@@ -1,0 +1,4 @@
+part-03-patterns/broken/MementoInnerStaticBroken.java:11: error: non-static variable this cannot be referenced from a static context
+    Memento m = new Memento("x");
+                ^
+1 error

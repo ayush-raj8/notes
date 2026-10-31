@@ -1,0 +1,5 @@
+F0-S1 F1-M1
+free: 1
+bike fee: 10
+car fee: 60
+rejected: no spot for TRUCK KA-04

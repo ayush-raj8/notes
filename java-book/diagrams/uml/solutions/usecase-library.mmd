@@ -1,0 +1,13 @@
+classDiagram
+  class MemberActions {
+    <<interface>>
+    +borrow(String) String
+    +returnBook(String, int) String
+  }
+  class LibrarianActions {
+    <<interface>>
+    +add(String) void
+  }
+  class LibraryService
+  MemberActions <|.. LibraryService
+  LibrarianActions <|.. LibraryService

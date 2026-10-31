@@ -1,0 +1,4 @@
+6
+lights 10%
+playing X
+lights 100%

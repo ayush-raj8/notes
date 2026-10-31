@@ -1,0 +1,5 @@
+cannot complete from Matched
+cannot start from InTrip
+cannot cancel from InTrip
+36
+done, fare 36

@@ -1,0 +1,7 @@
+part-03-patterns/broken/SingletonExtendFinalBroken.java:4: error: cannot inherit from final EagerSingleton
+public final class SingletonExtendFinalBroken extends EagerSingleton {}
+                                                      ^
+part-03-patterns/broken/SingletonExtendFinalBroken.java:4: error: EagerSingleton() has private access in EagerSingleton
+public final class SingletonExtendFinalBroken extends EagerSingleton {}
+             ^
+2 errors

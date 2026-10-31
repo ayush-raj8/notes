@@ -1,0 +1,10 @@
+Optional.empty
+Optional[asha]
+Optional[token] 2
+live=1 stored=2
+purged 1, stored=1
+Optional.empty
+false true
+true asha-v3
+inside tx: Optional[mira] Optional.empty outside: Optional.empty
+[user:1, user:3]

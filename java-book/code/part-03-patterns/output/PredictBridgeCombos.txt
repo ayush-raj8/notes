@@ -1,0 +1,3 @@
+vector circle r=2
+pixels for rect 4x1
+CircleShape Shape

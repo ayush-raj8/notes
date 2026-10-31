@@ -1,0 +1,4 @@
+part-03-patterns/broken/VisitorRecordMutateBroken.java:6: error: cannot assign a value to final variable value
+    n.value = 2;
+     ^
+1 error

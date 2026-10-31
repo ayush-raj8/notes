@@ -1,0 +1,7 @@
+hall call at 3 answered by E1
+t1 [E0@1 UP, E1@1 UP] []
+t2 [E0@2 UP, E1@2 UP] []
+t3 [E0@3 UP, E1@3 IDLE] [Served[elevatorId=1, floor=3]]
+t4 [E0@4 UP, E1@3 IDLE] []
+t5 [E0@5 IDLE, E1@3 IDLE] [Served[elevatorId=0, floor=5]]
+t6 [E0@5 IDLE, E1@3 IDLE] []

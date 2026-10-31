@@ -1,0 +1,4 @@
+broken/food/DuplicateCaseBroken.java:10: error: duplicate case label
+      case PLACED:
+           ^
+1 error

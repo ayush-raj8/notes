@@ -1,0 +1,4 @@
+part-03-patterns/broken/AdapterNotATargetBroken.java:6: error: incompatible types: LegacyPrinter cannot be converted to Printer
+    Printer p = new LegacyPrinter();
+                ^
+1 error

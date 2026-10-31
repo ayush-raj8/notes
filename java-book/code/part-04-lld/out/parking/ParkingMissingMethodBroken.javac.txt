@@ -1,0 +1,4 @@
+broken/parking/ParkingMissingMethodBroken.java:3: error: ParkingMissingMethodBroken is not abstract and does not override abstract method fee(VehicleType,long) in FeePolicy
+public class ParkingMissingMethodBroken implements FeePolicy {
+       ^
+1 error

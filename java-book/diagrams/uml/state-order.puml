@@ -1,0 +1,10 @@
+@startuml state-order
+[*] --> NEW
+NEW --> PAID : PAY
+NEW --> CANCELLED : CANCEL
+PAID --> SHIPPED : SHIP
+PAID --> CANCELLED : CANCEL
+SHIPPED --> DELIVERED : DELIVER
+DELIVERED --> [*]
+CANCELLED --> [*]
+@enduml

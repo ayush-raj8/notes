@@ -1,0 +1,3 @@
+DeliveryResult[channel=PUSH, status=FAILED, attempts=2]
+DeliveryResult[channel=EMAIL, status=SENT, attempts=1]
+[EMAIL e@x [subj] body]

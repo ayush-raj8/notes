@@ -1,0 +1,4 @@
+part-03-patterns/broken/StrategyEnumNewBroken.java:6: error: enum classes may not be instantiated
+    Op op = new Op("^");
+            ^
+1 error

@@ -1,0 +1,6 @@
+oak/green at (1,1)
+oak/green at (5,2)
+pine/dark at (9,4)
+oak/green at (3,7)
+4 trees, 2 shared types
+true

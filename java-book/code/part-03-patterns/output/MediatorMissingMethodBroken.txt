@@ -1,0 +1,4 @@
+part-03-patterns/broken/MediatorMissingMethodBroken.java:9: error: MediatorMissingMethodBroken is not abstract and does not override abstract method direct(User,String,String) in ChatMediator
+public final class MediatorMissingMethodBroken implements ChatMediator {
+             ^
+1 error

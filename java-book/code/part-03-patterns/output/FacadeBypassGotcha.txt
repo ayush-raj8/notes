@@ -1,0 +1,3 @@
+true
+0
+FAILED: out of stock pen

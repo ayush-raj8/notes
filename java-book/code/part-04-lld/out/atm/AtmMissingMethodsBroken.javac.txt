@@ -1,0 +1,4 @@
+broken/atm/AtmMissingMethodsBroken.java:3: error: AtmMissingMethodsBroken is not abstract and does not override abstract method credit(String,long) in Bank
+public class AtmMissingMethodsBroken implements Bank {
+       ^
+1 error

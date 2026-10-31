@@ -1,0 +1,5 @@
+SEND -> Closed[]
+OPEN -> Open[sent=0]
+SEND -> Open[sent=1]
+SEND -> Open[sent=2]
+CLOSE -> Closed[]

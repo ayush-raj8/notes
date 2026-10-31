@@ -1,0 +1,4 @@
+broken/snakeladder/SealedModifierBroken.java:4: error: sealed, non-sealed or final modifiers expected
+  class Plain implements Cell {}
+  ^
+1 error

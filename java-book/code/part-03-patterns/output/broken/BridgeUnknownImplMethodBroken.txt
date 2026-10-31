@@ -1,0 +1,6 @@
+part-03-patterns/broken/BridgeUnknownImplMethodBroken.java:11: error: cannot find symbol
+    return renderer.triangle(3);
+                   ^
+  symbol:   method triangle(int)
+  location: variable renderer of type Renderer
+1 error

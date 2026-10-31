@@ -1,0 +1,4 @@
+part-03-patterns/broken/MementoRecordMutateBroken.java:6: error: cannot assign a value to final variable text
+    s.text = "tampered";
+     ^
+1 error

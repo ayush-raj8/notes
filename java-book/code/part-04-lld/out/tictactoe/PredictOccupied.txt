@@ -1,0 +1,3 @@
+cell occupied: Position[row=0, col=0]
+B
+next O

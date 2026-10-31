@@ -1,0 +1,4 @@
+broken/chess/ChessPermitsBroken.java:8: error: class is not allowed to extend sealed class: Piece (as it is not listed in its 'permits' clause)
+  record Amazon(Color color) implements Piece {
+  ^
+1 error

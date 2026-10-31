@@ -1,0 +1,11 @@
+part-03-patterns/broken/CommandReturnTypeBroken.java:5: error: CommandReturnTypeBroken is not abstract and does not override abstract method execute() in Command
+public final class CommandReturnTypeBroken implements Command {
+             ^
+part-03-patterns/broken/CommandReturnTypeBroken.java:7: error: execute() in CommandReturnTypeBroken cannot implement execute() in Command
+  public int execute() {
+             ^
+  return type int is not compatible with void
+part-03-patterns/broken/CommandReturnTypeBroken.java:6: error: method does not override or implement a method from a supertype
+  @Override
+  ^
+3 errors

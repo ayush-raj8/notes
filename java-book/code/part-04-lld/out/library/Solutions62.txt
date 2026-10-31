@@ -1,0 +1,6 @@
+ex1 50 100
+ex2 due 2026-03-02
+ex3 no
+ex4 borrowed B-2
+ex4 reserved 2
+ex5 80

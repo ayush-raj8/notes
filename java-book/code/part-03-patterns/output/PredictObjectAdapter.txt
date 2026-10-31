@@ -1,0 +1,3 @@
+LEGACY[a]
+LEGACY[b]
+false

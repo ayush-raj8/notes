@@ -1,0 +1,4 @@
+part-03-patterns/broken/StatePrivateContextBroken.java:7: error: state has private access in Context
+    c.state = "PAID";
+     ^
+1 error

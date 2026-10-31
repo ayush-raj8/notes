@@ -1,0 +1,4 @@
+broken/fs/PackagePrivateCtorBroken.java:5: error: FileNode(String,String) is not public in FileNode; cannot be accessed from outside package
+    FileNode f = new FileNode("a.txt", "hello");
+                 ^
+1 error

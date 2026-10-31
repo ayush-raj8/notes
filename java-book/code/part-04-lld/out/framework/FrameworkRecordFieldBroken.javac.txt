@@ -1,0 +1,4 @@
+broken/framework/FrameworkRecordFieldBroken.java:6: error: text has private access in Requirement
+    r.text = "changed";
+     ^
+1 error

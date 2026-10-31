@@ -1,0 +1,5 @@
+part-03-patterns/broken/MediatorGenericColleagueBroken.java:19: error: incompatible types: TextField cannot be converted to Button
+    hub.register(new TextField());
+                 ^
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+1 error

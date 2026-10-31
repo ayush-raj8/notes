@@ -1,0 +1,5 @@
+0
+percent must be 0..100: -1
+999
+NPE strategy
+999

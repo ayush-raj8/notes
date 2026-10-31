@@ -10,3 +10,17 @@ The published site is [https://ayush-raj8.github.io/notes/](https://ayush-raj8.g
 pnpm install
 pnpm dev
 ```
+
+## Java OOP / SOLID / LLD book
+
+Sibling mdBook under [`java-book/`](java-book/). Exam-oriented chapter contract: [`java-book/CONTENT_STANDARDS.md`](java-book/CONTENT_STANDARDS.md). Plan and progress: [`java-book/PLAN.md`](java-book/PLAN.md), [`java-book/PROGRESS.md`](java-book/PROGRESS.md).
+
+- Published HTML: [https://ayush-raj8.github.io/notes/java/](https://ayush-raj8.github.io/notes/java/) (static only; Java is not executed on Pages)
+- Series landing: [https://ayush-raj8.github.io/notes/library/](https://ayush-raj8.github.io/notes/library/)
+- CI: `.github/workflows/java-ci.yml` runs `mvn verify` + `mdbook build` on `java-book/**` changes
+
+```bash
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)  # macOS
+cd java-book/code && mvn -q verify
+cd .. && mdbook build
+```

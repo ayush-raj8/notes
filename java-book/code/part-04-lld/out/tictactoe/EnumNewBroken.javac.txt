@@ -1,0 +1,4 @@
+broken/tictactoe/EnumNewBroken.java:5: error: enum classes may not be instantiated
+    Mark third = new Mark();
+                 ^
+1 error

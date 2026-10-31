@@ -1,0 +1,4 @@
+broken/tictactoe/RecordCompactAssignBroken.java:4: error: cannot assign a value to final variable row
+      this.row = Math.abs(row);
+          ^
+1 error

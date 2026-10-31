@@ -1,0 +1,3 @@
+((2 + 3) * 4) = 20
+numbers=3 operators=2
+Mul[left=Add[left=Num[value=2], right=Num[value=3]], right=Num[value=4]]

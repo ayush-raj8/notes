@@ -1,0 +1,5 @@
+bytes: 52
+<ul>
+<li>café</li>
+<li>naïve</li>
+</ul><!-- 2 -->

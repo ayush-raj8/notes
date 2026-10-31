@@ -1,0 +1,4 @@
+broken/notification/NeverThrownBroken.java:10: error: exception SendException is never thrown in body of corresponding try statement
+    } catch (SendException e) {
+      ^
+1 error

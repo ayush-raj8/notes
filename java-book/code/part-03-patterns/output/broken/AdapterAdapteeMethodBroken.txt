@@ -1,0 +1,6 @@
+part-03-patterns/broken/AdapterAdapteeMethodBroken.java:7: error: cannot find symbol
+    System.out.println(p.printLegacy("x"));
+                        ^
+  symbol:   method printLegacy(String)
+  location: variable p of type Printer
+1 error

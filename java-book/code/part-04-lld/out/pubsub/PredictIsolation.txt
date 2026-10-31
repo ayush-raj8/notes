@@ -1,0 +1,3 @@
+failed: boom m
+ok m
+1

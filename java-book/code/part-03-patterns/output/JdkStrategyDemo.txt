@@ -1,0 +1,4 @@
+[banana, fig, kiwi, pear]
+[fig, kiwi, pear, banana]
+[banana, kiwi, pear, fig]
+[a, b, C]

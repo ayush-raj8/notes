@@ -1,0 +1,3 @@
+WITHDRAW not allowed in IDLE
+BALANCE not allowed in CARD_INSERTED
+IDLE

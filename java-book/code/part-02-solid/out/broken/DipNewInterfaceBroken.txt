@@ -1,0 +1,4 @@
+part-02-solid/broken/DipNewInterfaceBroken.java:8: error: Mailer is abstract; cannot be instantiated
+    Mailer m = new Mailer();
+               ^
+1 error

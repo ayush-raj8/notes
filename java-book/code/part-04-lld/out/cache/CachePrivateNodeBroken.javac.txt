@@ -1,0 +1,4 @@
+broken/cache/CachePrivateNodeBroken.java:5: error: LruCache.Node has private access in LruCache
+    LruCache<String, Integer>.Node n = null;
+                             ^
+1 error

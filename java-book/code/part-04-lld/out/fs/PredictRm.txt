@@ -1,0 +1,6 @@
+NOT_EMPTY: /d
+ok
+INVALID_PATH: /
+NOT_FOUND: /nope
+ok
+NOT_FOUND: /d

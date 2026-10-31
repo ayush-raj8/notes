@@ -1,0 +1,4 @@
+part-02-solid/broken/OcpNotPermittedBroken.java:6: error: class is not allowed to extend sealed class: Payment (as it is not listed in its 'permits' clause)
+public record OcpNotPermittedBroken(long cents) implements Payment {}
+       ^
+1 error

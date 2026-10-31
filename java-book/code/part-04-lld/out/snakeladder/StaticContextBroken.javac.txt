@@ -1,0 +1,4 @@
+broken/snakeladder/StaticContextBroken.java:5: error: non-static method lastCell() cannot be referenced from a static context
+    int last = Board.lastCell();
+                    ^
+1 error

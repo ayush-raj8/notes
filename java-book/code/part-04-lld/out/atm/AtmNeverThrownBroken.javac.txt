@@ -1,0 +1,4 @@
+broken/atm/AtmNeverThrownBroken.java:8: error: exception InsufficientFundsException is never thrown in body of corresponding try statement
+    } catch (InsufficientFundsException e) {
+      ^
+1 error

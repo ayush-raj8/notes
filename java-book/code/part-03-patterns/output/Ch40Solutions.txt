@@ -1,0 +1,5 @@
+ex1 [hi] OK
+ex2 60 220
+ex3 [Person[name=cy, age=41], Person[name=al, age=30], Person[name=bo, age=30]]
+ex4 10 24
+ex5 true false

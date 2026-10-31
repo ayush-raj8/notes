@@ -1,0 +1,3 @@
+loan limit reached: 2
+2
+B-3

@@ -1,0 +1,4 @@
+broken/ratelimit/RateLimitLambdaBroken.java:5: error: incompatible types: incompatible parameter types in lambda expression
+    RateLimiter always = () -> true;
+                         ^
+1 error

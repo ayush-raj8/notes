@@ -1,0 +1,6 @@
+broken/rideshare/RecordPatternArityBroken.java:6: error: incorrect number of nested patterns
+      case RideState.Completed(var driver) -> 0;
+           ^
+  required: Driver,long
+  found: Driver
+1 error

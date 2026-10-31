@@ -1,0 +1,2 @@
+saturday total=10500 mails=1 stored=1
+monday   total=10000 mails=1 stored=1

@@ -1,0 +1,7 @@
+part-02-solid/broken/PrinConcreteParamBroken.java:13: error: incompatible types: no instance(s) of type variable(s) E exist so that List<E> conforms to ArrayList<Integer>
+    System.out.println(count(List.of(1, 2, 3)));
+                       ^
+  where E is a type-variable:
+    E extends Object declared in method <E>of(E,E,E)
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+1 error

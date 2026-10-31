@@ -1,0 +1,4 @@
+part-03-patterns/broken/PrototypeAbstractNewBroken.java:6: error: Shape is abstract; cannot be instantiated
+    Shape s = new Shape("x");
+              ^
+1 error

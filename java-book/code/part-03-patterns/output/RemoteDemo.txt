@@ -1,0 +1,3 @@
+tv    on vol=40
+radio on vol=20
+radio on vol=0

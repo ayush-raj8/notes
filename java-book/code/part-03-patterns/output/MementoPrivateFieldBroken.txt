@@ -1,0 +1,4 @@
+part-03-patterns/broken/MementoPrivateFieldBroken.java:14: error: text has private access in Memento
+    System.out.println(m.text);
+                        ^
+1 error

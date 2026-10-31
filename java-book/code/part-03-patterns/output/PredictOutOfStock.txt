@@ -1,0 +1,4 @@
+OK TRK-INK
+FAILED: out of stock cap
+OK TRK-PEN
+FAILED: out of stock pen

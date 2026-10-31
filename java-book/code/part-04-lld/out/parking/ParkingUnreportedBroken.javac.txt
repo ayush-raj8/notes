@@ -1,0 +1,4 @@
+broken/parking/ParkingUnreportedBroken.java:6: error: unreported exception LotFullException; must be caught or declared to be thrown
+    lot.enter(new Vehicle("A", VehicleType.CAR), 0);
+             ^
+1 error

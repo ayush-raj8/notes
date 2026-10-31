@@ -1,0 +1,7 @@
+broken/kv/WildcardPutBroken.java:7: error: incompatible types: int cannot be converted to CAP#1
+    store.put("a", 1);
+                   ^
+  where CAP#1 is a fresh type-variable:
+    CAP#1 extends Object from capture of ?
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+1 error

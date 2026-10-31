@@ -1,0 +1,5 @@
+part-03-patterns/broken/BridgeLambdaRendererBroken.java:6: error: incompatible types: Renderer is not a functional interface
+    Renderer r = radius -> "circle";
+                 ^
+    multiple non-overriding abstract methods found in interface Renderer
+1 error

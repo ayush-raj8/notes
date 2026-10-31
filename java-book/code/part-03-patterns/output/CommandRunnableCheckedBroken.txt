@@ -1,0 +1,4 @@
+part-03-patterns/broken/CommandRunnableCheckedBroken.java:3: error: unreported exception InterruptedException; must be caught or declared to be thrown
+    Runnable r = () -> Thread.sleep(1);
+                                   ^
+1 error

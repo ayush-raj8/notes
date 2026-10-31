@@ -1,0 +1,4 @@
+part-02-solid/broken/PrinSinkIncompleteBroken.java:7: error: PrinSinkIncompleteBroken is not abstract and does not override abstract method size() in Sink
+public final class PrinSinkIncompleteBroken<E> implements Sink<E> {
+             ^
+1 error

@@ -1,0 +1,5 @@
+0 3 6 9 <- for-each
+0 3 6 9 <- explicit iterator
+0 3 6 9 <- internal iteration
+sum=18
+default remove(): UnsupportedOperationException

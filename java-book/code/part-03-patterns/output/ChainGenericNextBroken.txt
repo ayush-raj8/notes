@@ -1,0 +1,5 @@
+part-03-patterns/broken/ChainGenericNextBroken.java:13: error: incompatible types: Handler<Integer> cannot be converted to Handler<String>
+    names.setNext(numbers);
+                  ^
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+1 error

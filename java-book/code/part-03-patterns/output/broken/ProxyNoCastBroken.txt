@@ -1,0 +1,4 @@
+part-03-patterns/broken/ProxyNoCastBroken.java:9: error: incompatible types: Object cannot be converted to Image
+        Proxy.newProxyInstance(
+                              ^
+1 error

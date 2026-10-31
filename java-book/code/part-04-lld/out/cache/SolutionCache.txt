@@ -1,0 +1,6 @@
+loaded1 loaded1
+LRU  true/false/true
+LFU  true/false/true
+FIFO false/true/true
+same=true
+CacheStats[hits=0, misses=12]

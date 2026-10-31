@@ -1,0 +1,10 @@
+broken/splitwise/SplitMapLongBroken.java:6: error: incompatible types: inference variable V has incompatible bounds
+    ExactSplit s = new ExactSplit(Map.of("a", 50, "b", 50));
+                   ^
+    equality constraints: Long
+    lower bounds: Integer
+  where V,K are type-variables:
+    V extends Object declared in method <K,V>of(K,V,K,V)
+    K extends Object declared in method <K,V>of(K,V,K,V)
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+1 error

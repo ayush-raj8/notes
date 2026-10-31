@@ -1,0 +1,6 @@
+ex1 PUSH:hi
+ex2 50
+ex2 0..100 expected: 101
+ex3 SMS:x
+ex4 A:1 B:2 A:3
+ex5 SLACK:go

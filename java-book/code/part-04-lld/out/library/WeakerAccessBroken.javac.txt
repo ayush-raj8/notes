@@ -1,0 +1,5 @@
+broken/library/WeakerAccessBroken.java:4: error: fineCents(long) in WeakerAccessBroken cannot implement fineCents(long) in FinePolicy
+  long fineCents(long daysLate) {
+       ^
+  attempting to assign weaker access privileges; was public
+1 error

@@ -1,0 +1,4 @@
+step1 rect 20
+step1 sq   16
+after total 36
+after x2    144

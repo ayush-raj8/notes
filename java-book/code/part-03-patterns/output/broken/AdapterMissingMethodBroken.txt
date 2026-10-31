@@ -1,0 +1,4 @@
+part-03-patterns/broken/AdapterMissingMethodBroken.java:4: error: AdapterMissingMethodBroken is not abstract and does not override abstract method print(String) in Printer
+public final class AdapterMissingMethodBroken implements Printer {
+             ^
+1 error

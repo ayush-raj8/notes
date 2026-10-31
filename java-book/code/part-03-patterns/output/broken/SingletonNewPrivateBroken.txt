@@ -1,0 +1,4 @@
+part-03-patterns/broken/SingletonNewPrivateBroken.java:6: error: HolderSingleton() has private access in HolderSingleton
+    HolderSingleton s = new HolderSingleton();
+                        ^
+1 error

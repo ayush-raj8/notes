@@ -1,0 +1,4 @@
+part-02-solid/broken/OcpFinalExtendBroken.java:6: error: cannot inherit from final PercentDiscount
+public class OcpFinalExtendBroken extends PercentDiscount {
+                                          ^
+1 error

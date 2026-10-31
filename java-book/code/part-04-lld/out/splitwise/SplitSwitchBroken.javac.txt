@@ -1,0 +1,4 @@
+broken/splitwise/SplitSwitchBroken.java:5: error: the switch expression does not cover all possible input values
+    return switch (s) {
+           ^
+1 error

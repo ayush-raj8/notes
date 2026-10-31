@@ -1,0 +1,7 @@
+A1: landing
+B2: hold (A1 on runway)
+C3: hold (A1 on runway)
+A1: landed
+B2: cleared to land
+B2: landed
+C3: cleared to land

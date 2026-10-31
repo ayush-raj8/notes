@@ -1,0 +1,4 @@
+Rejected[reason=INSERT_COIN]
+Rejected[reason=UNKNOWN_PRODUCT]
+Rejected[reason=INSUFFICIENT: need 35 more]
+25

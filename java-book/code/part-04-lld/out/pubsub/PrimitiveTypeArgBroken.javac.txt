@@ -1,0 +1,6 @@
+broken/pubsub/PrimitiveTypeArgBroken.java:5: error: unexpected type
+    Subscriber<int> s = n -> System.out.println(n);
+               ^
+  required: reference
+  found:    int
+1 error

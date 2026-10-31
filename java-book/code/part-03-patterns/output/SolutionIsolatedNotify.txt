@@ -1,0 +1,3 @@
+one hi
+observer failed: boom
+three hi

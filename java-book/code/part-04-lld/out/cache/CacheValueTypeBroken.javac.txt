@@ -1,0 +1,5 @@
+broken/cache/CacheValueTypeBroken.java:7: error: incompatible types: String cannot be converted to Integer
+    c.put("a", "one");
+               ^
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+1 error

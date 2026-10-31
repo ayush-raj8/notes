@@ -1,0 +1,6 @@
+1: alpha
+2: beta
+3: gamma
+first only: alpha
+closed before block ends? false
+closed after last line: true

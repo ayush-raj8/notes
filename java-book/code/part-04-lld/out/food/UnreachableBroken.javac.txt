@@ -1,0 +1,4 @@
+broken/food/UnreachableBroken.java:4: error: unreachable statement
+    System.out.println("rejected " + reason);
+    ^
+1 error

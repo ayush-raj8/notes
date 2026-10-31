@@ -1,0 +1,6 @@
+refused: WITHDRAW not allowed in IDLE
+notes {N200=3}
+refused: amount must be a positive multiple of 100
+cash: cannot dispense 100 with the notes in the machine
+900
+succeeded=5 balance=0

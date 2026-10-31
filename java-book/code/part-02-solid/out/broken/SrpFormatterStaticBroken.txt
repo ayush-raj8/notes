@@ -1,0 +1,4 @@
+part-02-solid/broken/SrpFormatterStaticBroken.java:8: error: non-static method text(String,long) cannot be referenced from a static context
+    System.out.println(InvoiceFormatter.text("A", 100));
+                                       ^
+1 error

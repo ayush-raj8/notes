@@ -1,0 +1,5 @@
+1000 DEBUG app: starting
+1001 WARN app.db: slow query
+1002 DEBUG app.web: inherits DEBUG from app
+1003 ERROR other: built 1
+messages built: 1

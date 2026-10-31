@@ -1,0 +1,6 @@
+broken/fs/PatternScopeBroken.java:9: error: cannot find symbol
+    return f.read();
+           ^
+  symbol:   variable f
+  location: class PatternScopeBroken
+1 error

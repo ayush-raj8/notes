@@ -1,0 +1,5 @@
+G1 fax=false
+G2 scan
+G3 u1:Asha
+G4 archived:page-1 skipped
+G5 printed:page-1

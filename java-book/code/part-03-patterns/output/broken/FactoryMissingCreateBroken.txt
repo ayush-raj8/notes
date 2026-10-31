@@ -1,0 +1,4 @@
+part-03-patterns/broken/FactoryMissingCreateBroken.java:4: error: FactoryMissingCreateBroken is not abstract and does not override abstract method create() in NotifierCreator
+public final class FactoryMissingCreateBroken extends NotifierCreator {}
+             ^
+1 error

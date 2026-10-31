@@ -1,0 +1,5 @@
+original doc[p1, p2]
+shallow  doc[p1, p2]
+deep     doc[p1]
+true
+false

@@ -10,3 +10,11 @@ Read `PROJECT_GUIDE.md`, `CONTENT_STANDARDS.md`, `VISUALIZATION_STANDARDS.md`, `
 - Do not regenerate lesson files from a script. Register a body under the existing catalog id.
 - After a catalog change, run `pnpm curriculum:doc` and keep `CURRICULUM.md` in the same change.
 - Chapter summaries live in `src/content/subjects/cn/chapter-summaries` (not in the 67-lesson catalog). Every complete summary must pass `assessChapterSummary` and the CONTENT_STANDARDS chapter-summary benchmark.
+
+## Java book (`java-book/`)
+
+Separate from the CN Vite course. Before writing or editing a Java chapter, read `java-book/CONTENT_STANDARDS.md`, `java-book/PLAN.md`, and `java-book/PROGRESS.md`.
+
+- Do not edit CN content, reader, or Vite config when working on the Java book except additive shared files (README, Pages workflow, landing).
+- From chapter 01 onward, a chapter is not done without the exam block: flash rules, predict-output (≥5), compile-or-not (≥4), writing prompts (≥3), all include-backed with real `javac`/stdout.
+- Every snippet is an mdBook include from `java-book/code/`; `broken/` stays off the Maven path.

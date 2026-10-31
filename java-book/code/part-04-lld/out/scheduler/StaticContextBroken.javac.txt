@@ -1,0 +1,4 @@
+broken/scheduler/StaticContextBroken.java:5: error: non-static method cancel(String) cannot be referenced from a static context
+    Scheduler.cancel("t1");
+             ^
+1 error

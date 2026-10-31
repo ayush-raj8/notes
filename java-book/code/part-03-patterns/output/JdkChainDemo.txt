@@ -1,0 +1,6 @@
+loader app
+loader platform
+loader <bootstrap>
+true
+app handler got: connected from app.db
+app handler got: slow query from app.db

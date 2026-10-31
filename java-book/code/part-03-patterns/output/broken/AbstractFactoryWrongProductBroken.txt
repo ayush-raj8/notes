@@ -1,0 +1,4 @@
+part-03-patterns/broken/AbstractFactoryWrongProductBroken.java:7: error: incompatible types: String cannot be converted to Button
+    return "button";
+           ^
+1 error

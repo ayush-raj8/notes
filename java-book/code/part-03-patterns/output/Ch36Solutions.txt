@@ -1,0 +1,5 @@
+ex1 target calls=2
+ex2 Z calls=3
+ex3 read-only
+ex4 [balance, withdraw]
+ex5 built=1

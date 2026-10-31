@@ -1,0 +1,6 @@
+start: user.enabled=true pass.enabled=true login.enabled=false
+user typed: user.enabled=true pass.enabled=true login.enabled=false
+pass typed: user.enabled=true pass.enabled=true login.enabled=true
+user cleared: user.enabled=true pass.enabled=true login.enabled=false
+guest on: user.enabled=false pass.enabled=false login.enabled=true
+guest off: user.enabled=true pass.enabled=true login.enabled=false

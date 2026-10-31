@@ -1,0 +1,5 @@
+G1 13.45
+G2 X total=3
+G3 1100
+G4 stored=0
+G5 Line[sku=A, qty=2, unitCents=4999]

@@ -1,0 +1,4 @@
+o-1 subtotal=750 fee=60 discount=75 total=735
+partner p2
+[PLACED, ACCEPTED, PREPARING, READY, PICKED_UP, DELIVERED]
+illegal transition DELIVERED -> CANCELLED

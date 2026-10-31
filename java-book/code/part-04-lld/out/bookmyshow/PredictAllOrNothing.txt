@@ -1,0 +1,3 @@
+seats not available: [A2]
+Available[]
+7

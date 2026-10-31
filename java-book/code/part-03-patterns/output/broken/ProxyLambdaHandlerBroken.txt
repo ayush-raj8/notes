@@ -1,0 +1,4 @@
+part-03-patterns/broken/ProxyLambdaHandlerBroken.java:8: error: incompatible types: incompatible parameter types in lambda expression
+    InvocationHandler h = (proxy, method) -> null;
+                          ^
+1 error

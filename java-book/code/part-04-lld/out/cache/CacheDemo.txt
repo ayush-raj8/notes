@@ -1,0 +1,3 @@
+LRU  a=Optional[1] b=Optional.empty c=Optional[3]
+LFU  a=Optional[1] b=Optional.empty c=Optional[3]
+scan CacheStats[hits=0, misses=9] rate=0.0

@@ -1,0 +1,6 @@
+part-03-patterns/broken/VisitorRecordArityBroken.java:11: error: incorrect number of nested patterns
+      case Plus(var only) -> "plus";
+           ^
+  required: Node,Node
+  found: Node
+1 error

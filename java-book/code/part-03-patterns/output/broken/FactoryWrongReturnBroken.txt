@@ -1,0 +1,11 @@
+part-03-patterns/broken/FactoryWrongReturnBroken.java:4: error: FactoryWrongReturnBroken is not abstract and does not override abstract method create() in NotifierCreator
+public final class FactoryWrongReturnBroken extends NotifierCreator {
+             ^
+part-03-patterns/broken/FactoryWrongReturnBroken.java:6: error: create() in FactoryWrongReturnBroken cannot override create() in NotifierCreator
+  protected String create() {
+                   ^
+  return type String is not compatible with Notifier
+part-03-patterns/broken/FactoryWrongReturnBroken.java:5: error: method does not override or implement a method from a supertype
+  @Override
+  ^
+3 errors

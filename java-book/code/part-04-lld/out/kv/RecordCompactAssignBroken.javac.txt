@@ -1,0 +1,4 @@
+broken/kv/RecordCompactAssignBroken.java:4: error: cannot assign a value to final variable value
+      this.value = Math.max(value, 0);
+          ^
+1 error

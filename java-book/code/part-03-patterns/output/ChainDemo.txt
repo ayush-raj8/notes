@@ -1,0 +1,5 @@
+Clerk approved 50
+Clerk approved 100
+Manager approved 101
+Director approved 5000
+nobody can approve 50000

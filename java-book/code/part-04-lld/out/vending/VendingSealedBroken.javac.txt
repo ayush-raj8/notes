@@ -1,0 +1,4 @@
+broken/vending/VendingSealedBroken.java:7: error: class is not allowed to extend sealed class: VendingState (as it is not listed in its 'permits' clause)
+public class VendingSealedBroken implements VendingState {
+       ^
+1 error

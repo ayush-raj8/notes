@@ -1,0 +1,4 @@
+part-02-solid/broken/PrinFinalStringBroken.java:5: error: cannot inherit from final String
+  static class ShoutingString extends String {
+                                      ^
+1 error

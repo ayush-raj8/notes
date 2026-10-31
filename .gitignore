@@ -7,3 +7,8 @@ blob-report
 .DS_Store
 *.tsbuildinfo
 .vite
+site
+java-book/book
+java-book/code/**/target
+java-book/code/zz-lldmine/
+*.class

@@ -1,0 +1,5 @@
+part-02-solid/broken/SmellArgOrderBroken.java:12: error: incompatible types: Room cannot be converted to Guest
+    System.out.println(After.book(new Stay(Room.SINGLE, new Guest("Asha", "a@x.org"), 2, Extras.NONE)));
+                                               ^
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+1 error

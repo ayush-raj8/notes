@@ -1,0 +1,5 @@
+ex1 8080 7
+ex2 ink=FA, pen=OK
+ex3 REJECTED OK TRK-INK
+ex4 hello-world-2026
+ex5 0

@@ -1,0 +1,28 @@
+@startuml relationships
+left to right direction
+class Animal
+class Dog
+interface Stack
+class ArrayStack
+class Team
+class Player
+class House
+class Room
+class Order
+class Customer
+class Line
+class Coupon
+class Author
+class Book
+class Report
+class Formatter
+Animal <|-- Dog : generalization
+Stack <|.. ArrayStack : realization
+Team "1" o-- "0..*" Player : aggregation
+House "1" *-- "1..*" Room : composition
+Order "1" --> "1" Customer : association
+Order "1" *-- "1..*" Line : composition
+Order "1" --> "0..1" Coupon : association
+Author "1" <--> "0..*" Book : bidirectional
+Report ..> Formatter : dependency
+@enduml

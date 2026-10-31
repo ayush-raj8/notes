@@ -1,0 +1,5 @@
+part-03-patterns/broken/FactoryNarrowAccessBroken.java:6: error: create() in FactoryNarrowAccessBroken cannot override create() in NotifierCreator
+  Notifier create() {
+           ^
+  attempting to assign weaker access privileges; was protected
+1 error

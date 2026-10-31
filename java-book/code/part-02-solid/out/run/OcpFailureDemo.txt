@@ -1,0 +1,2 @@
+VIP label=gold discount=2000
+EMPLOYEE label=staff discount=0

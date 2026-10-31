@@ -1,0 +1,5 @@
+ex1 a
+ex2 128
+ex3 true false
+ex4 {BIKE=60, SEDAN=110, SUV=170}
+ex5 {Cancelled=1, Matched=1}

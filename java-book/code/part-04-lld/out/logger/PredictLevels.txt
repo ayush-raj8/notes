@@ -1,0 +1,2 @@
+[INFO:b, WARN:c, ERROR:d]
+true false

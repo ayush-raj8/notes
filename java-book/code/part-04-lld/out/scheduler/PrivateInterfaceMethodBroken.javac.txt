@@ -1,0 +1,4 @@
+broken/scheduler/PrivateInterfaceMethodBroken.java:6: error: requireNotNegative(Duration,String) has private access in Schedule
+    Schedule.requireNotNegative(Duration.ofSeconds(-1), "delay");
+            ^
+1 error
