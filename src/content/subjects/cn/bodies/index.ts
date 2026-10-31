@@ -45,6 +45,27 @@ import { body as m10ConnectivityFailures } from "../modules/m10/connectivity-fai
 import { body as m10Firewalls } from "../modules/m10/firewalls";
 import { body as m10LoadBalancing } from "../modules/m10/load-balancing";
 import { body as m10Nat } from "../modules/m10/nat";
+import { body as m11BdpAndLoss } from "../modules/m11/bandwidth-delay-and-loss";
+import { body as m11Metrics } from "../modules/m11/metrics";
+import { body as m11PartialFailure } from "../modules/m11/partial-failure";
+import { body as m11TimeoutsAndRetries } from "../modules/m11/timeouts-and-retries";
+import { body as m12KernelBuffers } from "../modules/m12/kernel-buffers";
+import { body as m12Tools } from "../modules/m12/linux-tools";
+import { body as m12Multiplexing } from "../modules/m12/multiplexing";
+import { body as m12Lifecycle } from "../modules/m12/socket-lifecycle";
+import { body as m13AcceptStall } from "../modules/m13/accept-stall";
+import { body as m13DnsOkTcpFails } from "../modules/m13/dns-ok-tcp-fails";
+import { body as m13IntermittentTimeouts } from "../modules/m13/intermittent-timeouts";
+import { body as m13IpOkNameFails } from "../modules/m13/ip-ok-name-fails";
+import { body as m13LargeResponseHangs } from "../modules/m13/large-response-hangs";
+import { body as m13LatencyCpuLow } from "../modules/m13/latency-cpu-low";
+import { body as m13LocalhostOnly } from "../modules/m13/localhost-only";
+import { body as m13Method } from "../modules/m13/method";
+import { body as m13PeriodicSpikes } from "../modules/m13/periodic-spikes";
+import { body as m13RepeatedResets } from "../modules/m13/repeated-resets";
+import { body as m13ServiceToService } from "../modules/m13/service-to-service";
+import { body as m13TcpOkTlsFails } from "../modules/m13/tcp-ok-tls-fails";
+import { body as m13TlsOkHttp5xx } from "../modules/m13/tls-ok-http-5xx";
 
 /**
  * Lesson bodies keyed by lesson id.
@@ -98,4 +119,25 @@ export const lessonBodies: Record<string, LessonBody> = {
   [m10Firewalls.id]: m10Firewalls,
   [m10LoadBalancing.id]: m10LoadBalancing,
   [m10ConnectivityFailures.id]: m10ConnectivityFailures,
+  [m11Metrics.id]: m11Metrics,
+  [m11BdpAndLoss.id]: m11BdpAndLoss,
+  [m11TimeoutsAndRetries.id]: m11TimeoutsAndRetries,
+  [m11PartialFailure.id]: m11PartialFailure,
+  [m12Lifecycle.id]: m12Lifecycle,
+  [m12Multiplexing.id]: m12Multiplexing,
+  [m12KernelBuffers.id]: m12KernelBuffers,
+  [m12Tools.id]: m12Tools,
+  [m13Method.id]: m13Method,
+  [m13DnsOkTcpFails.id]: m13DnsOkTcpFails,
+  [m13TcpOkTlsFails.id]: m13TcpOkTlsFails,
+  [m13TlsOkHttp5xx.id]: m13TlsOkHttp5xx,
+  [m13IntermittentTimeouts.id]: m13IntermittentTimeouts,
+  [m13LatencyCpuLow.id]: m13LatencyCpuLow,
+  [m13LocalhostOnly.id]: m13LocalhostOnly,
+  [m13AcceptStall.id]: m13AcceptStall,
+  [m13IpOkNameFails.id]: m13IpOkNameFails,
+  [m13RepeatedResets.id]: m13RepeatedResets,
+  [m13LargeResponseHangs.id]: m13LargeResponseHangs,
+  [m13PeriodicSpikes.id]: m13PeriodicSpikes,
+  [m13ServiceToService.id]: m13ServiceToService,
 };

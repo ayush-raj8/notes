@@ -8,6 +8,18 @@ Lessons use notes style: short bullets in principle fields, tables and steps ove
 
 All four lessons `complete` and registered (notes style). Why: 01, 23, 24, 27, 28, 29, 30, 54.
 
+## Module 11 — Performance
+
+Four lessons complete (notes style). Why: 40–44, 46–49. Count was 50 of 67 after this module.
+
+## Module 12 — Sockets
+
+Four lessons complete: lifecycle, multiplexing, kernel buffers, Linux tools. No primary why questions. Count 54 of 67.
+
+## Module 13 — Practical Troubleshooting
+
+Thirteen lessons complete (notes style): investigation method plus twelve scenario lessons, each with an `investigation` section. Why: 45, 50, 55 (primary); also embeds 20, 40, 46, 49, 53 where catalogued. Count 67 of 67. Shell/e2e examples now open the written `m13.method` lesson.
+
 ## Module 9 — TLS
 
 All four lessons `complete`: `m09.why-tls`, `m09.certificates`, `m09.handshake`, `m09.limits`. Why: 19, 25, 26, 31. Sources added: RFC 5280, RFC 6125. Count 42 of 67.
@@ -18,6 +30,13 @@ All four lessons `complete` (notes style): `m10.nat`, `m10.firewalls`, `m10.load
 
 - Sources added after opening them (all HTTP 200): RFC 2663, 2979, 3022, 4787, 4864, 5382, 6092, 6888, iptables(8), iptables-extensions(8), the kernel nf_conntrack sysctl page, the conntrack-tools manual, the HAProxy 2.8 configuration manual, and nginx's upstream module. RFC 9110 Sections 3.7, 15.6.3, and 15.6.5 were reopened.
 - Open research: some prose is not a claim and has no checked source. That covers cloud security groups being stateful and subnet ACLs stateless; X-Forwarded-For; which errno a client gets for each REJECT type; whether Linux conntrack reuses a TIME_WAIT tuple for a new SYN (the 537 connections/s ceiling assumes it does not and is labelled a teaching simplification); the kernel's "table full" log text; HAProxy `slowstart` and `fastinter` semantics beyond the parameter names; and Linux IPVS. nft(8), conntrack(8), and ipvsadm(8) are not on man7.org and are not cited.
+
+## Module 11 — Performance and Reliability
+
+All four lessons `complete` (notes style): `m11.metrics`, `m11.bdp-and-loss`, `m11.timeouts-and-retries`, `m11.partial-failure`. Prerequisites chain from `m10.connectivity-failures`. No `viz` (`bandwidth-delay` is unimplemented). Topics follow the catalog: reuse, keepalive, pooling, backpressure, and partitions live in `m11.partial-failure`; tail latency and cascading retries in `m11.timeouts-and-retries`. Worked examples in every lesson (RTT-bound vs throughput-bound request, cross-region BDP copy, a three-layer retry storm, fan-out tail, stale pooled connection). Why: 41, 42 (in `m11.bdp-and-loss`); 43, 44, 46 (in `m11.timeouts-and-retries`); 40, 47, 48, 49 (in `m11.partial-failure`). Count 50 of 67. The unwritten example in the shell and e2e tests is now `m12.lifecycle`; the pending-why example is why.50.
+
+- Sources added after opening them (all HTTP 200): RFC 2923, RFC 7567, RFC 8961, the gRPC Deadlines and Retry guides, AWS's "Exponential Backoff And Jitter" post, and the curl man page. Reopened: RFC 3550, 5681, 6298, 6928, 7323, 8085, 8446, 9110, 9112, 9113, 9293, tcp(7), socket(7), send(2), the kernel IP sysctl page, and `include/net/tcp.h`.
+- Open research: some prose is not a claim. That covers the 200 km/ms fibre figure and the 5,600 km example; `ss -ti` and `ping` spread as jitter or RTT tools; ICMP deprioritisation; "bufferbloat" as a term; the 10% retry budget, 2–3 attempts, and retry-at-one-layer advice (design judgment); the full-jitter formula (the AWS post shows formulas only as images); hedged requests; the 350 s balancer idle timeout; send() returning once bytes are in the local buffer (inferred from send(2)); TCP_KEEPIDLE and TCP_KEEPINTVL beyond their tcp(7) descriptions; MSS clamping; and partition behaviour. "The Tail at Scale" returned HTTP 403 and is not cited; AWS Builders' Library on timeouts renders by script and was not read.
 
 ## Subject layout
 
@@ -120,9 +139,8 @@ All five lessons are written and `complete`: `m07.hierarchy`, `m07.resolution`, 
 
 ## Not done
 
-- Only `tcp-timeline` is implemented. The other approved visuals, including `two-windows` and `dns-lookup`, are unimplemented.
-- Why-answers for questions owned by Modules 11–13 are empty.
-- Modules 11–13 are still planned.
+- Only `tcp-timeline` is implemented. The other approved visuals, including `two-windows`, `dns-lookup`, `nat-table`, and `bandwidth-delay`, are unimplemented.
+- All 67 lessons and why.01–why.55 answers are written. Remaining work is optional visuals and open-research notes above.
 
 ## Correction from the approved plan
 
@@ -181,4 +199,4 @@ All five lessons are written and `complete`: `m07.hierarchy`, `m07.resolution`, 
 
 ## Next task
 
-Module 11: Performance and Reliability, starting with `m11.metrics`.
+Module 12: Sockets and Linux Networking, starting with `m12.lifecycle`.

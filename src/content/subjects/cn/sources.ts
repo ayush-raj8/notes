@@ -128,6 +128,13 @@ const sourceRecords = [
     note: "Informational. NAT flavors, session start and end heuristics, limitations, and security considerations.",
   },
   {
+    id: "rfc2923",
+    title: "RFC 2923: TCP Problems with Path MTU Discovery",
+    url: "https://www.rfc-editor.org/rfc/rfc2923",
+    kind: "rfc",
+    note: "Informational. Section 2.1 describes the PMTUD black hole: small packets work, bulk transfers stall.",
+  },
+  {
     id: "rfc2979",
     title: "RFC 2979: Behavior of and Requirements for Internet Firewalls",
     url: "https://www.rfc-editor.org/rfc/rfc2979",
@@ -358,6 +365,13 @@ const sourceRecords = [
     kind: "rfc",
   },
   {
+    id: "rfc7567",
+    title: "RFC 7567: IETF Recommendations Regarding Active Queue Management",
+    url: "https://www.rfc-editor.org/rfc/rfc7567",
+    kind: "rfc",
+    note: "BCP 197. Queueing delay, tail drop and its drawbacks, buffer size, and why AQM is recommended.",
+  },
+  {
     id: "rfc7766",
     title: "RFC 7766: DNS Transport over TCP — Implementation Requirements",
     url: "https://www.rfc-editor.org/rfc/rfc7766",
@@ -431,6 +445,13 @@ const sourceRecords = [
     title: "RFC 8900: IP Fragmentation Considered Fragile",
     url: "https://www.rfc-editor.org/rfc/rfc8900",
     kind: "rfc",
+  },
+  {
+    id: "rfc8961",
+    title: "RFC 8961: Requirements for Time-Based Loss Detection",
+    url: "https://www.rfc-editor.org/rfc/rfc8961",
+    kind: "rfc",
+    note: "BCP 233. Requirements for any retransmission timer: conservative start, Karn's rule, congestion response, and exponential backoff.",
   },
   {
     id: "rfc8981",
@@ -807,6 +828,34 @@ const sourceRecords = [
     url: "https://github.com/grpc/grpc/blob/master/doc/load-balancing.md",
     kind: "vendor",
     note: "Maintainer description of client-side load-balancing policies, on the master branch.",
+  },
+  {
+    id: "grpc-deadlines-guide",
+    title: "gRPC documentation: Deadlines",
+    url: "https://grpc.io/docs/guides/deadlines/",
+    kind: "vendor",
+    note: "No default deadline, server-side cancellation, and deadline propagation as a timeout minus elapsed time.",
+  },
+  {
+    id: "grpc-retry-guide",
+    title: "gRPC documentation: Retry",
+    url: "https://grpc.io/docs/guides/retry/",
+    kind: "vendor",
+    note: "Retry policy fields, transparent retry, ±20% backoff jitter, and retry throttling by tokens.",
+  },
+  {
+    id: "aws-backoff-jitter",
+    title: "AWS Architecture Blog: Exponential Backoff And Jitter",
+    url: "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/",
+    kind: "vendor",
+    note: "Simulation of contending clients comparing no backoff, plain exponential backoff, and jittered variants. The formulas are shown as images.",
+  },
+  {
+    id: "curl-manpage",
+    title: "curl man page",
+    url: "https://curl.se/docs/manpage.html",
+    kind: "man-page",
+    note: "The -w/--write-out variables, including time_namelookup, time_connect, time_appconnect, time_starttransfer, and time_total.",
   },
   {
     id: "haproxy-config-2-8",

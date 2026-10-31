@@ -1,17 +1,17 @@
 import { expect, test } from "@playwright/test";
 
-test("home opens a module and an unwritten lesson", async ({ page }) => {
+test("home opens a module and a written troubleshooting lesson", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "Notes" })).toBeVisible();
   await page.getByRole("link", { name: "Computer Networks" }).click();
   await expect(page.getByRole("heading", { name: "Computer Networks" })).toBeVisible();
-  await page.getByRole("link", { name: "11. Performance and Reliability" }).click();
-  await expect(page.getByRole("heading", { name: "Performance and Reliability" })).toBeVisible();
+  await page.getByRole("link", { name: "13. Practical Troubleshooting" }).click();
+  await expect(page.getByRole("heading", { name: "Practical Troubleshooting" })).toBeVisible();
   await page
     .getByRole("main")
-    .getByRole("link", { name: "Latency, bandwidth, and jitter" })
+    .getByRole("link", { name: "How to investigate a network failure" })
     .click();
-  await expect(page.getByText("This lesson is not written yet.")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "First principles" })).toBeVisible();
   const overflows = await page.evaluate(
     () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
   );

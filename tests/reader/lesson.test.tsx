@@ -253,4 +253,32 @@ describe("lesson renderer", () => {
     expect(screen.getByRole("heading", { name: "Investigation" })).toBeInTheDocument();
     expect(screen.getByText("conntrack -L -d 198.51.100.10")).toBeInTheDocument();
   });
+
+  it("embeds the Module 11 why answers and worked examples", () => {
+    renderAt("/cn/learn/performance/metrics");
+    expect(
+      screen.getByText("A small API call and a large download on the same path"),
+    ).toBeInTheDocument();
+    cleanup();
+    renderAt("/cn/learn/performance/bandwidth-delay-and-loss");
+    expect(
+      screen.getByRole("link", {
+        name: "41. Why can a low-bandwidth-delay product limit throughput even on a high-bandwidth network?",
+      }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/A TCP sender can have only one window/)).toBeInTheDocument();
+    expect(screen.getByText("A backup copy between regions")).toBeInTheDocument();
+    cleanup();
+    renderAt("/cn/learn/performance/timeouts-and-retries");
+    expect(screen.getByText(/An overloaded service fails because/)).toBeInTheDocument();
+    expect(screen.getByText("A retry storm through three layers")).toBeInTheDocument();
+    cleanup();
+    renderAt("/cn/learn/performance/partial-failure");
+    expect(
+      screen.getByRole("link", {
+        name: "48. Why can a successful TCP write fail to imply successful business-level processing?",
+      }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("The first request after a quiet hour fails")).toBeInTheDocument();
+  });
 });

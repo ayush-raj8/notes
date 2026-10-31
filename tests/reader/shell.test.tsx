@@ -18,34 +18,33 @@ function renderAt(path: string) {
 }
 
 describe("application shell", () => {
-  it("shows the curriculum and an unwritten lesson", async () => {
+  it("shows the curriculum and opens a written troubleshooting lesson", async () => {
     const user = userEvent.setup();
     renderAt("/");
     expect(screen.getByRole("heading", { name: "Notes" })).toBeInTheDocument();
     await user.click(screen.getByRole("link", { name: "Computer Networks" }));
     expect(screen.getByRole("heading", { name: "Computer Networks" })).toBeInTheDocument();
-    expect(screen.getByText(/46 of 67 lessons written/)).toBeInTheDocument();
-    await user.click(screen.getByRole("link", { name: "11. Performance and Reliability" }));
-    expect(
-      screen.getByRole("heading", { name: "Performance and Reliability" }),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/67 of 67 lessons written/)).toBeInTheDocument();
+    await user.click(screen.getByRole("link", { name: "13. Practical Troubleshooting" }));
+    expect(screen.getByRole("heading", { name: "Practical Troubleshooting" })).toBeInTheDocument();
     await user.click(
       within(screen.getByRole("main")).getByRole("link", {
-        name: "Latency, bandwidth, and jitter",
+        name: "How to investigate a network failure",
       }),
     );
-    expect(screen.getByText("This lesson is not written yet.")).toBeInTheDocument();
-    expect(screen.getByText("Latency, bandwidth, throughput, and jitter.")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "First principles" })).toBeInTheDocument();
   });
 
-  it("shows not-found and a pending why answer", async () => {
+  it("shows not-found and a written why answer", async () => {
     const user = userEvent.setup();
     renderAt("/cn/learn/missing");
     expect(screen.getByRole("heading", { name: "Page not found" })).toBeInTheDocument();
     cleanup();
     renderAt("/cn/why");
-    await user.click(screen.getByRole("link", { name: /Why can a low-bandwidth-delay product/ }));
-    expect(screen.getByText("Answer not written yet.")).toBeInTheDocument();
+    await user.click(screen.getByRole("link", { name: /Why is debugging network failures/ }));
+    expect(
+      screen.getByText(/Narrow the layer with ordered evidence/, { exact: false }),
+    ).toBeInTheDocument();
   });
 
   it("opens the menu and imports progress only after confirmation", async () => {
