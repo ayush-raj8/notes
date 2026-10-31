@@ -9,3 +9,4 @@ Read `PROJECT_GUIDE.md`, `CONTENT_STANDARDS.md`, `VISUALIZATION_STANDARDS.md`, `
 - Do not invent citations or set `verification` to `checked` without opening the locator.
 - Do not regenerate lesson files from a script. Register a body under the existing catalog id.
 - After a catalog change, run `pnpm curriculum:doc` and keep `CURRICULUM.md` in the same change.
+- Chapter summaries live in `src/content/subjects/cn/chapter-summaries` (not in the 67-lesson catalog). Every complete summary must pass `assessChapterSummary` and the CONTENT_STANDARDS chapter-summary benchmark.

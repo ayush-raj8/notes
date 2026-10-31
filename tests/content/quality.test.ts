@@ -1,11 +1,13 @@
 import { describe, expect, it } from "vitest";
 import type { Lesson } from "@/content/schema";
 import {
+  assessChapterSummary,
   assessCompletedModule,
   assessLesson,
   assessWhyLinkage,
   type QualityContext,
 } from "@/content/quality";
+import type { ChapterSummary } from "@/content/subjects/cn/chapterSummarySchema";
 import type { ModuleSpec } from "@/content/subjects/cn/syllabus";
 import type { WhyQuestion } from "@/content/subjects/cn/why/questions";
 
@@ -161,5 +163,36 @@ describe("lesson quality gate", () => {
       objectives: [],
     });
     expect(assessLesson(lesson, ctx)).toEqual([]);
+  });
+
+  it("requires chapter summary coverage to match syllabus bullets", () => {
+    const module = {
+      id: "m01",
+      bullets: ["Network architecture and protocol layering.", "OSI model and TCP/IP model."],
+    } as unknown as ModuleSpec;
+    const summary = {
+      moduleId: "m01",
+      status: "complete",
+      readingMinutes: { min: 10, max: 15 },
+      thesis: "Layers split the work.",
+      outcomes: ["A", "B", "C"],
+      coverage: [
+        {
+          bullet: "Network architecture and protocol layering.",
+          notes: "• Split jobs across protocols.",
+        },
+      ],
+      mentalModel: "• Edges hold complexity.",
+      failuresAndSignals: ["One", "Two", "Three"],
+      whyAnchors: ["why.03"],
+      connections: { before: "• Start here.", after: "• Then Ethernet." },
+      selfCheck: [
+        { id: "a", prompt: "Why layers?", answer: "Different change rates." },
+        { id: "b", prompt: "Who forwards?", answer: "Routers at IP." },
+      ],
+    } satisfies ChapterSummary;
+    expect(assessChapterSummary(summary, module, [question])).toContain(
+      "m01 chapter summary coverage has 1 entries; expected 2",
+    );
   });
 });

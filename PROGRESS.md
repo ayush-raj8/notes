@@ -4,6 +4,10 @@
 
 Lessons use notes style: short bullets in principle fields, tables and steps over essays. Why answers stay to a few short sentences.
 
+## Chapter summaries (10–20 min)
+
+Every module has a complete chapter summary under `src/content/subjects/cn/chapter-summaries/`, rendered on the module page as **Chapter notes (10–20 min)**. Benchmark is fixed in `CONTENT_STANDARDS.md` and enforced by `assessChapterSummary` (full syllabus bullet coverage, primary why anchors, notes-style fields, self-checks). These are not syllabus lessons and do not change the 67-lesson count.
+
 ## Module 8 — HTTP
 
 All four lessons `complete` and registered (notes style). Why: 01, 23, 24, 27, 28, 29, 30, 54.

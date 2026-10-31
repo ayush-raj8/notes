@@ -300,6 +300,29 @@ button.button.secondary {
   padding-left: 1.1rem;
 }
 
+.chapter-summary {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.chapter-coverage {
+  padding-left: 1.25rem;
+}
+
+.chapter-coverage > li + li {
+  margin-top: 1rem;
+}
+
+.coverage-bullet {
+  font-weight: 500;
+  margin: 0 0 0.35rem;
+}
+
+.notes-bullets {
+  margin: 0;
+}
+
 .topic-list li + li,
 .plain-list li + li {
   margin-top: 0.35rem;

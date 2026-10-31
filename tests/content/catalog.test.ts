@@ -2,10 +2,12 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { lessonBodies } from "@/content/subjects/cn/bodies";
+import { chapterSummaries } from "@/content/subjects/cn/chapter-summaries";
 import { renderCurriculumMarkdown } from "@/content/subjects/cn/curriculumDocument";
 import { curriculum } from "@/content/subjects/cn/load";
 import { framingLessonIds, lessonCatalog } from "@/content/subjects/cn/lessonCatalog";
 import {
+  assessChapterSummary,
   assessCompletedModule,
   assessLesson,
   assessWhyLinkage,
@@ -158,6 +160,18 @@ describe("curriculum catalog", () => {
     expect(assessWhyLinkage(curriculum.lessons, whyQuestions)).toEqual([]);
     for (const module of curriculum.modules) {
       expect(assessCompletedModule(module, module.lessons)).toEqual([]);
+    }
+  });
+
+  it("registers a complete chapter summary for every module", () => {
+    expect(chapterSummaries.map((summary) => summary.moduleId).sort()).toEqual(
+      modules.map((module) => module.id).sort(),
+    );
+    for (const module of modules) {
+      const summary = chapterSummaries.find((item) => item.moduleId === module.id);
+      expect(summary, module.id).toBeDefined();
+      expect(summary?.status).toBe("complete");
+      expect(assessChapterSummary(summary!, module, whyQuestions)).toEqual([]);
     }
   });
 });

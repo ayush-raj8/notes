@@ -1,4 +1,5 @@
 import type { Lesson, Section } from "./schema";
+import type { ChapterSummary } from "./subjects/cn/chapterSummarySchema";
 import type { ModuleSpec } from "./subjects/cn/syllabus";
 import type { WhyQuestion } from "./subjects/cn/why/questions";
 
@@ -145,5 +146,62 @@ export function assessCompletedModule(module: ModuleSpec, lessons: Lesson[]): st
       }
     }
   }
+  return errors;
+}
+
+export function assessChapterSummary(
+  summary: ChapterSummary,
+  module: ModuleSpec,
+  questions: WhyQuestion[],
+): string[] {
+  const errors: string[] = [];
+  if (summary.moduleId !== module.id) {
+    errors.push(`summary moduleId ${summary.moduleId} does not match ${module.id}`);
+  }
+  if (summary.status !== "complete") return errors;
+
+  if (summary.readingMinutes.min > summary.readingMinutes.max) {
+    errors.push(`${module.id} chapter summary readingMinutes.min exceeds max`);
+  }
+
+  const expectedBullets = [...module.bullets];
+  if (summary.coverage.length !== expectedBullets.length) {
+    errors.push(
+      `${module.id} chapter summary coverage has ${summary.coverage.length} entries; expected ${expectedBullets.length}`,
+    );
+  }
+  summary.coverage.forEach((entry, index) => {
+    if (entry.bullet !== expectedBullets[index]) {
+      errors.push(
+        `${module.id} chapter summary coverage[${index}] bullet text does not match the syllabus`,
+      );
+    }
+    if (!entry.notes.includes("•")) {
+      errors.push(`${module.id} chapter summary coverage[${index}] notes must use • bullets`);
+    }
+  });
+
+  const expectedWhy = questions
+    .filter((question) => question.primaryLessonId.startsWith(`${module.id}.`))
+    .map((question) => question.id)
+    .sort();
+  const actualWhy = [...summary.whyAnchors].sort();
+  if (actualWhy.join(",") !== expectedWhy.join(",")) {
+    errors.push(
+      `${module.id} chapter summary whyAnchors must be exactly [${expectedWhy.join(", ")}]`,
+    );
+  }
+
+  for (const field of [
+    summary.mentalModel,
+    summary.connections.before,
+    summary.connections.after,
+  ]) {
+    if (!field.includes("•")) {
+      errors.push(`${module.id} chapter summary prose fields must use • bullets`);
+      break;
+    }
+  }
+
   return errors;
 }

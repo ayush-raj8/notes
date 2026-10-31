@@ -45,9 +45,33 @@ The prompt text for `why.01` through `why.50` is fixed. Do not reword it. The co
 
 `why.20` is owned by `m05.service-model`. The question is what a successful handshake still does not guarantee. It is not the scenario where TCP establishment fails.
 
+## Chapter summaries
+
+Each module has one chapter summary under `src/content/subjects/cn/chapter-summaries/`. It is not a syllabus lesson and does not change lesson ids or counts. The module page renders it as **Chapter notes (10–20 min)**.
+
+Every complete summary uses the same fields (see `chapterSummarySchema`):
+
+1. **thesis** — one sentence for the chapter.
+2. **outcomes** — 3–6 explainable results after the skim.
+3. **coverage** — exactly one entry per syllabus bullet, same text and order; notes-style `•` lines only.
+4. **mentalModel** — how the pieces fit (notes style).
+5. **failuresAndSignals** — at least three production failure / observation pairs.
+6. **whyAnchors** — every why-question whose primary lesson sits in this module.
+7. **connections.before / after** — prior and next module hooks.
+8. **selfCheck** — 2–4 prompts with model answers.
+9. **readingMinutes** — `{ min, max }` with both in 10–20 inclusive (`min <= max`).
+
+Rules:
+
+- Notes style only (same as Module 8+ lessons). No essay paragraphs in coverage.
+- Cover every important mechanism the module teaches; do not invent new syllabus bullets.
+- Do not duplicate full lesson prose. Point at lessons and why ids when detail lives there.
+- `status: "complete"` only when `assessChapterSummary` returns no errors.
+
 ## What not to ship
 
 - Placeholder paragraphs that read like a finished explanation.
 - A second copy of a lesson.
 - A visual with no learning objective.
 - `complete` on a lesson that still has an open research question in a subtle claim.
+- A chapter summary marked complete that skips a syllabus bullet or a primary why id for that module.
