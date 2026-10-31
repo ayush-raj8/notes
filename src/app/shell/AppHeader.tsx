@@ -43,6 +43,11 @@ export function AppHeader() {
           {nav.title}
         </NavLink>
       ) : null}
+      {!inSubject ? (
+        <nav className="site-nav" aria-label="Primary">
+          <a href={`${import.meta.env.BASE_URL}java/`}>Java book</a>
+        </nav>
+      ) : null}
       {inSubject ? (
         <button
           type="button"
@@ -61,6 +66,7 @@ export function AppHeader() {
               {link.label}
             </NavLink>
           ))}
+          <a href={`${import.meta.env.BASE_URL}java/`}>Java book</a>
         </nav>
       ) : null}
     </header>
